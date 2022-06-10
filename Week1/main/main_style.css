@@ -399,25 +399,28 @@ a.current-active:hover{
 
 @media screen and (min-width: 1100px) and (max-width: 1399px){
     .slider-item {
-    width: 20%;
+    /* width: 20%; */
+    width: 25%;
     }
 }
 
 @media screen and (min-width: 1400px){
     .slider-item {
-        width: 16.66666667%;
+        /* width: 16.66666667%; */
+        width: 25%;
     }
 }
 
 @media screen and (min-width: 800px) and (max-width: 1099px){
     .slider-item {
-    width: 25%;
+        width: 25%;
     }
 }
 
-@media screen and (min-width: 500px) and (max-width: 799px){.slider-item {
+@media screen and (min-width: 500px) and (max-width: 799px){
+    .slider-item {
     width: 33.333333%;
-}
+    }
 }
 
 .lolomoRow{
@@ -597,4 +600,34 @@ a.current-active:hover{
 }
 .member-footer .copy-text-block+.copy-text-block {
     margin-top: 4px;
+}
+
+
+
+.fadeinanimation{
+    animation-duration: 0.4s;
+    animation-name: fadein; 
+}
+
+.fadeoutanimation{
+    animation-duration: 0.4s;
+    animation-name: fadeout; 
+}
+
+@keyframes fadein {
+    from {
+        background-color: transparent;
+    }
+    to {
+        background-color: rgb(20, 20, 20);
+    }
+}
+
+@keyframes fadeout {
+    from {
+        background-color: rgb(20, 20, 20);
+    }
+    to {
+        background-color: transparent;
+    }
 }
