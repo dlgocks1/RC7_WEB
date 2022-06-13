@@ -1,5 +1,23 @@
 const $headercontainer = document.querySelector(".pinning-header-container");
-console.log($headercontainer)
+const $searchTab = document.querySelector(".searchTab");
+const $searchInput = document.querySelector(".searchInput");
+const $vedio = document.querySelector("#vedio");
+
+$searchTab.addEventListener('click',()=>{
+    $searchTab.style.display = "none"
+    $searchInput.style.display = "flex"
+    document.querySelector("#searchInput").focus();
+})
+
+$searchInput.addEventListener('focusout',()=>{
+    $searchTab.style.display = "inline-block"
+    $searchInput.style.display = "none"
+})
+
+
+$vedio.addEventListener('ended', function(){
+    $vedio.style.display = "none"
+});
 
 document.addEventListener('scroll', function() {
     const currentScrollValue = document.documentElement.scrollTop;

@@ -133,17 +133,14 @@ img {
     margin: 0 0.75rem;
 }
 
-.language-picker-header{
-    /* padding-left: 1.375rem; */
-    /* padding-right: 1.375rem; */
+/* .language-picker-header{
     white-space: nowrap;
-    padding: 7px 0;
+    padding: 0;
     background-color: rgba(0,0,0,0.4);
     border: 1px solid #aaa;
     color: #fff;
     border-radius: 2px;
-    
-}
+} */
 
 .material-symbols-outlined {
   font-variation-settings:
@@ -156,11 +153,46 @@ img {
 .ui-select{
     border: none;
     appearance: none;
-    width: 100%;
+    height: 100%;
     background: rgba(0,0,0,.4);
     color: #fff;
     font-size: .875rem;
-    padding: 0 1.375rem;
+    top: 50%;
+    padding: 10px 28px;
+    white-space: nowrap;
+    background-color: rgba(0,0,0,0.4);
+    border: 1px solid #aaa;
+    color: #fff;
+    border-radius: 2px;
+}
+
+.select-arrow{
+    position: relative;
+    display: flex;
+    width: 100%;
+    align-items: center;
+
+}
+
+.select-arrow::before {
+    color: white;
+    position: relative;
+    background-size: 100% 100%; 
+    display: inline-block;  
+    transform:scale(0.9);
+    content:"";
+    left: 28px;
+    content: url("../src/baseline_public_white_24dp.png");
+}
+
+.select-arrow::after {
+    color: white;
+    font-size: 15px;
+    /* content: '\e898'; */
+    content: '▼';
+    top: 50%;
+    position: relative;
+    right: 30px;
 }
 
 .authLinks.redButton {

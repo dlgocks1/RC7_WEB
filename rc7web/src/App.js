@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Counter from './Counter';
 // Keyword JSX, State에 대해 간단한 설명
 
@@ -22,8 +22,6 @@ function App({name}) {
     setCount(count-1)
   }
 
-  
-
   // return문 안에는 html body부분 요소
   return (
     // JSX 문법은 무조건 한 덩어리어야 한다.
@@ -31,7 +29,9 @@ function App({name}) {
     // div 말고 fragment로 사용해도 됨 <> </>
       <div>
         <h1> {name} </h1>
-        <Counter num={count} />
+        
+        <Counter num={count}  />
+
         <h1>{count}</h1>
         <button onClick={(event)=>{
           console.log(event)
