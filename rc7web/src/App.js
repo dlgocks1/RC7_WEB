@@ -1,7 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
 import React, { useState } from 'react';
-import Counter from './Counter';
 // Keyword JSX, State에 대해 간단한 설명
 
 // 시작은 대문자
@@ -30,8 +29,6 @@ function App({name}) {
       <div>
         <h1> {name} </h1>
         
-        <Counter num={count}  />
-
         <h1>{count}</h1>
         <button onClick={(event)=>{
           console.log(event)

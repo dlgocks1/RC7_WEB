@@ -627,7 +627,7 @@ details > summary {
     top: 30px;
     height: 1em;
     width: 1em;
-    transform: translateY(-50%) rotate(-45deg);
+    transform: translateY(-50%) rotate(45deg);
     fill: #fff;
 }
 
