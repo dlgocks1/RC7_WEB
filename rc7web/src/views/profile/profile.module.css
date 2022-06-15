@@ -36,19 +36,20 @@ div{
     width: 100%;
 }
 
+
 @media (max-width: 841px){
-    /* #logo {    
+    #logo {    
         height: 17px;
-    } */
+    }
     .pinning-header-container{
         height: 41px;
     }
 }
 
 @media screen and (min-width: 841px){
-    /* #logo {    
+    #logo {    
         height: 31px;
-    } */
+    }
     .pinning-header-container{
         height: 70px;
     }

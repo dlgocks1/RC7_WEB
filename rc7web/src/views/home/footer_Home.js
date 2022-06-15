@@ -1,4 +1,3 @@
-import './home.css';
 
 function Footer_Home(){
     return(

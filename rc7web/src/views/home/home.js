@@ -1,4 +1,3 @@
-import './home.css';
 // import React, { useState } from 'react';
 import Footer_Home from './footer_Home';
 import StoryCardContainer from './storyCardContainer';

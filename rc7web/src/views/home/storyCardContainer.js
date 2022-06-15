@@ -1,7 +1,5 @@
-
 import Question from './question';
 import StoryCard from './storyCard';
-import './home.css';
 
 function StoryCardContainer() {
     return (

@@ -5,7 +5,9 @@ import classNames from 'classnames/bind'
 import ProfileBox from "./profilebox";
 
 const cx = classNames.bind(styles);
-
+console.log(styles);
+console.log(cx);
+console.log(cx("flex","logo"));
 const UserList = [
     { id:1, name: "아부지", img: "https://occ-0-3076-988.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABb_DHMVDo8hDAK3yCzp_kViqNAzRqtn4oFSvy8FppaaBvPEgXCYaVMOX7QyrOZvuznXMuC7CCX4H0-NmnBa5bxs4CCEluvvauk87.png" },
     { id:2, name: "어무이", img: "https://occ-0-3076-988.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABT4cxkF1q0aSEVCvqYghhYlTJfAE1Oz78QZ2Zco0GN_c1kr_X8Q01ASn1bPFPCo1cy4XB5-hBHWzPhB3te4PXTohBW34bVKPZRAt.png?r=f71" },
@@ -22,7 +24,7 @@ function Profile() {
                 <div className={cx("pinning-header-container", "flex")}>
                     <div className={cx("logo-container")}>
                         <a aria-label="넷플릭스" className={cx("logo")} href="">
-                            <img id="logo" src="http://www.gnnews.co.kr/news/photo/201811/343582_102326_2141.jpg" />
+                            <img id={styles.logo} src="http://www.gnnews.co.kr/news/photo/201811/343582_102326_2141.jpg" />
                         </a>
                     </div>
                 </div>

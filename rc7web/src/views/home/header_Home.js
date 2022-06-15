@@ -1,5 +1,3 @@
-import './home.css';
-
 function Header_Home() {
     return (
         <div className="header-wrapper">

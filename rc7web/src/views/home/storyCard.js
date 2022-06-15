@@ -1,4 +1,3 @@
-import './home.css';
 import React, { useState } from 'react';
 
 function StoryCard({maintitle,subtitle,content}){
