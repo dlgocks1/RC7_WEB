@@ -3,7 +3,8 @@ import reset from 'styled-reset';
 
 // reset : 랜덤으로 키값 설정하여 스타일 따로 적용
 const Home_style = createGlobalStyle `
-    ${reset}  
+    // 기존 브라우저의 스타일만 Reset 
+    ${reset} 
     body, html{
         box-sizing: border-box;
         padding: 0;

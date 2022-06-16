@@ -1,6 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
+// css-in-js Style -> React,  
+// 최하단 컴포넌트에만 컴포넌트 스타일 적용
 // reset : 랜덤으로 키값 설정하여 스타일 따로 적용
 const Main_home_style = createGlobalStyle `
     ${reset}    //
@@ -164,6 +166,7 @@ const Main_home_style = createGlobalStyle `
         text-align: center;
         font-size: 15px;
     }
+    
     .icon-close:before {
         content: '\e762';
     }
@@ -248,12 +251,6 @@ const Main_home_style = createGlobalStyle `
         border-width: 5px 5px 0px;
         border-color: rgb(255, 255, 255) transparent transparent;
         transition: transform 367ms cubic-bezier(0.21, 0, 0.07, 1) 0s, -webkit-transform 367ms cubic-bezier(0.21, 0, 0.07, 1) 0s, -moz-transform 367ms cubic-bezier(0.21, 0, 0.07, 1) 0s, -o-transform 367ms cubic-bezier(0.21, 0, 0.07, 1) 0s;
-    }
-    
-    .mainView{
-        position: relative;
-        min-height: 1000px;
-        z-index: 0;
     }
     
     
@@ -481,9 +478,12 @@ const Main_home_style = createGlobalStyle `
     
     @media screen and (min-width: 500px) and (max-width: 799px){
         .slider-item {
-        width: 33.333333%;
+            /* width: 33.33%; */
+            width: 25%;
         }
     }
+
+
     
     .lolomoRow{
         margin: 3vw 0;
@@ -535,6 +535,7 @@ const Main_home_style = createGlobalStyle `
     .slider-item{
         box-sizing: border-box;
         padding: 0 0.2vw;
+        width: 25%;
     }
     
     .showPeek{
