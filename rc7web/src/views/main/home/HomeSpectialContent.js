@@ -1,9 +1,10 @@
-import mainvedio from "../src/dummyVedio.mp4"
+import mainvedio from "../../src/dummyVedio.mp4"
 import {React, useState} from "react";
 import styled from "styled-components";
 
 function HomeSpectialContent() {
-    let [isPlaying, setPlaying] = useState(true);
+    const [isPlaying, setPlaying] = useState(true);
+
     return (
         <BillboardRow aria-label="특별 소개 콘텐츠">
             <div>

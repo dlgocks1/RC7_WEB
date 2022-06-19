@@ -1,59 +1,5 @@
 import styled from "styled-components"
 
-const MemberFooter = styled.footer`
-    max-width: 980px;
-    margin: 20px auto 0;
-    padding: 0 4%;
-    color: grey;
-    & .member-footer-copyright {
-        font-size: 11px;
-    }
-    & .copy-text-block+.copy-text-block {
-        margin-top: 4px;
-    }
-    & .copy-text-block+.copy-text-block a {
-        color: grey;
-    }
-`;
-
-const SnsIcon = styled.svg`
-    fill: grey;
-    height: 25px;
-    width: 36px;
-`;
-
-const MemberFooterLinks = styled.ul`
-    font-size: 13px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    margin: 0 0 14px 0;
-`;
-
-const MemberFooterLinkWrapper = styled.li`
-    list-style-type: none;
-    flex: 0 0 50%;
-    margin-bottom: 16px;
-    flex-basis: 25%;
-    box-sizing: border-box;
-    & .member-footer-link{
-        color : grey;
-    }
-    & .member-footer-link:hover{
-        color : white;
-    }
-`;
-
-const ServiceCode = styled.button`
-    margin-bottom: 20px;
-    font-size: 13px;
-    background: 0 0;
-    color: grey;
-    border: solid 1px grey;
-    font-size: 1.3rem;
-    padding: 0.5em;
-`;
 
 function Footer() {
     return (
@@ -140,9 +86,11 @@ function Footer() {
                     href="https://help.netflix.com/contactus"><span
                         className="member-footer-link-content">문의하기</span></a></MemberFooterLinkWrapper>
             </MemberFooterLinks>
+            
             <div>
                 <ServiceCode>서비스 코드</ServiceCode>
             </div>
+
             <div className="member-footer-copyright">
                 <div className="copy-text">
                     <div className="copy-text-block">넷플릭스서비시스코리아 유한회사 통신판매업신고번호: 제2018-서울종로-0426호 전화번호: 080-001-9587
@@ -155,11 +103,66 @@ function Footer() {
                     <div id="" className="copy-text-block" data-uia=""><a
                         href="http://www.ftc.go.kr/bizCommPop.do?wrkr_no=1658700119">공정거래위원회 웹사이트</a></div>
                 </div>
-                {/* <span className="member-footer-copyright-instance">{29b99209-a4d4-467d-b820-4ef92c1f8853}</span> */}
             </div>
         </MemberFooter>
 
     );
 }
+
+
+const MemberFooter = styled.footer`
+    max-width: 980px;
+    margin: 20px auto 0;
+    padding: 0 4%;
+    color: grey;
+    & .member-footer-copyright {
+        font-size: 11px;
+    }
+    & .copy-text-block+.copy-text-block {
+        margin-top: 4px;
+    }
+    & .copy-text-block+.copy-text-block a {
+        color: grey;
+    }
+`;
+
+const SnsIcon = styled.svg`
+    fill: grey;
+    height: 25px;
+    width: 36px;
+`;
+
+const MemberFooterLinks = styled.ul`
+    font-size: 13px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin: 0 0 14px 0;
+`;
+
+const MemberFooterLinkWrapper = styled.li`
+    list-style-type: none;
+    flex: 0 0 50%;
+    margin-bottom: 16px;
+    flex-basis: 25%;
+    box-sizing: border-box;
+    & .member-footer-link{
+        color : grey;
+    }
+    & .member-footer-link:hover{
+        color : white;
+    }
+`;
+
+const ServiceCode = styled.button`
+    margin-bottom: 20px;
+    font-size: 13px;
+    background: 0 0;
+    color: grey;
+    border: solid 1px grey;
+    font-size: 1.3rem;
+    padding: 0.5em;
+`;
 
 export default Footer;

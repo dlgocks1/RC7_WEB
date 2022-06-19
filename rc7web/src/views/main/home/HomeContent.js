@@ -1,6 +1,6 @@
 import { useDebugValue } from "react";
-import ViewContainer from "./SliderList";
-import LocalRankingList from "./LocalRankingList";
+import ViewContainer from "../SliderList";
+import LocalRankingList from "../LocalRankingList";
 import HomeSpectialContent from "./HomeSpectialContent";
 import styled, { css } from 'styled-components';
 
@@ -32,9 +32,14 @@ const ContainerList = [
 
 ]
 
+function makeError(){
+    throw new Error("임의 에러 발생");
+}
+
 function MainHomeContent() {
     return (
         <MainView>
+            {/* {makeError()} */}
             <HomeSpectialContent />
             {ContainerList.map((value) => {
                 // Virtual DOM 에서 자식 노드 체크할때 키값으로 할때 그거가 이 키값

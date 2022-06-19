@@ -1,24 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Home from './views/home/home';
-import Profile from './views/profile/profile';
-import Main from './views/main/Home';
-import Main_home_style from './views/src/styles/main_home_styles';
-import home_style from './views/src/styles/home_style';
-import Home_style from './views/src/styles/home_style';
+import Home from './views/home/Home';
+import Profile from './views/profile/Profile';
+import MainHome from './views/main/home/Home';
+import ResetStyles from './views/src/styles/reset';
+import Series from './views/main/series/Series';
+import ErrorBoundary from './ErrorBoundary';
+import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-
+// 라우팅 
+// npm install react-router-dom
 root.render(
   <React.StrictMode>
-    {/* <Home_style /> */}
+    <ResetStyles />
+    <App/>
+
     {/* <Home /> */}
-
     {/* <Profile /> */}
-    
-    {/* <Main_home_style /> */}
-    <Main />
+    {/* <MainHome /> */}
 
+    {/* <Series /> */}
   </React.StrictMode>
 );

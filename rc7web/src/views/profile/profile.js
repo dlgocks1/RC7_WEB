@@ -2,7 +2,7 @@ import styles from "./profile.module.css"
 import React, { Component } from "react"
 // css 충돌 클래스 이름 같음
 import classNames from 'classnames/bind'
-import ProfileBox from "./profilebox";
+import ProfileBox from "./ProfileBox";
 
 const cx = classNames.bind(styles);
 console.log(styles);

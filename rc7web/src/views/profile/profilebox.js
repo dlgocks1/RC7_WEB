@@ -5,12 +5,12 @@ const cx = classNames.bind(styles);
 
 function ProfileBox({name, img}){
     return(
-            <li className={cx("profile")}>
-                <a className={cx("profile-link","flex")}>
-                    <img className={cx("profile-icon")} src={img} />
-                    <span className={cx("profile-name")}>{name}</span>
-                </a>
-            </li>
+        <li className={cx("profile")}>
+            <a className={cx("profile-link","flex")}>
+                <img className={cx("profile-icon")} src={img} />
+                <span className={cx("profile-name")}>{name}</span>
+            </a>
+        </li>
     );
 }
 export default ProfileBox;

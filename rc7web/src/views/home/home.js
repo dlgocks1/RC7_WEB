@@ -1,16 +1,18 @@
-// import React, { useState } from 'react';
-import Footer_Home from './footer_Home';
-import StoryCardContainer from './storyCardContainer';
-import Header_Home from './header_Home';
+import Footer from './Footer';
+import StoryCardContainer from './StoryCardContainer';
+import Header from './Header';
+import styles from  "./HomeStyles.module.css"
+import classNames from 'classnames/bind'
+const cx = classNames.bind(styles);
 
 function Home() {
     return (
-        <div className="appMountPoint">
-            <div className="dark-background">
-                <Header_Home />
+        <div className={cx("appMountPoint")}>
+            <div className={cx("dark-background")}>
+                <Header />
                 <StoryCardContainer />
             </div>
-            <Footer_Home />
+            <Footer />
         </div>
     );
 }

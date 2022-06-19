@@ -1,10 +1,9 @@
-// img를 추가하는 방법
-import Header from "./Header";
-import HomeContent from "./HomeContent";
-import Footer from "./Footer";
+import Header from "../Header";
+import HomeContent from "../home/HomeContent";
+import Footer from "../Footer";
 import styled from "styled-components"
 
-function Main() {
+function Series() {
     return (
         <DarkBackground>
             <Header />
@@ -20,4 +19,4 @@ const DarkBackground = styled.div`
     width: 100%;
 `;
 
-export default Main;
+export default Series;
