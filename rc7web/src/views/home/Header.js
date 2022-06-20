@@ -76,6 +76,7 @@ function Header() {
             }
             <input placeholder="비밀번호 입력해주세요." onChange={(e)=>{setPassword(e.target.value)}}/>
             <p style={{color:"red"}}>5글자 이상</p>
+            
         </div>
     );
 }

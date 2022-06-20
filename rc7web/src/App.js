@@ -3,6 +3,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom"
 import Home from './views/home/Home';
 import Profile from './views/profile/Profile';
 import MainHome from './views/main/home/Home';
+import Login from "./views/login/Login";
 
 function App(){
     // Switch를 쓰면 exrt를 자동으로 해줌
@@ -11,9 +12,10 @@ function App(){
         <>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Home/>}/>
-                    <Route path="/profile" element={<Profile/>}/>
-                    <Route path="/Main" element={<MainHome/>}/>
+                    <Route path="/" element={<Login/>}/>
+
+                    {/* <Route path="/profile" element={<Profile/>}/> */}
+                    {/* <Route path="/Main" element={<MainHome/>}/> */}
 
                 </Routes>
             </BrowserRouter>    
