@@ -46,7 +46,6 @@ function Header() {
     },[password]);
 
 
-    
 
     return (
         <div className={cx("header-wrapper")}>
@@ -64,11 +63,11 @@ function Header() {
                         </select>
                     </div>
                 </div>
-                <a href="" className={cx("authLinks", "redButton")} data-uia="header-login-link">로그인</a>
+                <Link to="/login" className={cx("authLinks", "redButton")} >로그인</Link>
             </div>
             {/* 링크태그와 A태그의 차이점 : 새로고침을 해주지 않는다. */}
             {/* state초기화 되버림 */}
-            <Link style={{zIndex:"5"}} to="/profile">프로필로 이동</Link>
+            {/* <Link style={{zIndex:"5"}} to="/profile">프로필로 이동</Link>
             {
                 movie.length > 0 ? movie.map((item,index) =>{
                     return(<p>{item}</p>);
@@ -76,7 +75,7 @@ function Header() {
             }
             <input placeholder="비밀번호 입력해주세요." onChange={(e)=>{setPassword(e.target.value)}}/>
             <p style={{color:"red"}}>5글자 이상</p>
-            
+             */}
         </div>
     );
 }

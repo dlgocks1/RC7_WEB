@@ -16,7 +16,7 @@ function Header() {
         window.addEventListener('scroll', onScroll, { passive: true });
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
-    console.log(yoffset);
+    // console.log(yoffset);
 
     useEffect(() => {
         inputFocus.current.focus();

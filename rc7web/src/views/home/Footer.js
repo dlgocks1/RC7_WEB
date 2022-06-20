@@ -1,50 +1,108 @@
-import styles from  "./HomeStyles.module.css"
+import styles from "./HomeStyles.module.css"
+import styled from "styled-components";
 import classNames from 'classnames/bind'
+import FooterCopyright from "./FooterCopyright";
 const cx = classNames.bind(styles);
 
-function Footer(){
-    return(
-        <div role="contentinfo" className={cx("member-footer")}>
-        <p style={{margin : "16px 0"}} className={cx("footer-top")}>질문이 있으신가요? 문의 전화: &nbsp;<a className={cx("footer-top-a")} href="tel:080-001-9587">080-001-9587</a></p>
-        <ul className={cx("member-footer-links")}>
-            <li className={cx("member-footer-link-wrapper")}>
-                <a className={cx("member-footer-link")} href="/browse/subtitles"><span className={cx("member-footer-link-content")}>자막 및 음성</span></a></li>
-            <li className={cx("member-footer-link-wrapper")}><a className={cx("member-footer-link")} href="/browse/audio-description"><span className={cx("member-footer-link-content")}>화면 해설</span></a>
-            </li>
-            <li className={cx("member-footer-link-wrapper")}><a className={cx("member-footer-link")} href="https://help.netflix.com/"><span className={cx("member-footer-link-content")}>고객 센터</span></a>
-            </li>
-            <li className={cx("member-footer-link-wrapper")}><a className={cx("member-footer-link")} href="/redeem"><span className={cx("member-footer-link-content")}>기프트카드</span></a></li>
-            <li className={cx("member-footer-link-wrapper")}><a className={cx("member-footer-link")} href="https://media.netflix.com/"><span className={cx("member-footer-link-content")}>미디어 센터</span></a>
-            </li>
-            <li className={cx("member-footer-link-wrapper")}><a className={cx("member-footer-link")} href="http://ir.netflix.com/"><span className={cx("member-footer-link-content")}>투자 정보(IR)</span></a>
-            </li>
-            <li className={cx("member-footer-link-wrapper")}><a className={cx("member-footer-link")} href="https://jobs.netflix.com/"><span className={cx("member-footer-link-content")}>입사 정보</span></a>
-            </li>
-            <li className={cx("member-footer-link-wrapper")}><a className={cx("member-footer-link")} href="https://help.netflix.com/legal/termsofuse"><span className={cx("member-footer-link-content")}>이용
-                약관</span></a></li>
-            <li className={cx("member-footer-link-wrapper")}><a className={cx("member-footer-link")} href="https://help.netflix.com/legal/privacy"><span className={cx("member-footer-link-content")}>개인정보</span></a></li>
-            <li className={cx("member-footer-link-wrapper")}><a className={cx("member-footer-link")} href="https://help.netflix.com/legal/notices"><span className={cx("member-footer-link-content")}>법적
-                고지</span></a></li>
-            <li className={cx("member-footer-link-wrapper")}><a className={cx("member-footer-link")} href="/Cookies"><span className={cx("member-footer-link-content")}>쿠키 설정</span></a></li>
-            <li className={cx("member-footer-link-wrapper")}><a className={cx("member-footer-link")} href="https://help.netflix.com/legal/corpinfo"><span className={cx("member-footer-link-content")}>회사
-                정보</span></a></li>
-            <li className={cx("member-footer-link-wrapper")}><a className={cx("member-footer-link")} href="https://help.netflix.com/contactus"><span className={cx("member-footer-link-content")}>문의하기</span></a></li>
-        </ul>
-        <div className={cx("member-footer-copyright")}>
-            <div className={cx("copy-text")}>
-                <div className={cx("copy-text-block")}>넷플릭스서비시스코리아 유한회사 통신판매업신고번호: 제2018-서울종로-0426호 전화번호: 080-001-9587
-                </div>
-                <div className={cx("copy-text-block")}>대표: 레지널드 숀 톰프슨</div>
-                <div className={cx("copy-text-block")}>이메일 주소: korea@netflix.com</div>
-                <div className={cx("copy-text-block")}>주소: 대한민국 서울특별시 종로구 우정국로 26, 센트로폴리스 A동 20층 우편번호 03161</div>
-                <div className={cx("copy-text-block")}>사업자등록번호: 165-87-00119</div>
-                <div className={cx("copy-text-block")}>클라우드 호스팅: Amazon Web Services Inc.</div>
-                <div id="" className={cx("copy-text-block")} data-uia=""><a href="http://www.ftc.go.kr/bizCommPop.do?wrkr_no=1658700119">공정거래위원회 웹사이트</a></div>
-            </div>
-            {/* <span className="member-footer-copyright-instance">{29b99209-a4d4-467d-b820-4ef92c1f8853}</span> */}
-        </div>
-        </div>
-        );
+function Footer({ type }) {
+    function FooterCustom() {
+        if (type === "login") {
+            return <LoginFooter>
+                <p style={{ fontSize:"16px", padding:"30px 0",margin: "0", color: "#757575" }}>질문이 있으신가요? 문의 전화: &nbsp;
+                    <a className={cx("footer-top-a")} href="tel:080-001-9587">080-001-9587</a>
+                </p>
+                <Memberfooterlinks>
+                    <li><a href="/">
+                        <span>자주 묻는 질문</span></a>
+                    </li>
+                    <li><a href="/">
+                        <span>고객 센터</span></a>
+                    </li>
+                    <li><a href="/">
+                        <span>이용 약관</span></a>
+                    </li>
+                    <li><a href="/">
+                        <span>개인정보</span></a>
+                    </li>
+                    <li><a href="/">
+                        <span>쿠키 설정</span></a>
+                    </li>
+                    <li><a href="/">
+                        <span>회사 정보</span></a>
+                    </li>
+                </Memberfooterlinks>
+                <FooterCopyright />
+            </LoginFooter>;
+        } else {
+            return 
+            <div role="contentinfo" className={cx("member-footer")}>
+                <p style={{ margin: "16px 0" }} className={cx("footer-top")}>질문이 있으신가요? 문의 전화: &nbsp;<a className={cx("footer-top-a")} href="tel:080-001-9587">080-001-9587</a></p>
+                <ul className={cx("member-footer-links")}>
+                    <li className={cx("member-footer-link-wrapper")}>
+                        <a className={cx("member-footer-link")} href="/browse/subtitles"><span className={cx("member-footer-link-content")}>자막 및 음성</span></a></li>
+                    <li className={cx("member-footer-link-wrapper")}><a className={cx("member-footer-link")} href="/browse/audio-description"><span className={cx("member-footer-link-content")}>화면 해설</span></a>
+                    </li>
+                    <li className={cx("member-footer-link-wrapper")}><a className={cx("member-footer-link")} href="https://help.netflix.com/"><span className={cx("member-footer-link-content")}>고객 센터</span></a>
+                    </li>
+                    <li className={cx("member-footer-link-wrapper")}><a className={cx("member-footer-link")} href="/redeem"><span className={cx("member-footer-link-content")}>기프트카드</span></a></li>
+                    <li className={cx("member-footer-link-wrapper")}><a className={cx("member-footer-link")} href="https://media.netflix.com/"><span className={cx("member-footer-link-content")}>미디어 센터</span></a>
+                    </li>
+                    <li className={cx("member-footer-link-wrapper")}><a className={cx("member-footer-link")} href="http://ir.netflix.com/"><span className={cx("member-footer-link-content")}>투자 정보(IR)</span></a>
+                    </li>
+                    <li className={cx("member-footer-link-wrapper")}><a className={cx("member-footer-link")} href="https://jobs.netflix.com/"><span className={cx("member-footer-link-content")}>입사 정보</span></a>
+                    </li>
+                    <li className={cx("member-footer-link-wrapper")}><a className={cx("member-footer-link")} href="https://help.netflix.com/legal/termsofuse"><span className={cx("member-footer-link-content")}>이용
+                        약관</span></a></li>
+                    <li className={cx("member-footer-link-wrapper")}><a className={cx("member-footer-link")} href="https://help.netflix.com/legal/privacy"><span className={cx("member-footer-link-content")}>개인정보</span></a></li>
+                    <li className={cx("member-footer-link-wrapper")}><a className={cx("member-footer-link")} href="https://help.netflix.com/legal/notices"><span className={cx("member-footer-link-content")}>법적
+                        고지</span></a></li>
+                    <li className={cx("member-footer-link-wrapper")}><a className={cx("member-footer-link")} href="/Cookies"><span className={cx("member-footer-link-content")}>쿠키 설정</span></a></li>
+                    <li className={cx("member-footer-link-wrapper")}><a className={cx("member-footer-link")} href="https://help.netflix.com/legal/corpinfo"><span className={cx("member-footer-link-content")}>회사
+                        정보</span></a></li>
+                    <li className={cx("member-footer-link-wrapper")}><a className={cx("member-footer-link")} href="https://help.netflix.com/contactus"><span className={cx("member-footer-link-content")}>문의하기</span></a></li>
+                </ul>
+                <FooterCopyright />
+            </div>;
+        }
+    }
+
+    return (
+        <FooterCustom />
+    );
 }
+
+const Memberfooterlinks = styled.ul`
+    font-size: 13px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin: 0 0 14px 0;
+    padding: 0;
+    & li {
+        list-style-type: none;
+        flex: 0 0 50%;
+        margin-bottom: 16px;
+        flex-basis: 25%;
+        box-sizing: border-box;
+    }
+
+    & li a{
+        color: grey;
+        text-decoration: none;
+    }
+    & li a:hover{
+        text-decoration: underline;
+    }
+`;
+
+const LoginFooter = styled.div`
+    /* margin: 0; */
+    /* width: 100%; */
+    /* bottom: 0px; */
+    padding: 0 4%;
+    color: #757575;
+    background: rgba(0,0,0,0.7);
+`;
 
 export default Footer;

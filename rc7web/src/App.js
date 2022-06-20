@@ -12,11 +12,10 @@ function App(){
         <>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Login/>}/>
-
-                    {/* <Route path="/profile" element={<Profile/>}/> */}
-                    {/* <Route path="/Main" element={<MainHome/>}/> */}
-
+                    <Route path="/" element={<Home/>}/>
+                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/profile" element={<Profile/>}/>
+                    <Route path="/Main" element={<MainHome/>}/>
                 </Routes>
             </BrowserRouter>    
         </>

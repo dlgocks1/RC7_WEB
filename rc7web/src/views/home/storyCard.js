@@ -13,9 +13,8 @@ function StoryCard({maintitle,subtitle,content}){
             {content}
             {/* 링크태그와 A태그의 차이점 : 새로고침을 해주지 않는다. */}
             {/* state초기화 되버림 */}
-            <Link style={{zIndex:"5"}} to="/profile">프로필로 이동</Link>
+            {/* <Link style={{zIndex:"5"}} to="/profile">프로필로 이동</Link> */}
 
-            
         </div>
     );
 }

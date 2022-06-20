@@ -2,16 +2,11 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Fragment } from "react";
 import LoginContent from "./LoginContent";
+import Footer from "../home/Footer";
 
 function Body() {
     return (
-        <Fragment >
-
-            <LoginBackGround>
-                <img style={{ minHeight: "100%", minWidth: "100%"}} src="https://assets.nflxext.com/ffe/siteui/vlv3/8ee18735-ada3-45be-b383-a94701054bb9/afb43404-fad1-4652-b371-7cb7456e539a/KR-ko-20220613-popsignuptwoweeks-perspective_alpha_website_small.jpg"/>
-                <ImgBackground/>
-            </LoginBackGround>
-
+        <>
             <LoginHeader>
                 <Link to="/" >
                     <LogoContainer>
@@ -19,14 +14,15 @@ function Body() {
                     </LogoContainer>
                 </Link>
             </LoginHeader>
-
             <LoginBody>
                 <LoginContent />
+                
             </LoginBody>
-
-        </Fragment>
+            
+        </>
     );
 }
+
 const ImgBackground = styled.div`
     background: rgba(0,0,0,.4);
     position : absolute;
@@ -39,15 +35,12 @@ const ImgBackground = styled.div`
 const LoginBackGround = styled.div`
     background-color : #000;
     background-size: cover;
+    position: absolute;
     display: block;
+    z-index: -1;
     height: 100%;
     min-height: 100vh;
-    overflow: hidden;
-    position: absolute;
-    width: 100%;
-    z-index: -1;
-    background-color: #000;
-    // opacity: .5;
+     /* opacity: .5; */
 `;
 
 const LogoContainer = styled.div`
@@ -63,7 +56,7 @@ const LogoContainer = styled.div`
 
 const LoginBody = styled.div`
     margin: 0 auto -236px;
-    min-height: 100vh;
+    min-height: 90vh;
     background-color: transparent;
     max-width: 450px;
     color: #333;
@@ -75,6 +68,13 @@ const LoginBody = styled.div`
         height: 91px;
         display: block;
     }
+
+    &:after {
+        content: "";
+        height: 91px;
+        display: block;
+    }
+   
 `;
 
 const LoginHeader = styled.div`
