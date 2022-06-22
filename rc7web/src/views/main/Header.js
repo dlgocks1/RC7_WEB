@@ -193,13 +193,13 @@ const HeaderContainer = styled.div`
     padding: 0 4%;
     z-index: 1;
     background-image: linear-gradient(to bottom,rgba(0,0,0,.7) 10%,rgba(0,0,0,0));
-}`;
+`;
 
 const PrimaryNavigation = styled.ul`
     display: flex;
     align-items: center;
     margin-left: 10px;
-}`;
+`;
 
 const NavigationTab = styled.a`
     margin-left: 18px;
@@ -251,7 +251,7 @@ const SearchInput =styled.input`
     width: 212px;
     outline: 0;
     &:hover{
-        backgoundColor= #000;
+        backgound-color: #000;
     }
     &:-webkit-autofill-selected{
         background-color: rgb(0, 0, 0) !important;

@@ -2,7 +2,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom"
 
 import Home from './views/home/Home';
 import Profile from './views/profile/Profile';
-import MainHome from './views/main/home/Home';
+import MainHome from './views/main/home/MainHome';
 import Login from "./views/login/Login";
 
 function App(){
@@ -12,10 +12,10 @@ function App(){
         <>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Home/>}/>
+                    <Route path="/" exact element={<Home/>}/>
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/profile" element={<Profile/>}/>
-                    <Route path="/Main" element={<MainHome/>}/>
+                    <Route path="/main/:username" element={<MainHome/>}/>
                 </Routes>
             </BrowserRouter>    
         </>

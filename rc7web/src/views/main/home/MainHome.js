@@ -3,8 +3,17 @@ import Header from "../Header";
 import HomeContent from "./HomeContent";
 import Footer from "../Footer";
 import styled from "styled-components"
+import { useLocation, useParams } from "react-router-dom";
 
 function MainHome() {
+    const location = useLocation();
+    const state =location.state; 
+    console.log(state);
+
+    const {username} = useParams();
+    console.log(username);
+
+
     return (
         <DarkBackground>
             <Header />

@@ -12,7 +12,7 @@ function Home() {
                 <Header />
                 <StoryCardContainer />
             </div>
-            <Footer />
+            <Footer type="home" />
         </div>
     );
 }

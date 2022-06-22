@@ -54,7 +54,6 @@ function LocalRankingList({ imgURLList }) {
 
 const LolomoRow = styled.div`
     margin: 3vw 0;
-    z-index: 1;
     line-height: 1.3;
 `;
 
@@ -74,7 +73,6 @@ const RowHeaderTitle = styled.div`
 `;
 
 const Slider = styled.div`
-    z-index: 2;
     position: relative;
     margin: 0;
     padding: 0 4%;

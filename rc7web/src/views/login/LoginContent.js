@@ -4,11 +4,14 @@ import styeld from "styled-components";
 
 function LoginContent() {
     const [isDetail, Setdetail] = useState(false);
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [emailResult, setEmailresult] = useState(true);
-    const [emailvalid, setEmailValid] = useState('');
+
     const [passwordValid, setPasswordValid] = useState('');
+    const [emailvalid, setEmailValid] = useState('');
+    
+    const [emailResult, setEmailresult] = useState(true);
     const [passwordResult, setPasswordResult] = useState(true);
 
     const user =[
@@ -30,12 +33,8 @@ function LoginContent() {
         // history.push("/");
     }
 
-    const emailRegex =
-      /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
-
     const handleSubmit = (event) =>{
         event.preventDefault();
-        
         if(!emailvalid && !passwordValid){
             let pw = -1;
             for(let i=0 ; i<user.length; i++){
@@ -59,8 +58,10 @@ function LoginContent() {
                 setPasswordResult(true);    
             }
         }
-        // return;            
     }
+
+    const emailRegex =
+    /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
 
     useEffect(()=>{
         if (!emailRegex.test(email) && email.length>=1) {

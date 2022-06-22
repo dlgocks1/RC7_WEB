@@ -1,10 +1,23 @@
 import Slider_Item from "./SliderItem";
 import styled from "styled-components"
+import { useEffect, useState } from "react";
 
 
 function ViewContainer({ name, imgURLList }) {
+
+    const [isItemHover, setIsItemHover] = useState(false);
+
+    useEffect(()=>{
+
+    },[isItemHover]);
+
     return (
-        <LolomoRow>
+        <LolomoRow
+            onMouseOver={()=>{
+                setIsItemHover(true)}}
+            onMouseOut={()=>{setIsItemHover(false)}}
+            // style={isItemHover?{zIndex:"4"}:{zIndex:"1"}}
+        >
             <RowHeader>
                 <a href="">
                     <RowHeaderTitle>{name}</RowHeaderTitle>
@@ -35,7 +48,6 @@ function ViewContainer({ name, imgURLList }) {
 
 const LolomoRow = styled.div`
     margin: 3vw 0;
-    z-index: 1;
     line-height: 1.3;
 `;
 
@@ -55,7 +67,6 @@ const RowHeaderTitle = styled.div`
 `;
 
 const Slider = styled.div`
-    z-index: 2;
     position: relative;
     margin: 0;
     padding: 0 4%;
