@@ -141,16 +141,15 @@ const ColorSupplementary =styled.button`
     cursor: pointer;
     padding: 5px;
     z-index: 2;
-}
 
-&:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
 
-& > .play-icon{
-    width: 16px;
-    height: 16px;
-}`
+    & > .play-icon{
+        width: 16px;
+        height: 16px;
+    }`
 ;
 
 const MaturityRating = styled.span`

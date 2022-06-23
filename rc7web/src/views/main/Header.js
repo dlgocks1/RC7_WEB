@@ -6,9 +6,9 @@ import styled from "styled-components";
 function Header() {
     const [yoffset, setOffset] = useState(0);
     const [searchBar, setSearchBar] = useState(false);
+    // Ref Dom참조
     const inputFocus = useRef();
 
-    // Ref Dom참조?
     useEffect(() => {
         const onScroll = () => setOffset(window.pageYOffset);
         // 마운트 해제됬을때 없애줘야지 메모리 누수 X
@@ -16,7 +16,6 @@ function Header() {
         window.addEventListener('scroll', onScroll, { passive: true });
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
-    // console.log(yoffset);
 
     useEffect(() => {
         inputFocus.current.focus();
@@ -33,7 +32,7 @@ function Header() {
 
     return (
         // <div style={headerpinningstyle}>
-            <HeaderContainer style={yoffset === 0 ? { backgroundColor: "transparent" } : { backgroundColor: "rgb(20, 20, 20)" }}>
+            <HeaderContainer style={yoffset === 0 ? { backgroundColor: "transparent", transition: "background-color 500ms" } : { backgroundColor: "rgb(20, 20, 20)",transition: "background-color 500ms" }}>
                 <a aria-label="넷플릭스" className="logo" href="">
                     <img id="logo" alt="logoImage" style={{height:"27px"}} src={logo} />
                 </a>

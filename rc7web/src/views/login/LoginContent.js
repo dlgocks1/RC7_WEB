@@ -149,6 +149,7 @@ function LoginContent() {
                                 </span>
                             </LoginInfoSave>
                         </div>
+
                         <LoginhelpLink>도움이 필요하신가요?</LoginhelpLink>
                     </div>
 
@@ -259,7 +260,7 @@ const LoginInfoSaveCb = styeld.input`
     opacity: 0;
 
     &:checked + ${LoginInfoSave} {
-        :after {
+        &:after {
             opacity: 1;
         }
     }
