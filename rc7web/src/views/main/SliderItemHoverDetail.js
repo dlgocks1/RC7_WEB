@@ -1,9 +1,9 @@
-import styled from "styled-components"
-import mainvedio from "../src/dummyVedio.mp4"
-import iconPlay from "../src/icon_play.svg"
-import iconCheck from "../src/icon_check_white.svg"
-import iconThumb from "../src/icon_thumb_white.svg"
-import iconArrow from "../src/icon_arrow_white.svg"
+import styled from "styled-components";
+import mainvedio from "assets/dummyVedio.mp4";
+import iconPlay from "assets/icon/icon_play.svg";
+import iconCheck from "assets/icon/icon_check_white.svg";
+import iconThumb from "assets/icon/icon_thumb_white.svg";
+import iconArrow from "assets/icon/icon_arrow_white.svg";
 import { useEffect, useState } from "react"
 
 function SliderItemHoverDetail({hoverStyle}){

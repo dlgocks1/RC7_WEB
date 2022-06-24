@@ -29,7 +29,6 @@ function LoadingItem({delaytime}){
 
     return(
         <LoadingItemStyle style={backgound}>
-
         </LoadingItemStyle>
     );
 }

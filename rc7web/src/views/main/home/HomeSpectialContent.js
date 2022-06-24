@@ -1,6 +1,6 @@
-import mainvedio from "../../src/dummyVedio.mp4"
 import {React, useState} from "react";
 import styled from "styled-components";
+import mainvedio from "../../../assets/dummyVedio.mp4"
 
 function HomeSpectialContent() {
     const [isPlaying, setPlaying] = useState(true);

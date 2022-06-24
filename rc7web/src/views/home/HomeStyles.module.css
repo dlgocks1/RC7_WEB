@@ -178,7 +178,7 @@ img {
     width: 24px;
     height: 24px;
     left: 28px;
-    content: url("../src/baseline_public_white_24dp.png");
+    content: url("assets/icon/icon_public_white.png");
 }
 
 .select-arrow::after {
@@ -258,7 +258,7 @@ img {
 
 .our-story-card-subtitle {
     font-size: 1.625em;
-    margin: 0.2em auto;
+    margin: 0.5em auto;
     margin-bottom: 0px;
 
     text-align: center;
@@ -368,7 +368,9 @@ img {
     font-size: 3.125em;
     text-align: center;
     margin: 0 auto;
-    max-width:640px;
+    font-weight: 700;
+    margin-top: 70px;
+    max-width:680px;
     padding: 0;
 }
 

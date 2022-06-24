@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../src/logo.png";
+import logo from "assets/img/logo.png";
 import { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 
@@ -11,7 +11,8 @@ function Header() {
 
     useEffect(() => {
         const onScroll = () => setOffset(window.pageYOffset);
-        // 마운트 해제됬을때 없애줘야지 메모리 누수 X
+        // 마운트 해제됬을때 없애줘야지 메모리 누수 X 
+        // 이벤트 리스너 중첩을 방지하는 듯?
         window.removeEventListener('scroll', onScroll);
         window.addEventListener('scroll', onScroll, { passive: true });
         return () => window.removeEventListener('scroll', onScroll);
@@ -21,14 +22,6 @@ function Header() {
         inputFocus.current.focus();
     }, []);
 
-    const headerpinningstyle = {
-        top : yoffset === 0 ? 0 : "-68px",
-        position : yoffset === 0 ? "relative" : "fixed",
-        backgroundColor : yoffset === 0 ? "transparent" : "rgb(20, 20, 20)",
-        left : "0",
-        zIndex : "1",
-        right : "0",
-    };
 
     return (
         // <div style={headerpinningstyle}>

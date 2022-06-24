@@ -3,16 +3,19 @@ import Header from "../Header";
 import HomeContent from "./HomeContent";
 import Footer from "../Footer";
 import styled from "styled-components"
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams, useSearchParams } from "react-router-dom";
 
 function MainHome() {
     const location = useLocation();
-    const state =location.state; 
-    console.log(state);
+    console.log(location);
 
+    const [searchParams, setSearchParams] = useSearchParams();
+    const age = searchParams.get('age');
+    const mode = searchParams.get('mode');
+    console.log(typeof(age),typeof(age));
+    
     const {username} = useParams();
     console.log(username);
-
 
     return (
         <DarkBackground>

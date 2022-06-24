@@ -28,7 +28,7 @@ function ProfileBox({name, img}){
             </Link>
 
 
-            <button onClick={()=>{gotoMain();}}>TestBt</button>
+            {/* <button onClick={()=>{gotoMain();}}>TestBt</button> */}
         </li>
     );
 }

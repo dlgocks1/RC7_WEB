@@ -2,15 +2,39 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styeld from "styled-components";
 
-function LoginContent() {
+// 사용자지정 Hook은 use로 시작하는 컨벤션
+const useInput = (initialValue, validator)=>{
+    const [value, setValue] = useState(initialValue);
+    const [valid, setValid] = useState(true);
+
+    const onChange = (event) =>{
+        // 비구조할당으로 event내에서 target값 가져오기
+        const { target: {value}, } = event;
+        setValue(value);
+
+        if(typeof validator === "function"){
+            setValid(!validator(value));
+        }
+        // console.log(valid);
+        // input값 조정해야할 때 사용
+        // updateFlag ? setValue(value) : alert("asd");
+
+    };
+    return {value, onChange, valid};
+};
+
+const emailRegex =
+/([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
+
+const LoginContent = () => {
+
+    const checkEmail= (value) => (!emailRegex.test(value) && value.length>=1);
+    const useEmailInput = useInput("",checkEmail);
+    const checkPassword = (value) => (value.length>=1 && value.length<5);
+    const usePasswdInput = useInput("",checkPassword);
+
     const [isDetail, Setdetail] = useState(false);
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
-    const [passwordValid, setPasswordValid] = useState('');
-    const [emailvalid, setEmailValid] = useState('');
-    
     const [emailResult, setEmailresult] = useState(true);
     const [passwordResult, setPasswordResult] = useState(true);
 
@@ -35,16 +59,16 @@ function LoginContent() {
 
     const handleSubmit = (event) =>{
         event.preventDefault();
-        if(!emailvalid && !passwordValid){
+        if(useEmailInput.valid && usePasswdInput.valid){
             let pw = -1;
             for(let i=0 ; i<user.length; i++){
-                if(user[i].email == email){
+                if(user[i].email == useEmailInput.value){
                     // id = user[i].id;
                     pw = user[i].password;
                 }
             }
             if(pw!=-1){
-                if(pw == password){
+                if(pw == usePasswdInput.value){
                     // navigator
                     goprofile();
                     setEmailresult(true);    
@@ -60,23 +84,19 @@ function LoginContent() {
         }
     }
 
-    const emailRegex =
-    /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
 
-    useEffect(()=>{
-        if (!emailRegex.test(email) && email.length>=1) {
-            setEmailValid(true);
-        } else {
-            setEmailValid(false);
-        }
+    // useEffect(()=>{
+    //     if (password.length>=1 && password.length<5) {
+    //         setPasswordValid(true);
+    //     } else {
+    //         setPasswordValid(false);
+    //     }
+    // },[email,password]);
 
-        if (password.length>=1 && password.length<5) {
-            setPasswordValid(true);
-        } else {
-            setPasswordValid(false);
-        }
-    },[email,password]);
-
+    // useEffect(()=>{
+    //     !useEmailInput.valid ? setEmailValid(true) : setEmailValid(false);
+    //     !usePasswdInput.valid ? setPasswordValid(true) : setPasswordValid(false);
+    // },[useEmailInput.valid,usePasswdInput.valid])
 
     return (
         <>
@@ -108,13 +128,14 @@ function LoginContent() {
                     
                     <form method="post"  onSubmit={handleSubmit} >
                         <InputContainer>
-                            <InputPlacement style={emailvalid===true?{ borderBottom: "2px solid #e87c03"} : {borderBottom:"0px"}}>
-                                <InputEmail name="email" type="text" onChange={(e)=>{setEmail(e.target.value)
-                                }} />
+                            <InputPlacement style={!useEmailInput.valid?{ borderBottom: "2px solid #e87c03"} : {borderBottom:"0px"}}>
+                                {/* <InputEmail name="email" type="text" onChange={(e)=>{setEmail(e.target.value)
+                                }} /> */}
+                                <InputEmail type="text" onChange={useEmailInput.onChange} />
                                 <EmailLabel>이메일 주소 또는 전화번호</EmailLabel>
                             </InputPlacement>
 
-                            {emailvalid ? (
+                            {!useEmailInput.valid ? (
                                 <VaildErrorText>
                                     정확한 이메일 주소를 입력하세요.
                                 </VaildErrorText>
@@ -124,12 +145,13 @@ function LoginContent() {
                         </InputContainer>
 
                         <InputContainer>
-                            <InputPlacement style={passwordValid===true?{ borderBottom: "2px solid #e87c03"} : {borderBottom:"0px"}}>
-                                <InputEmail name="password" type="password" onChange={(e)=>setPassword(e.target.value)} />
+                            <InputPlacement style={!usePasswdInput.valid?{ borderBottom: "2px solid #e87c03"} : {borderBottom:"0px"}}>
+                                {/* <InputEmail name="password" type="password" onChange={(e)=>setPassword(e.target.value)} /> */}
+                                <InputEmail type="password" onChange={usePasswdInput.onChange} />
                                 <EmailLabel>비밀번호 </EmailLabel>
                             </InputPlacement>
 
-                            {passwordValid ? (
+                            {!usePasswdInput.valid ? (
                                 <VaildErrorText>
                                     비밀번호는 4~60자 사이여야 합니다.
                                 </VaildErrorText>
