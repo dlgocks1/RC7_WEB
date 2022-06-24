@@ -69,8 +69,6 @@ function SliderItemHoverDetail({hoverStyle}){
                         <Progress width="100%"/>
                     </ProgressContainer>
 
- 
-
                     <span style={{textAlign:"center",color:"rgba(255,255,255,0.8)",fontWeight:"600",fontSize:"12px"}}>총 63분 중 10분</span>
                 </div>
                 
