@@ -4,7 +4,7 @@ import styled from "styled-components"
 
 function Login(){
     return(
-        <DarkBackground>
+        <DarkBackground bgColor="black">
            <LoginBackGround>
                 <img style={{ minHeight: "100%", widt: "100%"}} src="https://assets.nflxext.com/ffe/siteui/vlv3/8ee18735-ada3-45be-b383-a94701054bb9/afb43404-fad1-4652-b371-7cb7456e539a/KR-ko-20220613-popsignuptwoweeks-perspective_alpha_website_small.jpg"/>
                 <ImgBackground/>
@@ -17,9 +17,11 @@ function Login(){
 }
 
 const DarkBackground = styled.div`
+    /* background-color: ${(props) => props.bgColor}; */
     background-color: rgba(0,0,0,0.5);
     width: 100%;
     position: relative;
+    
 
 `;
 

@@ -4,6 +4,7 @@ import Home from './views/home/Home';
 import Profile from './views/profile/Profile';
 import MainHome from './views/main/home/MainHome';
 import Login from "./views/login/Login";
+import FavoritHome from "views/main/favorites/FavoriteHome";
 
 function App(){
     // Switch를 쓰면 exrt를 자동으로 해줌
@@ -15,11 +16,14 @@ function App(){
                     <Route path="/" exact element={<Home/>}/>
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/profile" element={<Profile/>}/>
+                    <Route path="/favorites" element={<FavoritHome/>}/>
                     <Route path="/main" element={<MainHome/>}>
                         <Route path="/main/:memberid" element={<MainHome/>}/>
                     </Route>
                     <Route path="*" exact element={<Home/>}/>
                 </Routes>
+
+                {/* {modalStaet && <Moda />} */}
             </BrowserRouter>    
         </>
     );

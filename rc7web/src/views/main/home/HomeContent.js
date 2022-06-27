@@ -111,6 +111,7 @@ function MainHomeContent() {
                     // Virtual DOM 에서 자식 노드 체크할때 키값으로 할때 그거가 이 키값
                     return (<ViewContainer key={value.id} name={value.name} imgURLList={value.imgURLList} />);
                 }) }
+                
                 <LocalRankingList imgURLList={
                     ["https://occ-0-3076-988.1.nflxso.net/dnm/api/v6/evlCitJPPCVCry0BZlEFb5-QjKc/AAAABSLDza8YZJDtaNG2BJZsLD1HffFaFg2Vv2HSQtjwNlOrpiVQMCnjeEqs3Jzm0mla47cuip1MhRBAzlp5nMmeTqFVw5Knh_CnDSk_bO5YwbWAQMgjbx1WvFXb-GM_GZP1G31EeGOtHT2dsZLYLqu0dQ.webp?r=40a",                
                     "https://occ-0-3076-988.1.nflxso.net/dnm/api/v6/evlCitJPPCVCry0BZlEFb5-QjKc/AAAABeFWAmEvhDQEfoeHAWwuHk7-xRz9cDKbisxbAAQhr6_8T0YNaoZanrJZ-eMQDLyx6U9psuc329qnqp4TbAdq1lnxbJvda5En5y9xQwo4wMIJolXvrl-tDyyZjrVCPoIZflnw6AWeSNk.webp?r=c64",

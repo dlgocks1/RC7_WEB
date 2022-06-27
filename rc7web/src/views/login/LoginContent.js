@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styeld from "styled-components";
 
@@ -27,6 +28,8 @@ const emailRegex =
 /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
 
 const LoginContent = () => {
+
+    const { name, email } = useSelector((state) => state.loginReducer);
 
     const checkEmail= (value) => (!emailRegex.test(value) && value.length>=1);
     const useEmailInput = useInput("",checkEmail);
@@ -102,8 +105,10 @@ const LoginContent = () => {
         <>
             <LoginForm>
                 <div style={{ flexGrow: "1" }}>
+
+
                     <LoginTitle>
-                        로그인
+                          로그인
                     </LoginTitle>
 
                     {!emailResult ? (

@@ -12,8 +12,6 @@ function Header() {
 
     useEffect(() => {
         const onScroll = () => setOffset(window.pageYOffset);
-        // 마운트 해제됬을때 없애줘야지 메모리 누수 X 
-        // 이벤트 리스너 중첩을 방지하는 듯?
         window.removeEventListener('scroll', onScroll);
         window.addEventListener('scroll', onScroll, { passive: true });
         return () => window.removeEventListener('scroll', onScroll);
@@ -23,13 +21,13 @@ function Header() {
         inputFocus.current.focus();
     }, []);
 
-
     return (
-        // <div style={headerpinningstyle}>
+        <>
             <HeaderContainer style={yoffset === 0 ? { backgroundColor: "transparent", transition: "background-color 500ms" } : { backgroundColor: "rgb(20, 20, 20)",transition: "background-color 500ms" }}>
                 <a aria-label="넷플릭스" className="logo" href="">
                     <img id="logo" alt="logoImage" style={{height:"27px"}} src={logo} />
                 </a>
+
                 <PrimaryNavigation>
                     <li>
                         <Link to={`/main/해찬`}>홈</Link>
@@ -50,24 +48,21 @@ function Header() {
 
                 <SecondaryNavigation>
                     <div style={{marginRight : "10px"}}>
-                        {/* <div className="searchBox"> */}
-                            <SearchTab onClick={() => setSearchBar(true)} style={searchBar === true ? { display: "none" } : { display: "inline-block" }}>
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fillRule="evenodd" clopRule="evenodd"
-                                        d="M13 11C13 13.7614 10.7614 16 8 16C5.23858 16 3 13.7614 3 11C3 8.23858 5.23858 6 8 6C10.7614 6 13 8.23858 13 11ZM14.0425 16.2431C12.5758 17.932 10.4126 19 8 19C3.58172 19 0 15.4183 0 11C0 6.58172 3.58172 3 8 3C12.4183 3 16 6.58172 16 11C16 11.9287 15.8417 12.8205 15.5507 13.6497L24.2533 18.7028L22.7468 21.2972L14.0425 16.2431Z"
-                                        fill="white"></path>
-                                </svg>
-                            </SearchTab>
+                        <SearchTab onClick={() => setSearchBar(true)} style={searchBar === true ? { display: "none" } : { display: "inline-block" }}>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fillRule="evenodd" clopRule="evenodd"
+                                    d="M13 11C13 13.7614 10.7614 16 8 16C5.23858 16 3 13.7614 3 11C3 8.23858 5.23858 6 8 6C10.7614 6 13 8.23858 13 11ZM14.0425 16.2431C12.5758 17.932 10.4126 19 8 19C3.58172 19 0 15.4183 0 11C0 6.58172 3.58172 3 8 3C12.4183 3 16 6.58172 16 11C16 11.9287 15.8417 12.8205 15.5507 13.6497L24.2533 18.7028L22.7468 21.2972L14.0425 16.2431Z"
+                                    fill="white"></path>
+                            </svg>
+                        </SearchTab>
 
-                            <SearchInputContainer onBlur={() => setSearchBar(false)} style={searchBar === true ? { display: "flex" } : { display: "none" }}>
-                                <svg style={{marginLeft:"10px"}} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="search-icon">
-                                    <path fillRule="evenodd" clopRule="evenodd" d="M13 11C13 13.7614 10.7614 16 8 16C5.23858 16 3 13.7614 3 11C3 8.23858 5.23858 6 8 6C10.7614 6 13 8.23858 13 11ZM14.0425 16.2431C12.5758 17.932 10.4126 19 8 19C3.58172 19 0 15.4183 0 11C0 6.58172 3.58172 3 8 3C12.4183 3 16 6.58172 16 11C16 11.9287 15.8417 12.8205 15.5507 13.6497L24.2533 18.7028L22.7468 21.2972L14.0425 16.2431Z" fill="currentColor"></path></svg>
-                                {/* You provided a `value` prop to a form field without an `onChange` handler. This will render a read-only field. If the field should be mutable use `defaultValue`. Otherwise, set either `onChange` or `readOnly`. */}
-                                <SearchInput type="text" ref={inputFocus} id="searchInput" name="searchInput" placeholder="제목, 사람, 장르" data-search-input="true" dir="ltr" maxLength="80" value="" className="" />
-                                <span role="button" tabIndex="0" className="icon-close"></span>
-                            </SearchInputContainer>
-
-                        {/* </div> */}
+                        <SearchInputContainer onBlur={() => setSearchBar(false)} style={searchBar === true ? { display: "flex" } : { display: "none" }}>
+                            <svg style={{marginLeft:"10px"}} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="search-icon">
+                                <path fillRule="evenodd" clopRule="evenodd" d="M13 11C13 13.7614 10.7614 16 8 16C5.23858 16 3 13.7614 3 11C3 8.23858 5.23858 6 8 6C10.7614 6 13 8.23858 13 11ZM14.0425 16.2431C12.5758 17.932 10.4126 19 8 19C3.58172 19 0 15.4183 0 11C0 6.58172 3.58172 3 8 3C12.4183 3 16 6.58172 16 11C16 11.9287 15.8417 12.8205 15.5507 13.6497L24.2533 18.7028L22.7468 21.2972L14.0425 16.2431Z" fill="currentColor"></path></svg>
+                            {/* You provided a `value` prop to a form field without an `onChange` handler. This will render a read-only field. If the field should be mutable use `defaultValue`. Otherwise, set either `onChange` or `readOnly`. */}
+                            <SearchInput type="text" ref={inputFocus} id="searchInput" name="searchInput" placeholder="제목, 사람, 장르" data-search-input="true" dir="ltr" maxLength="80" value="" className="" />
+                            <span role="button" tabIndex="0" className="icon-close"></span>
+                        </SearchInputContainer>
                     </div>
 
                     <div style={{marginRight:"10px"}}>
@@ -102,47 +97,34 @@ function Header() {
                 </SecondaryNavigation>
             </HeaderContainer>
 
-            // {/* <SubHeader>
-            //     <div>
-            //         <SubHeaderWrapper>
-            //             <SeriseGalleryHeader>
-            //                 시리즈
-            //             </SeriseGalleryHeader>
-            //         </SubHeaderWrapper>
-            //     </div>
-            // </SubHeader> 
-            // */}
-        // </div>
+            <SubHeader>
+                <div>
+                    내가 찜한 콘텐츠
+                </div>
+            </SubHeader> 
+        </>
     );
 }
 
 
-
-const SeriseGalleryHeader=styled.div`
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 0;
-    min-height: 0;
-    padding: 0;
-    flex-grow: 1;
-`
-
-const SubHeaderWrapper = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-    padding: 0 4%;
-    height: 68px;
-`;
-
 const SubHeader = styled.div`
     z-index : 1;
     height : 68px;
-    position : relative;
+    top : 0px;
+    position : sticky;
+    background: #141414;
+    & div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        padding: 0 4%;
+        height: 68px;
+        font-size: 2.9rem;
+        font-weight: 500;
+    }
 `
 
 const NotificationsFill = styled.span`
@@ -182,7 +164,7 @@ const HeaderContainer = styled.div`
     display : flex;
     font-size: 1.2rem;
     right: 0;
-    position: fixed;
+    position: relative;
     padding: 0 4%;
     z-index: 1;
     background-image: linear-gradient(to bottom,rgba(0,0,0,.7) 10%,rgba(0,0,0,0));
@@ -199,15 +181,6 @@ const PrimaryNavigation = styled.ul`
         &:hover {
             color: #B3B3B3;
         }
-    };
-`;
-
-const NavigationTab = styled.a`
-    margin-left: 18px;
-    font-weight: 700;
-    color: #e5e5e5;
-    &:hover {
-        color: #B3B3B3;
     }
 `;
 
@@ -268,15 +241,7 @@ const SearchInput =styled.input`
         -webkit-box-shadow: 0 0 0 50px black inset;/*your box-shadow*/
         -webkit-text-fill-color: #fff;
     } 
-    ;
+    `;
 
-// const Notifications = styled.span`
-//     font-size: .5em;
-//     line-height: 1;
-//     z-index: 2;
-//     position: absolute;
-//     top: -0.25em;
-//     right: -0.1em;
-// `;
 
 export default Header;

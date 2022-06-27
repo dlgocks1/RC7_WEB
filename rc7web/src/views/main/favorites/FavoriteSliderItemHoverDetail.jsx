@@ -5,13 +5,37 @@ import iconCheck from "assets/icon/icon_check_white.svg";
 import iconThumb from "assets/icon/icon_thumb_white.svg";
 import iconArrow from "assets/icon/icon_arrow_white.svg";
 import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux";
+import { addFaveriteDataAction,subFaveriteDataAction } from "reducers/favoriteReducer";
 
-function SliderItemHoverDetail({hoverStyle}){
+function FavoriteSliderItemHoverDetail({id, hoverStyle}){
     
     const [opacity,setOpacity] = useState(0);
     const [itemscale,setItemscale] = useState(1);
     const [liketooltop,setLikeTooltip] = useState(false);
     const [dtbookmarktooltip,setDtbookmarktooltip] = useState(false);
+    const favoriteDataReducer = useSelector((state) => state.favoriteDataReducer);
+
+    const dispatch = useDispatch();    
+    const addFaveriteData = () =>{
+        dispatch(
+            addFaveriteDataAction(
+                {
+                    id: 13,
+                    imgURL: "https://occ-0-3076-988.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABbmgjlBWB_YKM8RB8S8rcoPhBU4mAmhZzckx-x52dGUeHFQBNGmF6HUyHbHrQgi8vlaHxXW4e74pT6y6G9sRoIkkECndOTuD6aE.webp?r=2ad"
+                }
+            )
+        );
+    }
+
+    const subFaveriteData = () =>{
+        dispatch(
+            subFaveriteDataAction(
+                {id : id}
+            )
+        );
+        setOpacity(0);
+    }
 
     useEffect(()=>{
         setOpacity(0)
@@ -38,7 +62,8 @@ function SliderItemHoverDetail({hoverStyle}){
                 <div style={{display:"flex",alignItems:"center",flexDirection:"row", marginLeft:"20px"}}>
                     <div style={{flexGrow:"1"}}>
                         <PlayIcon width="20px" src={iconPlay}/>
-                        <SubIcon 
+                        <SubIcon  
+                            onClick={() => {subFaveriteData()}}
                             onMouseOver={()=>{setDtbookmarktooltip(true)}}
                             onMouseOut={()=>{setDtbookmarktooltip(false)}}
                             width="20px" 
@@ -196,10 +221,20 @@ const ShortVedio = styled.video`
 
 const ItemHover = styled.div`
     position: absolute;
-    width: 25%;
     top : -10%;
     z-index: 1;
     background-color: black;
+    @media screen and (min-width: 800px) and (max-width: 1099px){
+        width: 25%;
+    }
+    
+    @media screen and (min-width: 500px) and (max-width: 799px){
+        width: 33.333333%;
+    }
+
+    @media screen and (min-width: 1100px){
+        width: 20%;
+    }
 `;
 
 const BoxartImageInPaddedContainer = styled.img`
@@ -211,4 +246,4 @@ const BoxartImageInPaddedContainer = styled.img`
     width: 100%;
 `;
 
-export default SliderItemHoverDetail;
+export default FavoriteSliderItemHoverDetail;

@@ -2,14 +2,29 @@ import styles from  "./HomeStyles.module.css"
 import classNames from 'classnames/bind'
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux/es/exports";
+import loginReducer, { loginAction } from "reducers/loginReducer";
+
 const cx = classNames.bind(styles);
 
 function Header() {
 
     const navigate = useNavigate();
+
     const goprofile = () =>{
         navigate("/profile");
         // history.push("/");
+    }
+
+    const dispatch = useDispatch();    
+    
+    const ChangeRedux = (testname) =>{
+        dispatch(
+            loginAction({
+                name : testname,
+                email :"평창보리@naver.com"
+            })
+        );
     }
 
     return (
