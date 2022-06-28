@@ -87,7 +87,7 @@ const DtBookmarktooltip = styled.div`
     height: auto;
     line-height: 80%;
     padding: 5px 11px;
-    top: 107px;
+    top: 44%;
     left : -15px;
     position: absolute;
     width: fit-content;
@@ -117,7 +117,7 @@ const IsLikeTooltop = styled.div`
     height: auto;
     line-height: 80%;
     padding: 5px 11px;
-    top: 107px;
+    top: 44%;
     left : 77px;
     position: absolute;
     width: fit-content;

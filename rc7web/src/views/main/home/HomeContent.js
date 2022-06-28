@@ -66,7 +66,7 @@ function MainHomeContent() {
                         "https://occ-0-3076-988.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABQuG8a6WuuGupkvVbjud_JpY0HfLTGWI-l5Kz9HRfmw292vhkoFeK2yTIMk6nXs4vM-pEJAJdNvvUq8kcgApet9mWIN69jYeTOw.webp?r=ce6"]
                 },
             ]);
-        }, 3000);
+        }, 1000);
 
         return () => {
             clearTimeout(ContainerList);
@@ -92,13 +92,9 @@ function MainHomeContent() {
                     "https://occ-0-3076-988.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABTWRRUVNdeUq7N7MR1Yy5tRYxzjUGFS9tUV6Y5FdyNTKqWh_psKOWNugvxp3dijnVmi4OSjkoCP0dWFc-id-AXOg1dpiV-B_AAI.webp?r=016",
                     "https://occ-0-3076-988.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABeCe-kvmuDkecOXPKIE8a_TqHhxJJVGe3QBNm6lXk_JLgAm_auorhMHjb-btjetwACpRfm7gP0_9NuFQglcSsJ-P5hSFO1eypgk.webp?r=d9d"]
             }];
-            // const tempList = ;
             setscrollList(scrollList.concat(scrollItem));
-            console.log(scrollList);
             setpage(page+1);
         }
-        console.log(inView);
-        
     },[inView]);
     
 

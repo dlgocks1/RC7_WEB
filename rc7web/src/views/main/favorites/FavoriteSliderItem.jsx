@@ -44,14 +44,14 @@ function FavoriteSliderItem({ id, imgURL }) {
             {isItemHover ? <FavoriteSliderItemHoverDetail id={id} hoverStyle={hoverStyle}/>:
             ""}
             
-            <a href="" role="link">
+            {/* <a href="" role="link"> */}
                 <BoxartSize16x9>
                     <BoxartImageInPaddedContainer
                         src={imgURL}
                         alt="" />
                         {imgURL}
                 </BoxartSize16x9>
-            </a>
+            {/* </a> */}
         </SliderItemStyle>
     );
 }

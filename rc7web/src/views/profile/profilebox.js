@@ -20,8 +20,8 @@ function ProfileBox({name, img}){
         <li className={cx("profile")}>
             <Link 
                 // JSX 문법 내에서는 중괄호로 묶어서 보내기
-                to={`/main/${haechan}`}
-                state={{name : "이해찬"}}
+                to={`/main`}
+                // state={{name : "이해찬"}}
              className={cx("profile-link","flex")}>
                 <img className={cx("profile-icon")} src={img} />
                 <span className={cx("profile-name")}>{name}</span>

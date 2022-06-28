@@ -7,6 +7,7 @@ import iconArrow from "assets/icon/icon_arrow_white.svg";
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { addFaveriteDataAction,subFaveriteDataAction } from "reducers/favoriteReducer";
+import { useRef } from "react";
 
 function FavoriteSliderItemHoverDetail({id, hoverStyle}){
     
@@ -14,9 +15,10 @@ function FavoriteSliderItemHoverDetail({id, hoverStyle}){
     const [itemscale,setItemscale] = useState(1);
     const [liketooltop,setLikeTooltip] = useState(false);
     const [dtbookmarktooltip,setDtbookmarktooltip] = useState(false);
-    const favoriteDataReducer = useSelector((state) => state.favoriteDataReducer);
+    const testRef = useRef();
 
     const dispatch = useDispatch();    
+    
     const addFaveriteData = () =>{
         dispatch(
             addFaveriteDataAction(
@@ -63,6 +65,7 @@ function FavoriteSliderItemHoverDetail({id, hoverStyle}){
                     <div style={{flexGrow:"1"}}>
                         <PlayIcon width="20px" src={iconPlay}/>
                         <SubIcon  
+                            ref = {testRef}
                             onClick={() => {subFaveriteData()}}
                             onMouseOver={()=>{setDtbookmarktooltip(true)}}
                             onMouseOut={()=>{setDtbookmarktooltip(false)}}
@@ -112,7 +115,10 @@ const DtBookmarktooltip = styled.div`
     height: auto;
     line-height: 80%;
     padding: 5px 11px;
-    top: 107px;
+    /* top: ${(props) => {
+        return `${props.height-200}px`;
+    }}; */
+    top: 44%;
     left : -15px;
     position: absolute;
     width: fit-content;
@@ -123,8 +129,8 @@ const DtBookmarktooltip = styled.div`
         border-style: solid;
         border-width: 8px 6px 0 6.5px;
         content: '';
-        display: block;
-        bottom: -7px;
+        /* bottom: -7px; */
+        bottom: -35%;
         left : 75px;
         position: absolute;
         width: 0;
@@ -142,7 +148,7 @@ const IsLikeTooltop = styled.div`
     height: auto;
     line-height: 80%;
     padding: 5px 11px;
-    top: 107px;
+    top: 44%;
     left : 77px;
     position: absolute;
     width: fit-content;
@@ -154,7 +160,7 @@ const IsLikeTooltop = styled.div`
         border-width: 8px 6px 0 6.5px;
         content: '';
         display: block;
-        bottom: -7px;
+        bottom: -35%;
         right : 21px;
         position: absolute;
         width: 0;

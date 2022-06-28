@@ -4,12 +4,11 @@ import { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-function Header() {
+function Header({path}) {
     const [yoffset, setOffset] = useState(0);
     const [searchBar, setSearchBar] = useState(false);
     // Ref Dom참조
     const inputFocus = useRef();
-
     useEffect(() => {
         const onScroll = () => setOffset(window.pageYOffset);
         // 마운트 해제됬을때 없애줘야지 메모리 누수 X 
@@ -25,14 +24,18 @@ function Header() {
 
 
     return (
-        // <div style={headerpinningstyle}>
-            <HeaderContainer style={yoffset === 0 ? { backgroundColor: "transparent", transition: "background-color 500ms" } : { backgroundColor: "rgb(20, 20, 20)",transition: "background-color 500ms" }}>
-                <a aria-label="넷플릭스" className="logo" href="">
+        <>
+            <HeaderContainer mode={path} style={yoffset === 0 ? { backgroundColor: "transparent", transition: "background-color 500ms" } : { backgroundColor: "rgb(20, 20, 20)",transition: "background-color 500ms" }}>
+                <Link aria-label="넷플릭스" to={`/main`}>
                     <img id="logo" alt="logoImage" style={{height:"27px"}} src={logo} />
-                </a>
+                </Link>
                 <PrimaryNavigation>
                     <li>
-                        <Link to={`/main/해찬`}>홈</Link>
+                        <Link to={`/main`}>
+                            {path === "/main" ? (<SelectNow> 홈 </SelectNow>):
+                            "홈"
+                            }
+                        </Link>
                     </li>
                     <li>
                         <a>시리즈</a>
@@ -44,7 +47,11 @@ function Header() {
                         <a>NEW! 요즘 대세 콘텐츠</a>
                     </li>
                     <li>
-                        <Link to={`/favorites`}>내가 찜한 콘텐츠</Link>
+                        <Link to={`/favorites`}>
+                            {path === "/favorites" ? (<SelectNow> 내가 찜한 콘텐츠 </SelectNow>):
+                                "내가 찜한 콘텐츠"
+                                }
+                            </Link>
                     </li>
                 </PrimaryNavigation>
 
@@ -102,47 +109,37 @@ function Header() {
                 </SecondaryNavigation>
             </HeaderContainer>
 
-            // {/* <SubHeader>
-            //     <div>
-            //         <SubHeaderWrapper>
-            //             <SeriseGalleryHeader>
-            //                 시리즈
-            //             </SeriseGalleryHeader>
-            //         </SubHeaderWrapper>
-            //     </div>
-            // </SubHeader> 
-            // */}
-        // </div>
+            {path==="/main" ? "":
+            <SubHeader>
+                <div>
+                    내가 찜한 콘텐츠
+                </div>
+            </SubHeader> 
+            }
+            
+        </>
     );
 }
 
 
-
-const SeriseGalleryHeader=styled.div`
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 0;
-    min-height: 0;
-    padding: 0;
-    flex-grow: 1;
-`
-
-const SubHeaderWrapper = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-    padding: 0 4%;
-    height: 68px;
-`;
-
 const SubHeader = styled.div`
     z-index : 1;
     height : 68px;
-    position : relative;
+    top : 0px;
+    position : sticky;
+    background: #141414;
+    & div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        padding: 0 4%;
+        height: 68px;
+        font-size: 3.1rem;
+        font-weight: 500;
+    }
 `
 
 const NotificationsFill = styled.span`
@@ -182,7 +179,7 @@ const HeaderContainer = styled.div`
     display : flex;
     font-size: 1.2rem;
     right: 0;
-    position: fixed;
+    position : ${(props) => (props.mode ==="/main" ? "fixed" : "relative")};
     padding: 0 4%;
     z-index: 1;
     background-image: linear-gradient(to bottom,rgba(0,0,0,.7) 10%,rgba(0,0,0,0));
@@ -194,20 +191,24 @@ const PrimaryNavigation = styled.ul`
     margin-left: 10px;
     & li a {
         margin-left: 18px;
-        font-weight: 700;
+        font-weight: 400;
+        font-size: 1.2rem;
         color: #e5e5e5;
         &:hover {
             color: #B3B3B3;
         }
     };
+
+
 `;
 
-const NavigationTab = styled.a`
-    margin-left: 18px;
+const SelectNow = styled.span`
+    font-size: 1.2rem;
+    color: #fff;
     font-weight: 700;
-    color: #e5e5e5;
-    &:hover {
-        color: #B3B3B3;
+    cursor: default;
+    &:hover{
+        color: #fff;
     }
 `;
 
@@ -267,16 +268,7 @@ const SearchInput =styled.input`
     &:-webkit-autofill:focus {
         -webkit-box-shadow: 0 0 0 50px black inset;/*your box-shadow*/
         -webkit-text-fill-color: #fff;
-    } 
-    ;
-
-// const Notifications = styled.span`
-//     font-size: .5em;
-//     line-height: 1;
-//     z-index: 2;
-//     position: absolute;
-//     top: -0.25em;
-//     right: -0.1em;
-// `;
+    }
+    `;
 
 export default Header;
