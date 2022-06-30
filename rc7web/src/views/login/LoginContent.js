@@ -57,7 +57,6 @@ const LoginContent = () => {
     const navigate = useNavigate();
     const goprofile = () =>{
         navigate("/profile");
-        // history.push("/");
     }
 
     const handleSubmit = (event) =>{
@@ -105,7 +104,6 @@ const LoginContent = () => {
         <>
             <LoginForm>
                 <div style={{ flexGrow: "1" }}>
-
 
                     <LoginTitle>
                           로그인

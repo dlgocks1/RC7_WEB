@@ -21,10 +21,6 @@ const LolomoRow = styled.div`
     margin: 5vw 0;
     padding: 0 4%;
     line-height: 1.3;
-    touch-action: pan-y;
-    overflow-x: visible;
 `;
-
-
 
 export default FavoriteViewContainer;

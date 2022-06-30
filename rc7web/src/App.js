@@ -5,10 +5,18 @@ import Profile from './views/profile/Profile';
 import Login from "./views/login/Login";
 import Main from "views/main/Main";
 import Dialog from "views/dialog/Dialog";
+import episodeModalReducer from "reducers/episodemodalReducer";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import PreViewModal from "views/previewModal/PreViewModal";
+import MainPage from "views/main/MainPage";
+import FavoritePage from "views/main/favorites/FavoritePage";
 
 function App(){
-    // Switch를 쓰면 exrt를 자동으로 해줌
-    // Component라는 키워드 대신 element를 씀
+
+    const {isModal} = useSelector((state) => state.episodeModalReducer);
+    const {previewVisible} = useSelector((state) => state.previewModalReducer);
+    
     return(
         <>
             <BrowserRouter>
@@ -17,15 +25,17 @@ function App(){
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/profile" element={<Profile/>}/>
                     
-                    <Route path="/favorites" element={<Main/>}/>
-                    <Route path="/main" element={<Main/>}>
-                        <Route path="/main/:memberid" element={<Main/>}/>
+                    <Route path="/favorites" element={<FavoritePage/>}/>
+                    <Route path="/main" element={<MainPage/>}>
+                        <Route path="/main/:memberid" element={<MainPage/>}/>
                     </Route>
                     <Route path="*" exact element={<Home/>}/>
                 </Routes>
                 {/* {modalStaet && <Moda />} */}
             </BrowserRouter>  
-            <Dialog/>
+            {isModal && <Dialog/>}
+
+            {previewVisible && <PreViewModal/>}
 
         </>
     );

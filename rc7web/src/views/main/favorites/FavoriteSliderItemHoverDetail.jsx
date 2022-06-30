@@ -8,6 +8,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { addFaveriteDataAction,subFaveriteDataAction } from "reducers/favoriteReducer";
 import { useRef } from "react";
+import { setEpisdoeModalOn } from "reducers/episodemodalReducer";
 
 function FavoriteSliderItemHoverDetail({id, hoverStyle}){
     
@@ -54,6 +55,13 @@ function FavoriteSliderItemHoverDetail({id, hoverStyle}){
         }, 100);
     }
 
+    const setModalOn = () =>{
+        dispatch(
+            setEpisdoeModalOn(
+            )
+        );
+    }
+
     return(
         <ItemHover
                  // 여러개 오브젝트 스타일 합치기
@@ -88,7 +96,7 @@ function FavoriteSliderItemHoverDetail({id, hoverStyle}){
                         ""}
 
                     </div>
-                    <MorinfoIcon width="20px" src={iconArrow}/>
+                    <MorinfoIcon onClick={setModalOn} width="20px" src={iconArrow}/>
                     
                 </div>
                 <p style={{fontSize:"13px", fontWeight:"600", margin:"10px 15px" }}>"1화"</p>

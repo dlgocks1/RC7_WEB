@@ -11,8 +11,6 @@ const store = createStore(rootReducer);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-
-
 // 라우팅 
 // npm install react-router-dom
 root.render(

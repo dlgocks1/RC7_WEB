@@ -45,7 +45,7 @@ function VedioPlayerContainer(){
                                 <PlayText>재생</PlayText>
                         </PlayButtonWrapper>
 
-                        <div style={{position : "relative" }}>
+                        <div style={{position : "relative", marginRight:"0.5em" }}>
                             {dtbookmarktooltip?(
                                     <DtBookmarktooltip>
                                             내가 찜한 콘텐츠에서 삭제
@@ -63,7 +63,6 @@ function VedioPlayerContainer(){
                             <SubIcon 
                                     onMouseOver={()=>{setLikeTooltip(true)}}
                                     onMouseOut={()=>{setLikeTooltip(false)}}
-                                    width="20px" 
                                     src={iconThumb}/>
                                 {liketooltop?(<IsLikeTooltop>
                                     좋아용
@@ -191,7 +190,7 @@ const SubIcon = styled.img`
     max-width: 20px;
     min-height: 15px;
     max-height: 20px;
-    padding: 7px;
+    padding: 8px;
     margin-left: 5px;
     border: 2px solid rgba(255,255,255,0.5);
     border-radius: 50%;

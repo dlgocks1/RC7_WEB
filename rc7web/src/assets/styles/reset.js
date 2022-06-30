@@ -15,6 +15,9 @@ body, html{
     line-height: 1.2;
     user-select: none;
     cursor: default;
+    max-width:100%;
+    width: 100vw;
+    overflow-x: hidden;
 }
 h1 {
     font-size: 2em;

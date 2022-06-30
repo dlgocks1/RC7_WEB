@@ -22,35 +22,12 @@ const initialState = {itemList : [
     {
         id:6,
         imgURL : "https://occ-0-3076-988.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABYgWJ6sza5wAeAXUIQQjnhcB27IvrAodRxKEZLtIg6nKsw8UjQT0Fdr1_mdMvVnIsM3upB8DViSzFW3aaaxz2-q1NXHW2xSjiC7BKMkwq7Zr9e31DXc3RxmYfixuzS356Zn_zmfsbkwi9Vw3CYJu3pXntR-5OcFzCltupe30B4GknJ30sJrg_PpSOc0uZ01T2H2O.webp?r=7ff",
-    },
-    {
-        id:7,
-        imgURL : "https://occ-0-3076-988.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABTEQ1GwQn8S9RcEkeDMYX_fIhoWmZftrdrBe1CujDLAcbeTJJtvKSM3etfA65xJoGVPME5NgagPAeQLLzc7ZR7TktdbDyu4UnJFG4G03R4XdfE8w5yVjsmrdHYjyNqKrcY23ZPNHYJjj3NPFgN4O7fvgOoxbujXeYKXMmGhlgWA4JUsl0UnUquExUT0ZtCmtYNiK.webp?r=8db",
-    },
-    {
-        id: 8,
-        imgURL: "https://occ-0-3076-988.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABWeiSrZWZgvuaDNJFPiWNtQ0AKzHpCyAIpHrXoDgExcCERBSL4vDL_tF5vJfeE3Xt8pO3sSZgBFdh6K4LvVugR-mwJ3aVQilZGsAhVzwNkbFer6ECkGHJNFsgl2x_wJnRTyJ.jpg?r=33c"
-    },
-    {
-        id: 9,
-        imgURL: "https://occ-0-3076-988.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABTMkcviwSLSw9FGXhReam6Elgwr_F6LkrE4na_6eW13blPQJKBj3ipTE1NHipezeHctQCEdGAyhf-6k5-pz2kbov8cPhusVy71hogWfnTgioawAE55Sh1R3DdErijUeeFMD1.jpg?r=345",
-    },
-    {
-        id: 10,
-        imgURL: "https://occ-0-3076-988.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABW4RkRTEU9jz1qMac65SvUjMBgK9FrryIBMAdrLD9pvR60c0hup34i8HHpG74IWLg8dEI2SQQlRJYU1suG7fzWAg87g5BbuYqt8XOPuUHjslPFps254MgEMtvWuOp5r0pOSt.jpg?r=6d9",
-    },
-    {
-        id: 11,
-        imgURL: "https://occ-0-3076-988.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABZ8IJybJ9GS7QGCRg-f9vrqAF4fo15lfZ0jI9xlcecE1oqvm0frkT6JC5suQOEtHmc6uUrmEeuZil_ByaZQHyN7PvnX7UsyezWcyj6t9_Iv7MJd9zXK9wSg7AAcltc-GtycJ0JcC95dXQTtt62j_UpHLYtC8PBeHTm7Irg.jpg?r=367",
-    },
-    {
-        id: 12,
-        imgURL: "https://occ-0-3076-988.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABQuG8a6WuuGupkvVbjud_JpY0HfLTGWI-l5Kz9HRfmw292vhkoFeK2yTIMk6nXs4vM-pEJAJdNvvUq8kcgApet9mWIN69jYeTOw.webp?r=ce6",
-    },
+    }
 ]}
 
 const ADD_FAVERITE_DATA = "ADD_FAVERITE_DATA"
 const SUB_FAVERITE_DATA = "SUB_FAVERITE_DATA"
+const SET_FAVERITE_DATA = "SET_FAVERITE_DATA"
 
 export const addFaveriteDataAction = (data) =>{
     return{
@@ -58,6 +35,14 @@ export const addFaveriteDataAction = (data) =>{
         data : data,
     }
 }
+
+export const setFaveriteDataAction = (data) =>{
+    return{
+        type : SET_FAVERITE_DATA,
+        data : data,
+    }
+}
+
 
 export const subFaveriteDataAction = (data) =>{
     return{
@@ -70,15 +55,21 @@ const favoriteDataReducer = (state=initialState, action) => {
     switch(action.type){
         case ADD_FAVERITE_DATA :{
             return {
-                    ...state,
-                    itemList : [...state.itemList, action.data],
+                ...state,
+                itemList : [...state.itemList, action.data],
             }
         }
         case SUB_FAVERITE_DATA :{
             return {
-                    ...state,
-                    itemList : state.itemList.filter((element) => element.id !== action.data.id),
+                ...state,
+                itemList : state.itemList.filter((element) => element.id !== action.data.id),
             }
+        }
+        case SET_FAVERITE_DATA:{
+            return {
+                ...state,
+                itemList : action.data,
+        }
         }
         default : {
             return{

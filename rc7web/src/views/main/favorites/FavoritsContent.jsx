@@ -4,6 +4,7 @@ import { useEffect } from "react"
 import FavoriteViewContainer from "./FavoriteViewContainer"
 import _ from 'lodash';
 import { useSelector } from "react-redux";
+import styled from "styled-components"
 
 const FavoritsContent = () =>{
 
@@ -78,12 +79,16 @@ const FavoritsContent = () =>{
 
     
     return(
-        <>
+        <Container>
             {contentList.map((value,index) => {
                 return (<FavoriteViewContainer key={index} id={value.id} contentList={value} />);
             }) }
-        </>
+        </Container>
     );
 }
+
+const Container = styled.div`
+    width: 100vw;
+`
 
 export default FavoritsContent;

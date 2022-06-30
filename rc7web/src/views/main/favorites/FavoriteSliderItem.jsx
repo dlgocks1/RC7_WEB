@@ -28,9 +28,12 @@ function FavoriteSliderItem({ id, imgURL }) {
             return ;
         }
 
+
         sethoverStyle({transformOrigin:"center left",left : "0%", marginLeft:"4%" });
         return ;
     }
+
+
 
     return (
         <SliderItemStyle 
@@ -39,7 +42,7 @@ function FavoriteSliderItem({ id, imgURL }) {
                 // 적용되는 순서? 비동기? 동기?
                 setHoverPosition(event);
                 setIsItemHover(true)}}
-            onMouseOut={()=>{setIsItemHover(false)}}
+                onMouseOut={()=>{setIsItemHover(false)}}
         >
             {isItemHover ? <FavoriteSliderItemHoverDetail id={id} hoverStyle={hoverStyle}/>:
             ""}

@@ -15,8 +15,7 @@ function Body() {
                 </Link>
             </LoginHeader>
             <LoginBody>
-            <LoginContent />
-                
+                <LoginContent />
             </LoginBody>
             
         </>

@@ -1,15 +1,15 @@
-import Header from "./Header";
-import HomeContent from "./home/HomeContent";
-import Footer from "./Footer";
+import Header from "../Header";
+import HomeContent from "../home/HomeContent";
+import Footer from "../Footer";
 import styled from "styled-components"
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
-import FavoritsContent from "./favorites/FavoritsContent";
+import FavoritsContent from "../favorites/FavoritsContent";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import {userFavorites} from "utils/userFavorites.js"
 import { setFaveriteDataAction } from "reducers/favoriteReducer";
 
-function Main(){
+function FavoritePage(){
     const location = useLocation();
     // console.log(location.pathname);
     // const [searchParams, setSearchParams] = useSearchParams();
@@ -53,8 +53,7 @@ function Main(){
         <TopContainer Ypos={yposition} type={isModal}>
             <DarkBackground>
                 <Header path={location.pathname} />
-                {location.pathname === "/main" ? <HomeContent /> : ""}
-                {location.pathname === "/favorites" ? <FavoritsContent /> :""}
+                <FavoritsContent />
                 <Footer />
             </DarkBackground>
         </TopContainer>
@@ -73,4 +72,4 @@ const DarkBackground = styled.div`
     width: 100%;
 `;
 
-export default Main;
+export default FavoritePage;

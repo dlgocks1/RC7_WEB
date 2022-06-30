@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import {userFavorites} from "utils/userFavorites.js"
 import { setFaveriteDataAction } from "reducers/favoriteReducer";
 
-function Main(){
+function MainPage(){
     const location = useLocation();
     // console.log(location.pathname);
     // const [searchParams, setSearchParams] = useSearchParams();
@@ -53,8 +53,7 @@ function Main(){
         <TopContainer Ypos={yposition} type={isModal}>
             <DarkBackground>
                 <Header path={location.pathname} />
-                {location.pathname === "/main" ? <HomeContent /> : ""}
-                {location.pathname === "/favorites" ? <FavoritsContent /> :""}
+                <HomeContent />
                 <Footer />
             </DarkBackground>
         </TopContainer>
@@ -73,4 +72,4 @@ const DarkBackground = styled.div`
     width: 100%;
 `;
 
-export default Main;
+export default MainPage;

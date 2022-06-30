@@ -5,87 +5,105 @@ import iconCheck from "assets/icon/icon_check_white.svg";
 import iconThumb from "assets/icon/icon_thumb_white.svg";
 import iconArrow from "assets/icon/icon_arrow_white.svg";
 import { useEffect, useState } from "react"
-import { useDispatch } from "react-redux";
 import { setEpisdoeModalOn } from "reducers/episodemodalReducer";
+import { setPreviewModalKeep, setPreviewModalOff, setPreviewModalOn } from "reducers/previewModalReducer";
+import { useDispatch } from "react-redux";
 
-function SliderItemHoverDetail({hoverStyle}){
-    
-    const [opacity,setOpacity] = useState(0);
-    const [itemscale,setItemscale] = useState(1);
+function PreViewModalContent() {
+
     const [liketooltop,setLikeTooltip] = useState(false);
     const [dtbookmarktooltip,setDtbookmarktooltip] = useState(false);
-
-    useEffect(()=>{
-        setOpacity(0)
-        setItemscale(1);
-        return(
-            testfun()
-        );        
-    },[]);
-
-    const testfun = ()=>{
-        setTimeout(() => {
-             setOpacity(1)
-             setItemscale(1.3);
-        }, 100);
-    }
-
     const dispatch = useDispatch();
+
     const setModalOn = () =>{
         dispatch(
-            setEpisdoeModalOn(
-            )
+            setEpisdoeModalOn()
         );
     }
     
-    return(
-        <ItemHover
-                 // 여러개 오브젝트 스타일 합치기
-                style={Object.assign(hoverStyle,{opacity:`${opacity}`,transform:`scale(${itemscale})`, transition:"all 0.5s"})}
-            >
-            <div>
-                <ShortVedio src={mainvedio} autoPlay muted={true}></ShortVedio>
-                <div style={{display:"flex",alignItems:"center",flexDirection:"row", marginLeft:"20px"}}>
-                    <div style={{flexGrow:"1"}}>
-                        <PlayIcon width="20px" src={iconPlay}/>
-                        <SubIcon 
-                            onMouseOver={()=>{setDtbookmarktooltip(true)}}
-                            onMouseOut={()=>{setDtbookmarktooltip(false)}}
-                            width="20px" 
-                            src={iconCheck}/>
-                        
-                        {dtbookmarktooltip?(<DtBookmarktooltip>
-                            내가 찜한 콘텐츠에서 삭제
-                        </DtBookmarktooltip>):
+    const previewModalOff = () =>{
+        dispatch(
+            setPreviewModalOff()
+        )
+    }
+
+    return (
+        <>
+            <ShortVedio src={mainvedio} autoPlay muted={true}></ShortVedio>
+          
+            <div style={{ display: "flex", alignItems: "center", flexDirection: "row", marginLeft: "20px" }}>
+                <div style={{ flexGrow: "1" }}>
+                    <PlayIcon width="20px" src={iconPlay} />
+
+                    <SubIcon
+                        onMouseOver={() => { setDtbookmarktooltip(true) }}
+                        onMouseOut={() => { setDtbookmarktooltip(false) }}
+                        width="20px"
+                        src={iconCheck} />
+
+                    {dtbookmarktooltip ? (<DtBookmarktooltip>
+                        내가 찜한 콘텐츠에서 삭제
+                    </DtBookmarktooltip>) :
                         ""}
 
-                        <SubIcon 
-                            onMouseOver={()=>{setLikeTooltip(true)}}
-                            onMouseOut={()=>{setLikeTooltip(false)}}
-                            width="20px" 
-                            src={iconThumb}/>
-                        {liketooltop?(<IsLikeTooltop>
-                            좋아용
-                        </IsLikeTooltop>):
+                    <SubIcon
+                        onMouseOver={() => { setLikeTooltip(true) }}
+                        onMouseOut={() => { setLikeTooltip(false) }}
+                        width="20px"
+                        src={iconThumb} />
+                    {liketooltop ? (<IsLikeTooltop>
+                        좋아용
+                    </IsLikeTooltop>) :
                         ""}
 
-                    </div>
-                    <MorinfoIcon onClick={setModalOn} width="20px" src={iconArrow}/>
-                    
                 </div>
-                <p style={{fontSize:"13px", fontWeight:"600", margin:"10px 15px" }}>"1화"</p>
-                <div style={{display:"grid",gridGap:"5px", alignItems:"center",paddingBottom:"20px",gridTemplateColumns:"4fr 3fr"}}>
-                    <ProgressContainer >
-                        <Progress width="100%"/>
-                    </ProgressContainer>
+                <MorinfoIcon
+                    onClick={() => {
+                        setModalOn()
+                        previewModalOff()
+                    }}
+                    width="20px" src={iconArrow} />
 
-                    <span style={{textAlign:"center",color:"rgba(255,255,255,0.8)",fontWeight:"600",fontSize:"12px"}}>총 63분 중 10분</span>
-                </div>
-                
             </div>
-        </ItemHover>
+            <p style={{ fontSize: "13px", fontWeight: "600", margin: "10px 15px" }}>"1화"</p>
+            <div
+                style={{ display: "grid", gridGap: "5px", alignItems: "center", paddingBottom: "20px", gridTemplateColumns: "4fr 3fr" }}>
+                <ProgressContainer >
+                    <Progress width="100%" />
+                </ProgressContainer>
+
+                <span style={{ textAlign: "center", color: "rgba(255,255,255,0.8)", fontWeight: "600", fontSize: "12px" }}>총 63분 중 10분</span>
+
+            </div>
+            {/* <PreViewModelCLose
+                onMouseOut={() => {
+                    console.log("왜안나가지냐")
+                }}
+            /> */}
+        </>
     );
 }
+
+
+const PreViewModelCLose = styled.div`
+    /* cursor: pointer; */
+    /* display: none; */
+    position: absolute;
+    left : 0;
+    bottom : 0;
+    right: 0;
+    top: 0;
+    z-index: -1;
+    border: 2px solid white;
+    /* z-index: 2; */
+`
+
+const PreviewContainer = styled.div`
+    width: 100%;
+    height : 100%;
+`
+
+
 
 const DtBookmarktooltip = styled.div`
     background-color: rgba(211,211,211,1);
@@ -101,7 +119,7 @@ const DtBookmarktooltip = styled.div`
     left : -15px;
     position: absolute;
     width: fit-content;
-    z-index: 5;
+    z-index: 3;
 
     &::after {
         border-color: rgba(211,211,211,1) transparent;
@@ -184,7 +202,7 @@ const SubIcon = styled.img`
     margin-left: 5px;
     border: 2px solid rgba(255,255,255,0.5);
     border-radius: 50%;
-
+    z-index: 2;
     &:hover{
         border: 2px solid rgba(255,255,255,0.8);
         cursor: pointer;
@@ -204,15 +222,6 @@ const ShortVedio = styled.video`
     width: 100%;
 `
 
-const ItemHover = styled.div`
-    position: absolute;
-    width: 25%;
-    top : -10%;
-    z-index: 2;
-
-    background-color: black;
-`;
-
 const BoxartImageInPaddedContainer = styled.img`
     top: 0;
     position: absolute;
@@ -222,4 +231,4 @@ const BoxartImageInPaddedContainer = styled.img`
     width: 100%;
 `;
 
-export default SliderItemHoverDetail;
+export default PreViewModalContent;

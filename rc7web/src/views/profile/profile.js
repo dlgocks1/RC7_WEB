@@ -37,7 +37,7 @@ function Profile() {
                             <ul className={cx("choose-profiles", "flex")}>
                                 {UserList.map( (value) => {
                                     // Each child in a list should have a unique "key" prop.
-                                    return (<ProfileBox key={value.id} img={value.img} name={value.name} />);
+                                    return (<ProfileBox key={value.id} id={value.id} img={value.img} name={value.name} />);
                                 })}
 
                             </ul>

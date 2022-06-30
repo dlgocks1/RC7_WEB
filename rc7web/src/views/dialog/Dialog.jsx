@@ -1,10 +1,26 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setEpisdoeModalOff } from "reducers/episodemodalReducer";
 import styled from "styled-components"
 import PreViewModelClose from "./PreViewModelClose";
 import PreViewModelInfo from "./PreViewModelInfo";
 import VedioPlayerContainer from "./VedioPlayerContainer";
 
 function Dialog(){
+
+    const dispatch = useDispatch();
+    function CloseModalAction(){
+        dispatch(
+            setEpisdoeModalOff()
+        )
+    }
+
+    useEffect(()=>{
+        window.scrollTo(0, 0);
+    })
+
     return(
+        <>
         <PreViewModel>
             <DialogContainer>
 
@@ -15,8 +31,21 @@ function Dialog(){
 
             </DialogContainer>
         </PreViewModel>
+        <PreviewModelBackDrop onClick={CloseModalAction}/>
+        </>
     );
 }
+
+const PreviewModelBackDrop = styled.div`
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0.7;
+    background-color: #000;
+`;
 
 const PreViewModel = styled.div`
     width: 100%;
@@ -25,10 +54,9 @@ const PreViewModel = styled.div`
     left: 0;
     top: 0;
     right: 0;
-    background-color: rgba(0,0,0,0.7);
     bottom: 0;
+    /* background-color: rgba(0,0,0,0.7); */
     display: flex;
-    z-index: 1;
     justify-content: center;
 `
 
@@ -47,6 +75,5 @@ const DialogContainer = styled.div`
 
     border-radius: 6px;
     height: 100%;
-    border: 1px solid white;
 `
 export default Dialog;

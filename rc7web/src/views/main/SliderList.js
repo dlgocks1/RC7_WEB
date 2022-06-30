@@ -5,40 +5,86 @@ import { useEffect, useState } from "react";
 
 function ViewContainer({ name, imgURLList }) {
 
-    const [isItemHover, setIsItemHover] = useState(false);
+    const [slideArray, setSlideArray] = useState(imgURLList);
+    const [arrowhover, setArrowhover] = useState(false);
+    const [sliderType, setSliderType] = useState("NotYet");
+    const [hasSlide, setHasSlide] = useState(false);
 
-    useEffect(()=>{
 
-    },[isItemHover]);
+   useEffect(() =>{
+        if(hasSlide===true){
+            const testvar = setTimeout(() => {setSliderType("Base")}, 750);
+            return()=>{
+                clearTimeout(testvar);
+            }
+        }
+        
+   },[sliderType]);
+
+    const setSliderBehavor = (type) => {
+        if(sliderType === "NotYet"){
+            // 맨처음
+            setSliderType(type);
+        }else{
+            if(type === "Right"){
+                setSliderType("DoubleRight");
+                let tempArray = Object.values(slideArray);
+                for(let i = 0; i <4; i++){
+                    tempArray.push(tempArray.shift());
+                }
+                setTimeout(() => {
+                    setSlideArray(tempArray);}, 750);
+            }else{
+                setSliderType("Left");
+                let tempArray = Object.values(slideArray);
+                for(let i = 0; i <4; i++){
+                    tempArray.unshift(tempArray.pop());
+                }
+                setTimeout(() => {
+                    setSlideArray(tempArray);}, 750);
+            }
+        }
+    }
 
     return (
-        <LolomoRow
-            onMouseOver={()=>{
-                setIsItemHover(true)}}
-            onMouseOut={()=>{setIsItemHover(false)}}
-            // style={isItemHover?{zIndex:"4"}:{zIndex:"1"}}
-        >
+        <LolomoRow>
             <RowHeader>
                 <a href="">
                     <RowHeaderTitle>{name}</RowHeaderTitle>
                 </a>
             </RowHeader>
-            <div>
+            <div style={{zIndex:"1"}}>
                 <Slider>
-                    <HandlePrev tabIndex="0" role="button" aria-label="이전 콘텐츠 보기"><b
-                        className="indicator-icon"></b>
-                    </HandlePrev>
-
-                    <div className="showPeek" style={{ paddingBottom: "1px" }}>
-                        <div style={{ display: "flex" }}>
-                            {imgURLList.map((value) => {
+                    <div style={{paddingBottom: "1px" }}>
+                        <SliderContent 
+                            slideBehavior = {sliderType}
+                            hasSlide = {hasSlide}
+                            style={{ display: "flex" }}>
+                            {slideArray.map((value) => {
                                 return (<Slider_Item imgURL={value} />);
                             })}
-                        </div>
-                    </div>
+                        </SliderContent>
 
-                    <HandleNext tabIndex="0" role="button" aria-label="콘텐츠 더 보기"><b
-                        className="indicator-icon"></b>
+                    </div>
+                    <HandlePrev 
+                        onMouseOver={()=>{setArrowhover(true)}}
+                        onMouseOut={()=>{setArrowhover(false)}}
+                        onClick={()=>{setSliderBehavor("Left")
+                        setHasSlide(true)}}
+                        aria-label="이전 콘텐츠 보기">
+
+                        <ArrowLeft 
+                        style={{visibility: (arrowhover === true ? "visible" : "hidden")}}/>
+                   
+                    </HandlePrev>
+                    <HandleNext 
+                        onMouseOver={()=>{setArrowhover(true)}}
+                        onMouseOut={()=>{setArrowhover(false)}}
+                        onClick={()=>{setSliderBehavor("Right")
+                                setHasSlide(true)}}
+                        >
+                        <ArrowRight 
+                        style={{visibility: (arrowhover === true ? "visible" : "hidden")}}/>
                     </HandleNext>
                 </Slider>
             </div>
@@ -46,9 +92,52 @@ function ViewContainer({ name, imgURLList }) {
     );
 }
 
+
+const ArrowLeft = styled.b`
+    align-self: center;
+    font-size: 2.5vw;
+    color: #fff;
+    margin : 0 auto;
+    font-weight: 700;
+    transform: scale(1.25);
+    height: auto;
+    cursor: pointer;
+    &:before {
+        content : "<" ;
+    }
+    transition: transform .1s ease-out 0s;
+`;
+
+const ArrowRight = styled.b`
+    align-self: center;
+    font-size: 2.5vw;
+    color: #fff;
+    margin : 0 auto;
+    font-weight: 700;
+    transform: scale(1.25);
+    height: auto;
+    cursor: pointer;
+    &:before {
+        content : ">" ;
+    }
+    transition: transform .1s ease-out 0s;
+`;
+
+const SliderContent = styled.div`
+    position: relative;
+    /* z-index: 0 ; */
+    transform: ${(props)=>(props.slideBehavior==="Base"? "translate3d(-100%, 0px, 0px);":"")};
+    transform: ${(props)=>(props.slideBehavior==="Right"? "translate3d(-100%, 0px, 0px);":"")};
+    transform: ${(props)=>(props.slideBehavior==="DoubleRight"? "translate3d(-200%, 0px, 0px);":"")};
+    
+    transition: transform 0.75s;
+    transition: ${(props)=>(props.slideBehavior==="Base"? "transform 0s":"")};
+`;
+
 const LolomoRow = styled.div`
     margin: 3vw 0;
     line-height: 1.3;
+    max-width:100%;
 `;
 
 const RowHeader = styled.h2`
@@ -56,6 +145,7 @@ const RowHeader = styled.h2`
     padding: 0 4%;
     vertical-align: bottom;
     line-height: 1.25vw;
+    margin-bottom: 0.4em;
     font-size: 1.4vw;
 `;
 
@@ -72,6 +162,7 @@ const Slider = styled.div`
     padding: 0 4%;
     touch-action: pan-y;
     overflow-x: visible;
+    
 `;
 
 const HandlePrev = styled.span`

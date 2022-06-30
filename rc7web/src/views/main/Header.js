@@ -3,12 +3,14 @@ import logo from "assets/img/logo.png";
 import { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Header({path}) {
     const [yoffset, setOffset] = useState(0);
     const [searchBar, setSearchBar] = useState(false);
     // Ref Dom참조
     const inputFocus = useRef();
+    const {isModal} =useSelector((state)=>(state.episodeModalReducer));
     useEffect(() => {
         const onScroll = () => setOffset(window.pageYOffset);
         // 마운트 해제됬을때 없애줘야지 메모리 누수 X 
@@ -110,7 +112,7 @@ function Header({path}) {
             </HeaderContainer>
 
             {path==="/main" ? "":
-            <SubHeader>
+            <SubHeader type={isModal}>
                 <div>
                     내가 찜한 콘텐츠
                 </div>
@@ -121,13 +123,14 @@ function Header({path}) {
     );
 }
 
-
 const SubHeader = styled.div`
     z-index : 1;
     height : 68px;
     top : 0px;
     position : sticky;
     background: #141414;
+    position : ${(props) => (props.type ===true ? "relative" : "-webkit-stick")};
+
     & div {
         position: absolute;
         top: 0;
@@ -180,6 +183,7 @@ const HeaderContainer = styled.div`
     font-size: 1.2rem;
     right: 0;
     position : ${(props) => (props.mode ==="/main" ? "fixed" : "relative")};
+    
     padding: 0 4%;
     z-index: 1;
     background-image: linear-gradient(to bottom,rgba(0,0,0,.7) 10%,rgba(0,0,0,0));
