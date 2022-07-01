@@ -32,6 +32,7 @@ function SliderItem({id ,name, imgURL }) {
             transfromorigin = "center left";
             hoverStyle = {marginLeft:"0%"};
         } 
+        // 이미 모달창이 켜저있다면 작동 X
         if(!previewVisible){
             previewModalOn({
                 id:id,
@@ -70,6 +71,7 @@ function SliderItem({id ,name, imgURL }) {
             ref={hoverRef}
             onMouseOver={(event)=>{
                 // 적용되는 순서? 비동기? 동기?
+                // JS는 싱글쓰레드로 작동함 -> 즉 위에서부터 차근차근 소스를 동기 실행
                 setHoverPosition(event);
             }}
             >

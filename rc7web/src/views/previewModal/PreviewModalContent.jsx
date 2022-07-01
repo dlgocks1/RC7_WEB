@@ -57,7 +57,6 @@ function PreViewModalContent({id, name,imgUrl}) {
                             onMouseOut={() => { setDtbookmarktooltip(false) }}
                             width="20px"
                             src={iconCheck} />
-    
                             {dtbookmarktooltip ? (<DtBookmarktooltip>
                                 내가 찜한 콘텐츠에서 삭제
                             </DtBookmarktooltip>) :
@@ -70,7 +69,6 @@ function PreViewModalContent({id, name,imgUrl}) {
                             onMouseOut={() => { setDtbookmarktooltip(false) }}
                             width="20px"
                             src={iconAdd} />
-    
                             {dtbookmarktooltip ? (<DtBookmarktooltip>
                                 찜한 콘텐츠에 추가
                             </DtBookmarktooltip>) :
@@ -108,28 +106,12 @@ function PreViewModalContent({id, name,imgUrl}) {
                 <span style={{ textAlign: "center", color: "rgba(255,255,255,0.8)", fontWeight: "600", fontSize: "12px" }}>총 63분 중 10분</span>
 
             </div>
-            {/* <PreViewModelCLose
-                onMouseOut={() => {
-                    console.log("왜안나가지냐")
-                }}
-            /> */}
+            
         </>
     );
 }
 
 
-const PreViewModelCLose = styled.div`
-    /* cursor: pointer; */
-    /* display: none; */
-    position: absolute;
-    left : 0;
-    bottom : 0;
-    right: 0;
-    top: 0;
-    z-index: -1;
-    border: 2px solid white;
-    /* z-index: 2; */
-`
 
 const PreviewContainer = styled.div`
     width: 100%;

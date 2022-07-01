@@ -1,45 +1,46 @@
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styeld from "styled-components";
 
-// 사용자지정 Hook은 use로 시작하는 컨벤션
-const useInput = (initialValue, validator)=>{
-    const [value, setValue] = useState(initialValue);
-    const [valid, setValid] = useState(true);
-
-    const onChange = (event) =>{
-        // 비구조할당으로 event내에서 target값 가져오기
-        const { target: {value}, } = event;
-        setValue(value);
-
-        if(typeof validator === "function"){
-            setValid(!validator(value));
-        }
-        // console.log(valid);
-        // input값 조정해야할 때 사용
-        // updateFlag ? setValue(value) : alert("asd");
-
-    };
-    return {value, onChange, valid};
-};
-
-const emailRegex =
-/([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
-
-const LoginContent = () => {
-
-    const { name, email } = useSelector((state) => state.loginReducer);
-
-    const checkEmail= (value) => (!emailRegex.test(value) && value.length>=1);
-    const useEmailInput = useInput("",checkEmail);
-    const checkPassword = (value) => (value.length>=1 && value.length<5);
-    const usePasswdInput = useInput("",checkPassword);
+const LoginContent2 = () => {
 
     const [isDetail, Setdetail] = useState(false);
-
     const [emailResult, setEmailresult] = useState(true);
     const [passwordResult, setPasswordResult] = useState(true);
+    // react hook form
+    const {register, handleSubmit, formState: { errors }, watch, getValues} = useForm({mode:"onChange"});
+
+    // 데이터 submit 함수
+    // 애초에 errors가 있으면 submit이 안됨
+    const onSubmit = (data) => {
+        let pw = -1;
+        user.map((value, i)=>{
+            if(value.email == data.email){
+                pw = user[i].password;
+                return;
+            }
+        })
+        if(pw!=-1){
+            if(pw == data.password){
+                // navigator
+                goprofile();
+                setEmailresult(true);    
+                setPasswordResult(true); 
+            }else{
+                setEmailresult(true);    
+                setPasswordResult(false);    
+            }
+        }else{
+            setEmailresult(false);    
+            setPasswordResult(true);    
+        }
+    };
+    
+    const onError = (error) => {
+        console.log(error);
+    };
 
     const user =[
         {
@@ -59,33 +60,6 @@ const LoginContent = () => {
         navigate("/profile");
     }
 
-    const handleSubmit = (event) =>{
-        event.preventDefault();
-        if(useEmailInput.valid && usePasswdInput.valid){
-            let pw = -1;
-            for(let i=0 ; i<user.length; i++){
-                if(user[i].email == useEmailInput.value){
-                    // id = user[i].id;
-                    pw = user[i].password;
-                }
-            }
-            if(pw!=-1){
-                if(pw == usePasswdInput.value){
-                    // navigator
-                    goprofile();
-                    setEmailresult(true);    
-                    setPasswordResult(true); 
-                }else{
-                    setEmailresult(true);    
-                    setPasswordResult(false);    
-                }
-            }else{
-                setEmailresult(false);    
-                setPasswordResult(true);    
-            }
-        }
-    }
-
     return (
         <>
             <LoginForm>
@@ -103,7 +77,7 @@ const LoginContent = () => {
                     </LoginFailMessageContainer>
                     ):(
                         ""
-                    )}
+                    )} 
 
                     {!passwordResult ? (
                         <LoginFailMessageContainer>
@@ -115,38 +89,53 @@ const LoginContent = () => {
                         ""
                     )}  
                     
-                    <form method="post"  onSubmit={handleSubmit} >
+                    <form 
+                        onSubmit={handleSubmit(onSubmit,onError)} >
                         <InputContainer>
-                            <InputPlacement style={!useEmailInput.valid?{ borderBottom: "2px solid #e87c03"} : {borderBottom:"0px"}}>
-                                {/* <InputEmail name="email" type="text" onChange={(e)=>{setEmail(e.target.value)
-                                }} /> */}
-                                <InputEmail type="text" onChange={useEmailInput.onChange} />
+                            <InputPlacement 
+                                // style={!useEmailInput.valid?{ borderBottom: "2px solid #e87c03"} : {borderBottom:"0px"}}
+                                >
+                                <InputEmail 
+                                    type="text" 
+                                    {...register("email",{
+                                        required: true,
+                                        // onChange: (e) => {onEmailChange(e.target.value)},
+                                        pattern: {
+                                            value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                                            message: 'Please enter a valid email',
+                                        },
+                                    })} />
                                 <EmailLabel>이메일 주소 또는 전화번호</EmailLabel>
                             </InputPlacement>
 
-                            {!useEmailInput.valid ? (
                                 <VaildErrorText>
-                                    정확한 이메일 주소를 입력하세요.
+                                    {errors.email?.type === 'pattern' && "정확한 이메일 주소를 입력하세요."}
                                 </VaildErrorText>
-                            ) : (
-                                <br />
-                            )}
+                       
                         </InputContainer>
 
                         <InputContainer>
-                            <InputPlacement style={!usePasswdInput.valid?{ borderBottom: "2px solid #e87c03"} : {borderBottom:"0px"}}>
-                                {/* <InputEmail name="password" type="password" onChange={(e)=>setPassword(e.target.value)} /> */}
-                                <InputEmail type="password" onChange={usePasswdInput.onChange} />
+                            <InputPlacement 
+                                // style={!usePasswdInput.valid?{ borderBottom: "2px solid #e87c03"} : {borderBottom:"0px"}}
+                                >
+                                <InputEmail 
+                                    type="password"
+                                    {...register("password", {
+                                        // onChange: (e) => {onPasswordChange(e.target.value)},
+                                        required: true,
+                                        minLength:{
+                                            value : 5,
+                                            message : "패스워드는 5글자 이상이여야 합니다."
+                                        }
+                                    },
+                                    )}/>
                                 <EmailLabel>비밀번호 </EmailLabel>
                             </InputPlacement>
 
-                            {!usePasswdInput.valid ? (
                                 <VaildErrorText>
-                                    비밀번호는 4~60자 사이여야 합니다.
+                                    {errors.password?.type === 'minLength' && "비밀번호는 4~60자 사이여야 합니다."}
                                 </VaildErrorText>
-                            ) : (
-                                <br />
-                            )}
+                                
                         </InputContainer>
                         <LoginBt>로그인</LoginBt>
                     </form>
@@ -345,4 +334,4 @@ const LoginForm = styeld.div`
     flex-direction: column;
 `;
 
-export default LoginContent;
+export default LoginContent2;

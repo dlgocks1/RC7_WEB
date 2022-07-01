@@ -34,7 +34,6 @@ function App(){
                 {/* {modalStaet && <Moda />} */}
             </BrowserRouter>  
             {isModal && <Dialog/>}
-
             {previewVisible && <PreViewModal/>}
 
         </>

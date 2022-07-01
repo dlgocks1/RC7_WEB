@@ -1,5 +1,7 @@
 const initialState = {
     previewVisible : false,
+    // position:absolute로 들어가기때문에 
+    // 콘텐츠의 X, Y값 필요함 
     x : 9999,
     y : 9999,
     width : 0,
@@ -12,7 +14,6 @@ const initialState = {
 
 const VISIBILTITY_ON = "VISIBILTITY_ON"
 const VISIBILTITY_OFF = "VISIBILTITY_OFF"
-const VISIBILTITY_KEEP = "VISIBILTITY_KEEP"
 
 export const setPreviewModalOn = (data) =>{
     return{
@@ -27,11 +28,6 @@ export const setPreviewModalOff = () =>{
     }
 }
 
-export const setPreviewModalKeep = () =>{
-    return{
-        type : VISIBILTITY_KEEP,
-    }
-}
 
 const previewModalReducer = (state=initialState, action) => {
     switch (action.type) {
@@ -53,12 +49,6 @@ const previewModalReducer = (state=initialState, action) => {
             return{
                 ...state,
                 previewVisible : false,
-            }
-        }
-        case VISIBILTITY_KEEP:{
-            return{
-                ...state,
-                previewVisible : true,
             }
         }
         default:{

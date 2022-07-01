@@ -44,7 +44,7 @@ function FavoriteSliderItem({ id, imgURL }) {
                 setIsItemHover(true)}}
                 onMouseOut={()=>{setIsItemHover(false)}}
         >
-            {isItemHover ? <FavoriteSliderItemHoverDetail id={id} hoverStyle={hoverStyle}/>:
+            {isItemHover ? <FavoriteSliderItemHoverDetail imgUrl={imgURL} id={id} hoverStyle={hoverStyle}/>:
             ""}
             
             {/* <a href="" role="link"> */}

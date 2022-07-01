@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Fragment } from "react";
 import LoginContent from "./LoginContent";
 import Footer from "../home/Footer";
+import LoginContent2 from "./LoginContent2";
 
 function Body() {
     return (
@@ -15,7 +16,8 @@ function Body() {
                 </Link>
             </LoginHeader>
             <LoginBody>
-                <LoginContent />
+                {/* <LoginContent /> */}
+                <LoginContent2 />
             </LoginBody>
             
         </>

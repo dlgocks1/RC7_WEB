@@ -49,21 +49,19 @@ const SetPosition = styled.div`
     position: absolute;
     top : ${(props)=>(`${props.y}px`)};
     left : ${(props)=>(`${props.x}px`)};
-    width: ${(props)=>(`${props.width}px`)};;
-
+    width: ${(props)=>(`${props.width}px`)};
+    /* 기본 transfrom-origin Setting */
     transform-origin: center center;
-    transform-origin:  ${(props)=>(`${props.transfromorigin}`)};;
+    transform-origin:  ${(props)=>(`${props.transfromorigin}`)};
 
     z-index: 3;
-    /* box-shadow: rgb(0 0 0 / 75%) 0px 3px 10px; */
+    box-shadow: rgb(0 0 0 / 75%) 0px 3px 10px;
     opacity : 1;
     background-color: #181818;
-    /* background-color: transparent; */
     border-radius: 6px;
     color: #fff;
     font-size: 16px;
-    overflow: hidden;
-    /* cursor: pointer; */
+    cursor: pointer;
     will-change: transform;
 `;
 

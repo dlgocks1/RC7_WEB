@@ -53,7 +53,7 @@ function FavoritePage(){
         <TopContainer Ypos={yposition} type={isModal}>
             <DarkBackground>
                 <Header path={location.pathname} />
-                <div style={{backgroundColor:'black' ,flexDirection:'column',display: 'flex',justifyContent:'space-between'}}>
+                <div style={{backgroundColor:'#141414' ,flexDirection:'column',display: 'flex',justifyContent:'space-between'}}>
                     <FavoritsContent />
                     <Footer />
                 </div>

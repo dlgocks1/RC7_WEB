@@ -10,28 +10,32 @@ function ViewContainer({ name, contentList }) {
     const [sliderType, setSliderType] = useState("NotYet");
     const [hasSlide, setHasSlide] = useState(false);
 
-
    useEffect(() =>{
+        // 한번이라도 slide를 했으면
         if(hasSlide===true){
+            // 0.75초 뒤에 translate3d(-100%, 0px, 0px);를 수행해라.
             const testvar = setTimeout(() => {setSliderType("Base")}, 750);
             return()=>{
                 clearTimeout(testvar);
             }
         }
-        
    },[sliderType]);
 
     const setSliderBehavor = (type) => {
         if(sliderType === "NotYet"){
-            // 맨처음
+            // 맨처음 슬라이드할 때
             setSliderType(type);
-        }else{
+        }else{ 
+            // 오른쪽이 눌렸을 때
             if(type === "Right"){
+                // translate3d(-200%, 0px, 0px); 수행하기 
                 setSliderType("DoubleRight");
+                // slideArray 가져와서 앞에꺼 4개빼서 뒤에 넣기
                 let tempArray = Object.values(slideArray);
                 for(let i = 0; i <4; i++){
                     tempArray.push(tempArray.shift());
                 }
+                // 0.75초 뒤에 SlideArray State에 저장
                 setTimeout(() => {
                     setSlideArray(tempArray);}, 750);
             }else{
@@ -64,7 +68,6 @@ function ViewContainer({ name, contentList }) {
                                 return (<Slider_Item key={value.id} id={value.id} style={{ display: "flex" }}name={value.name} imgURL={value.imgUrl} />);
                             })}
                         </SliderContent>
-
                     </div>
                     <HandlePrev 
                         onMouseOver={()=>{setArrowhover(true)}}
