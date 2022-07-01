@@ -1,13 +1,16 @@
 const initialState = {
     isModal : false,
+    name : `test`,
+    imgUrl : `test`,
 };
 
 const MODAL_ON = "MODAL_ON"
 const MODAL_OFF = "MODAL_OFF"
 
-export const setEpisdoeModalOn = () =>{
+export const setEpisdoeModalOn = (data) =>{
     return{
         type : MODAL_ON,
+        data : data,
     }
 }
 
@@ -23,6 +26,8 @@ const episodeModalReducer = (state=initialState, action) => {
             return {
                     ...state,
                     isModal : true,
+                    name : action.data.name,
+                    imgUrl : action.data.imgUrl,
             }
         }
         case MODAL_OFF :{

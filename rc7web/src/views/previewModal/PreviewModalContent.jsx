@@ -3,21 +3,36 @@ import mainvedio from "assets/dummyVedio.mp4";
 import iconPlay from "assets/icon/icon_play.svg";
 import iconCheck from "assets/icon/icon_check_white.svg";
 import iconThumb from "assets/icon/icon_thumb_white.svg";
+import iconAdd from "assets/icon/icon_add_white.svg";
 import iconArrow from "assets/icon/icon_arrow_white.svg";
 import { useEffect, useState } from "react"
 import { setEpisdoeModalOn } from "reducers/episodemodalReducer";
 import { setPreviewModalKeep, setPreviewModalOff, setPreviewModalOn } from "reducers/previewModalReducer";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-function PreViewModalContent() {
+function PreViewModalContent({id, name,imgUrl}) {
 
     const [liketooltop,setLikeTooltip] = useState(false);
     const [dtbookmarktooltip,setDtbookmarktooltip] = useState(false);
-    const dispatch = useDispatch();
+    const {itemList} = useSelector((state) => (state.favoriteDataReducer)) 
+    
+    const [isFavorite,setFavorite] = useState(false);
 
+    useEffect(() =>{
+        itemList.map((value)=>{
+            if(value.id === id){
+                setFavorite(true);
+            }
+        })
+    });
+
+    const dispatch = useDispatch();
     const setModalOn = () =>{
         dispatch(
-            setEpisdoeModalOn()
+            setEpisdoeModalOn({
+                name : name,
+                imgUrl : imgUrl,
+            })
         );
     }
     
@@ -34,17 +49,35 @@ function PreViewModalContent() {
             <div style={{ display: "flex", alignItems: "center", flexDirection: "row", marginLeft: "20px" }}>
                 <div style={{ flexGrow: "1" }}>
                     <PlayIcon width="20px" src={iconPlay} />
-
-                    <SubIcon
-                        onMouseOver={() => { setDtbookmarktooltip(true) }}
-                        onMouseOut={() => { setDtbookmarktooltip(false) }}
-                        width="20px"
-                        src={iconCheck} />
-
-                    {dtbookmarktooltip ? (<DtBookmarktooltip>
-                        내가 찜한 콘텐츠에서 삭제
-                    </DtBookmarktooltip>) :
-                        ""}
+        
+                    {isFavorite ===true ? (
+                            <>
+                            <SubIcon
+                            onMouseOver={() => { setDtbookmarktooltip(true) }}
+                            onMouseOut={() => { setDtbookmarktooltip(false) }}
+                            width="20px"
+                            src={iconCheck} />
+    
+                            {dtbookmarktooltip ? (<DtBookmarktooltip>
+                                내가 찜한 콘텐츠에서 삭제
+                            </DtBookmarktooltip>) :
+                                ""}
+                            </>
+                        ):
+                        <>
+                            <SubIcon
+                            onMouseOver={() => { setDtbookmarktooltip(true) }}
+                            onMouseOut={() => { setDtbookmarktooltip(false) }}
+                            width="20px"
+                            src={iconAdd} />
+    
+                            {dtbookmarktooltip ? (<DtBookmarktooltip>
+                                찜한 콘텐츠에 추가
+                            </DtBookmarktooltip>) :
+                                ""}
+                            </>
+                    }
+                    
 
                     <SubIcon
                         onMouseOver={() => { setLikeTooltip(true) }}
@@ -65,7 +98,7 @@ function PreViewModalContent() {
                     width="20px" src={iconArrow} />
 
             </div>
-            <p style={{ fontSize: "13px", fontWeight: "600", margin: "10px 15px" }}>"1화"</p>
+            <p style={{ fontSize: "13px", fontWeight: "600", margin: "10px 15px" }}>{name}</p>
             <div
                 style={{ display: "grid", gridGap: "5px", alignItems: "center", paddingBottom: "20px", gridTemplateColumns: "4fr 3fr" }}>
                 <ProgressContainer >
@@ -102,8 +135,6 @@ const PreviewContainer = styled.div`
     width: 100%;
     height : 100%;
 `
-
-
 
 const DtBookmarktooltip = styled.div`
     background-color: rgba(211,211,211,1);

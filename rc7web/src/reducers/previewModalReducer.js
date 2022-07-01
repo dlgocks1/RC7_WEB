@@ -3,6 +3,9 @@ const initialState = {
     x : 9999,
     y : 9999,
     width : 0,
+    name : '',
+    imgUrl : ``,
+    id : -1,
     hoverstyle: {},
     transfromorigin : {},
 } 
@@ -36,7 +39,10 @@ const previewModalReducer = (state=initialState, action) => {
             return{
                 ...state,
                 previewVisible : true,
+                id : action.data.id,
                 x : action.data.x,
+                name : action.data.name,
+                imgUrl : action.data.imgUrl,
                 width : action.data.width,
                 y : action.data.y,
                 transfromorigin : action.data.transfromorigin,

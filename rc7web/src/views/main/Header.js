@@ -11,6 +11,7 @@ function Header({path}) {
     // Ref Dom참조
     const inputFocus = useRef();
     const {isModal} =useSelector((state)=>(state.episodeModalReducer));
+    
     useEffect(() => {
         const onScroll = () => setOffset(window.pageYOffset);
         // 마운트 해제됬을때 없애줘야지 메모리 누수 X 

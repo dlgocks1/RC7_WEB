@@ -4,7 +4,7 @@ import { setPreviewModalOff, setPreviewModalOn } from "reducers/previewModalRedu
 import styled from "styled-components"
 import SliderItemHoverDetail from "./SliderItemHoverDetail";
 
-function SliderItem({ imgURL }) {
+function SliderItem({id ,name, imgURL }) {
 
     const [isItemHover, setIsItemHover] = useState(false);
     // const [hoverStyle, sethoverStyle] = useState(``);
@@ -33,7 +33,15 @@ function SliderItem({ imgURL }) {
             hoverStyle = {marginLeft:"0%"};
         } 
         if(!previewVisible){
-            previewModalOn({x:x,width:width,y:y,transfromorigin:transfromorigin,hoverstyle:hoverStyle});
+            previewModalOn({
+                id:id,
+                name:name,
+                imgUrl:imgURL, 
+                x:x,
+                width:width,
+                y:y,
+                transfromorigin:transfromorigin,
+                hoverstyle:hoverStyle});
         }
     }
 
@@ -65,14 +73,12 @@ function SliderItem({ imgURL }) {
                 setHoverPosition(event);
             }}
             >
-
             <a href="" role="link">
                 <BoxartSize16x9>
                     <BoxartImageInPaddedContainer
                         src={imgURL}
                         alt="" />
                         {imgURL}
-                        
                 </BoxartSize16x9>
             </a>
 

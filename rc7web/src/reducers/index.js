@@ -1,6 +1,6 @@
 // reducer들을 하나로 묶어서 관리
 import loginReducer from "./loginReducer";
-import favoriteDataReducer from "./favoriteReducer";
+import favoriteDataReducer from "./favoriteDataReducer";
 import episodeModalReducer from "./episodemodalReducer";
 import previewModalReducer from "./previewModalReducer";
 const { combineReducers } = require("redux");

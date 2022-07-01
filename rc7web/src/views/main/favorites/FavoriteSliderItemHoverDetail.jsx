@@ -6,11 +6,11 @@ import iconThumb from "assets/icon/icon_thumb_white.svg";
 import iconArrow from "assets/icon/icon_arrow_white.svg";
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { addFaveriteDataAction,subFaveriteDataAction } from "reducers/favoriteReducer";
+import { addFaveriteDataAction,subFaveriteDataAction } from "reducers/favoriteDataReducer";
 import { useRef } from "react";
 import { setEpisdoeModalOn } from "reducers/episodemodalReducer";
 
-function FavoriteSliderItemHoverDetail({id, hoverStyle}){
+function FavoriteSliderItemHoverDetail({id, imgUrl, hoverStyle}){
     
     const [opacity,setOpacity] = useState(0);
     const [itemscale,setItemscale] = useState(1);
@@ -58,6 +58,7 @@ function FavoriteSliderItemHoverDetail({id, hoverStyle}){
     const setModalOn = () =>{
         dispatch(
             setEpisdoeModalOn(
+                {imgUrl : imgUrl,}
             )
         );
     }

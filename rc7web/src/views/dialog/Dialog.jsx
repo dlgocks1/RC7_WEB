@@ -9,6 +9,7 @@ import VedioPlayerContainer from "./VedioPlayerContainer";
 function Dialog(){
 
     const dispatch = useDispatch();
+    const {name,imgUrl} = useSelector((state) => state.episodeModalReducer);
     function CloseModalAction(){
         dispatch(
             setEpisdoeModalOff()
@@ -24,11 +25,9 @@ function Dialog(){
         <PreViewModel>
             <DialogContainer>
 
-                <VedioPlayerContainer/>
+                <VedioPlayerContainer imgUrl={imgUrl}/>
                 <PreViewModelClose/>
-
-                <PreViewModelInfo />
-
+                <PreViewModelInfo name={name} />
             </DialogContainer>
         </PreViewModel>
         <PreviewModelBackDrop onClick={CloseModalAction}/>

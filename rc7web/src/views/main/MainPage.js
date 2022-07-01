@@ -7,7 +7,7 @@ import FavoritsContent from "./favorites/FavoritsContent";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import {userFavorites} from "utils/userFavorites.js"
-import { setFaveriteDataAction } from "reducers/favoriteReducer";
+import { setFaveriteDataAction } from "reducers/favoriteDataReducer";
 
 function MainPage(){
     const location = useLocation();
@@ -26,15 +26,15 @@ function MainPage(){
     const dispatch = useDispatch();
 
     useEffect(() => {
-        userFavorites.map((value)=>{
-            if(value.id === localStorage.getItem("userKey")){
-                dispatch(
-                    setFaveriteDataAction(
-                        value.itemList
-                    )
-                )
-            }
-        })
+        // userFavorites.map((value)=>{
+        //     if(value.id === localStorage.getItem("userKey")){
+        //         dispatch(
+        //             setFaveriteDataAction(
+        //                 value.itemList
+        //             )
+        //         )
+        //     }
+        // })
         const onScroll = () => setOffset(window.pageYOffset);
         window.removeEventListener('scroll', onScroll);
         window.addEventListener('scroll', onScroll, { passive: true });
@@ -63,7 +63,7 @@ function MainPage(){
 const TopContainer = styled.div`
     position : ${(props) => (props.type ===true ? "fixed" : "static")};
     top : ${(props) => `-${(props.Ypos)}px`}; 
-    /* overflow-x : clip; */
+    overflow : hidden;
 `
 
 const DarkBackground = styled.div`

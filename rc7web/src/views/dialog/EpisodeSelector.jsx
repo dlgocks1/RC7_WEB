@@ -88,7 +88,7 @@ const SPYxFAMILY = [
     },
 ]
 
-function EpisodeSelector(){
+function EpisodeSelector({name}){
     return(
         <Container>
             <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'baseline'}}>
@@ -96,7 +96,8 @@ function EpisodeSelector(){
                     회차
                 </span>
                 <span style={{fontSize:"18px"}}>
-                    SPYxFAMILY 스파이 패밀리
+                    {/* SPYxFAMILY 스파이 패밀리 */}
+                    {name}
                 </span>
             </div>
 

@@ -5,7 +5,7 @@ import iconCheck from "assets/icon/icon_check_white.svg";
 import iconThumb from "assets/icon/icon_thumb_white.svg";
 import ReactTooltip from "react-tooltip";
 
-function VedioPlayerContainer(){
+function VedioPlayerContainer({imgUrl}){
 
     const [dtbookmarktooltip,setDtbookmarktooltip] = useState(false);
     const [liketooltop,setLikeTooltip] = useState(false);
@@ -21,7 +21,10 @@ function VedioPlayerContainer(){
             </VedioContainer>
 
             <ImgContainer>
-                <img src="https://occ-0-3076-988.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABZbVJV4TTlebZXyVIz1uynnmoRh_7Cp0L1vSHyJ_4yQtglDKpKcdhFL7LIq5DO9i7apdvdUBHWeuKHpJw1hcS31L_0UoF6QJ80i6.webp?r=450" alt="SPYxFAMILY 스파이 패밀리" class="playerModel--player__storyArt detail-modal has-smaller-buttons" />
+                <img    
+                    style={{width: "100%", height: "100%"}} 
+                    src={imgUrl} />
+                {/* <img src="https://occ-0-3076-988.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABZbVJV4TTlebZXyVIz1uynnmoRh_7Cp0L1vSHyJ_4yQtglDKpKcdhFL7LIq5DO9i7apdvdUBHWeuKHpJw1hcS31L_0UoF6QJ80i6.webp?r=450" alt="SPYxFAMILY 스파이 패밀리" class="playerModel--player__storyArt detail-modal has-smaller-buttons" /> */}
             </ImgContainer>
 
             <PreViewModelInfo>

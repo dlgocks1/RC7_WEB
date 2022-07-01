@@ -8,7 +8,7 @@ function PreViewModal(){
     
     const [opacity,setOpacity] = useState(0);
     const [itemscale,setItemscale] = useState(1);
-    const {x,y,width,transfromorigin,hoverstyle} = useSelector((state) => state.previewModalReducer);
+    const {id,name,imgUrl,x,y,width,transfromorigin,hoverstyle} = useSelector((state) => state.previewModalReducer);
     const dispatch = useDispatch();
     useEffect(()=>{
         setOpacity(0)
@@ -30,11 +30,8 @@ function PreViewModal(){
         dispatch(
             setPreviewModalOff()
         )
-        // setTimeout(() => { 
-        // },500);
     }
 
-    // console.lgo
     return(
         <ItemHover style={hoverstyle}>
             <SetPosition width={width} x={x} y={y} transfromorigin = {transfromorigin}
@@ -42,8 +39,7 @@ function PreViewModal(){
                 // onMouseOut={()=>{console.log("나가짐")}}
                 onMouseLeave={()=>{previewModalOff()}}
                 >
-                <PreViewModalContent />
-
+                <PreViewModalContent id={id} name={name} imgUrl ={imgUrl} />
             </SetPosition>
         </ItemHover>
     );

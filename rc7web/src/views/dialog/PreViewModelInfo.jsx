@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components"
 import EpisodeSelector from "./EpisodeSelector";
 
-function PreViewModelInfo(){
+function PreViewModelInfo({name}){
     return(
         <Container>
             <ModelDetail>
@@ -47,7 +47,7 @@ function PreViewModelInfo(){
                 </div>
             </ModelDetail>
 
-            <EpisodeSelector/>
+            <EpisodeSelector name={name}/>
         </Container>
     );
 }

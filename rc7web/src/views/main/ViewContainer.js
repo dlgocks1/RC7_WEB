@@ -3,9 +3,9 @@ import styled from "styled-components"
 import { useEffect, useState } from "react";
 
 
-function ViewContainer({ name, imgURLList }) {
+function ViewContainer({ name, contentList }) {
 
-    const [slideArray, setSlideArray] = useState(imgURLList);
+    const [slideArray, setSlideArray] = useState(contentList);
     const [arrowhover, setArrowhover] = useState(false);
     const [sliderType, setSliderType] = useState("NotYet");
     const [hasSlide, setHasSlide] = useState(false);
@@ -61,7 +61,7 @@ function ViewContainer({ name, imgURLList }) {
                             hasSlide = {hasSlide}
                             style={{ display: "flex" }}>
                             {slideArray.map((value) => {
-                                return (<Slider_Item imgURL={value} />);
+                                return (<Slider_Item key={value.id} id={value.id} style={{ display: "flex" }}name={value.name} imgURL={value.imgUrl} />);
                             })}
                         </SliderContent>
 
@@ -138,6 +138,8 @@ const LolomoRow = styled.div`
     margin: 3vw 0;
     line-height: 1.3;
     max-width:100%;
+    width: 100vw;
+    /* overflow: hidden; */
 `;
 
 const RowHeader = styled.h2`

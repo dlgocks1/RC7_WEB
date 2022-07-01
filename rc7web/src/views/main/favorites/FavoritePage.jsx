@@ -7,7 +7,7 @@ import FavoritsContent from "../favorites/FavoritsContent";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import {userFavorites} from "utils/userFavorites.js"
-import { setFaveriteDataAction } from "reducers/favoriteReducer";
+import { setFaveriteDataAction } from "reducers/favoriteDataReducer";
 
 function FavoritePage(){
     const location = useLocation();
@@ -16,7 +16,6 @@ function FavoritePage(){
     // const age = searchParams.get('age');
     // const mode = searchParams.get('mode');
     // console.log(typeof(age),typeof(age));
-    
     // const {username} = useParams();
     // console.log(username);
 
@@ -26,15 +25,16 @@ function FavoritePage(){
     const dispatch = useDispatch();
 
     useEffect(() => {
-        userFavorites.map((value)=>{
-            if(value.id === localStorage.getItem("userKey")){
-                dispatch(
-                    setFaveriteDataAction(
-                        value.itemList
-                    )
-                )
-            }
-        })
+        // userFavorites.map((value)=>{
+        //     if(value.id === localStorage.getItem("userKey")){
+        //         dispatch(
+        //             setFaveriteDataAction(
+        //                 value.itemList
+        //             )
+        //         )
+        //     }
+        // })
+        
         const onScroll = () => setOffset(window.pageYOffset);
         window.removeEventListener('scroll', onScroll);
         window.addEventListener('scroll', onScroll, { passive: true });
@@ -53,8 +53,11 @@ function FavoritePage(){
         <TopContainer Ypos={yposition} type={isModal}>
             <DarkBackground>
                 <Header path={location.pathname} />
-                <FavoritsContent />
-                <Footer />
+                <div style={{backgroundColor:'black' ,flexDirection:'column',display: 'flex',justifyContent:'space-between'}}>
+                    <FavoritsContent />
+                    <Footer />
+                </div>
+
             </DarkBackground>
         </TopContainer>
     );
@@ -70,6 +73,7 @@ const DarkBackground = styled.div`
     background-color: #141414;
     z-index: 0;
     width: 100%;
+    height : 100vh;
 `;
 
 export default FavoritePage;
