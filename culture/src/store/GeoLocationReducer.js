@@ -12,6 +12,7 @@ export const setGeoLocation = (data) =>{
     }
 }
 
+
 const GeoLocationReducer = (state=initialState, action) => {
     switch(action.type){
         case SET_GEO_LOCATION :{

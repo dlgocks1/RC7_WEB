@@ -4,7 +4,10 @@ import { BrowserRouter,Routes,Route } from "react-router-dom";
 import PreView from "../components/PreView";
 import { setGeoLocation } from "../store/GeoLocationReducer";
 import Camping from "./Camping"
-import GetKakaoAccessKey from "./GetKakaoAccessKey";
+import Exibition from "./Exibition";
+import GetKakaoAccessKey from "./GetKakaoAccessToken";
+import Home from "./Home";
+import Hotel from "./Hotel";
 import Login from "./Login";
 function App() {
 
@@ -31,8 +34,11 @@ function App() {
         {/* <Camping/> */}
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Login/>}/>
+            <Route path="/" element={<Home/>}/>
             <Route path="/login" element={<Login/>}/>
+            <Route path="/camping" element={<Camping/>}/>
+            <Route path="/tourism" element={<Hotel/>}/>
+            <Route path="/exhibition" element={<Exibition/>}/>
             <Route path="/kakaoLogin" element={<GetKakaoAccessKey/>}/>
           </Routes>
         </BrowserRouter>

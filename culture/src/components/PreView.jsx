@@ -30,7 +30,6 @@ function PreView(props) {
         <Container
             onMouseLeave={invisibleHover}>
             <SetPosition x={x} y={y} >
-
                 <ImageContainer>
                     <img 
                         style={{objectFit:'cover', width: '100%', height: '100%', borderTopLeftRadius:'10%', borderTopRightRadius:`10%`}}

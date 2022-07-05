@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import CampingImage from './CampingImage';
 import CampingTag from './CampingTag';
 
-function CampingItem({type, resveUrl,firstImageUrl, facltNm, addr1, lineIntro, intro, themaEnvrnCl}) {
+function CampingItem({resveUrl,firstImageUrl, facltNm, addr1, lineIntro, intro, themaEnvrnCl}) {
 
     const [introText, setIntroText] = useState("");
 
@@ -17,7 +17,6 @@ function CampingItem({type, resveUrl,firstImageUrl, facltNm, addr1, lineIntro, i
 
     return (
         <ItemConatiner>
-            {type==="Loading" ? 
                 <div style={{padding: "0 0.4rem 3.5rem 0.4rem"}}>
                     <CampingImage resveUrl={resveUrl} firstImageUrl={firstImageUrl}/>
                     <a href='/campingDetail' style={{color :'#141414',textDecoration:'none'}}>
@@ -27,17 +26,7 @@ function CampingItem({type, resveUrl,firstImageUrl, facltNm, addr1, lineIntro, i
                         <p> {introText} </p>
                         <CampingTag tags={themaEnvrnCl}/>
                     </a>
-                </div> :
-
-                <div style={{padding: "0 0.4rem 3.5rem 0.4rem"}}>
-                    <CampingImage />
-                    <Title> </Title>
-                    <LocationText>  </LocationText>
-                    <IntroLineText>  </IntroLineText>
-                    <p> {introText} </p>
-                    <CampingTag />
                 </div> 
-            }        
         </ItemConatiner>
     );
 }

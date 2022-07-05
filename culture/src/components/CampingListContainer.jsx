@@ -12,30 +12,30 @@ function CampingListContainer(props) {
 
     useEffect(() => {
         let isCompleted = false;
-        // const getCampingData = async () => {
-        //         try {
-        //             const url =
-        //             `http://api.visitkorea.or.kr/openapi/service/rest/GoCamping/locationBasedList?serviceKey=uQEBqklQ8iRzL1OLrXwjYa6xIfWCRrOLfyo2HAr4hI8RvzDnTeWL5VqVJCYcIOYy%2BJqQBZSuD7hd86jJzep6%2FQ%3D%3D&pageNo=1&numOfRows=10&MobileOS=ETC&MobileApp=AppTest&mapX=127.1791616&mapY=37.5652352&radius=150000`;
+        const getCampingData = async () => {
+                try {
+                    const url =
+                    `http://api.visitkorea.or.kr/openapi/service/rest/GoCamping/locationBasedList?serviceKey=uQEBqklQ8iRzL1OLrXwjYa6xIfWCRrOLfyo2HAr4hI8RvzDnTeWL5VqVJCYcIOYy%2BJqQBZSuD7hd86jJzep6%2FQ%3D%3D&pageNo=1&numOfRows=10&MobileOS=ETC&MobileApp=AppTest&mapX=127.1791616&mapY=37.5652352&radius=150000`;
 
-        //             const res = await axios({
-        //                 method: "get",
-        //                 url: url,
-        //             });
+                    const res = await axios({
+                        method: "get",
+                        url: url,
+                    });
 
-        //             if (!isCompleted) {
-        //                 setCampingData(res.data.response.body.items.item);
-        //                 setNowLoading(true);
-        //             }
-        //         } catch (error) {
-        //             console.log(error);
-        //         }
-        // };
-        // getCampingData();
+                    if (!isCompleted) {
+                        setCampingData(res.data.response.body.items.item);
+                        setNowLoading(true);
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
+        };
+        getCampingData();
 
-        const data = setTimeout(() =>{
-            setCampingData(campingMockdata);
-            setNowLoading(true);
-        },1000);
+        // const data = setTimeout(() =>{
+        //     setCampingData(campingMockdata);
+        //     setNowLoading(true);
+        // },1000);
 
         return () => {
             isCompleted = true;
@@ -46,12 +46,13 @@ function CampingListContainer(props) {
     return (
         <>
         {nowLoading &&
-            <KaKaoMap campingData={campingData} />
+            <KaKaoMap itemData={campingData} type={"CAMPING"} />
         }
         <ListContainer>
             {nowLoading && 
-            campingData.map((value)=>{
+            campingData.map((value,index)=>{
                 return(<CampingItem
+                    key = {index}
                     resveUrl = {value.resveUrl}
                     firstImageUrl={value.firstImageUrl}
                     facltNm={value.facltNm}
@@ -59,7 +60,6 @@ function CampingListContainer(props) {
                     lineIntro={value.lineIntro}
                     intro={value.intro}
                     themaEnvrnCl={value.themaEnvrnCl}
-                    type = "Loading"
                  />)
             })}
 
