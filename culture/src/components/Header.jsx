@@ -1,39 +1,49 @@
 
+import { hover } from '@testing-library/user-event/dist/hover';
 import React, { useDeferredValue, useEffect, useState, useTransition } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
-import { Logout } from '../store/LoginReducer';
+import { LogoutToReDucer } from '../store/LoginReducer';
 
 function Header(props) {
 
+
     const [yoffset,setOffset] = useState(0);
+    // startTransition이 지속중일 때 isPending은 true가됨
     const [isPending, startTransition] = useTransition({
-        timeoutMs: 2000
+        timeOutms: 10,
     });
+    // 늦게 변해도 되는 값은 useDefferedValue로 감싼다.
+    const yoffsetState = useDeferredValue(yoffset);
+
     const {isLogin,nickname,profileImg} = useSelector((state)=>state.LoginReducer);
     const dispatch = useDispatch();
 
+    const onScroll = () => {
+        startTransition(()=>{
+            setOffset(window.pageYOffset)
+        })
+    };
+
     useEffect(() => {
-        const onScroll = () => {
-            startTransition(()=>{
-                setOffset(window.pageYOffset)
-            });
-        };
         window.removeEventListener('scroll', onScroll);
-        window.addEventListener('scroll', onScroll, { passive: true });
-        return () => window.removeEventListener('scroll', onScroll);
+        window.addEventListener('scroll', onScroll ,{ passive: true });
+        return () => {
+            window.removeEventListener('scroll', onScroll)
+            window.scrollTo(0,0);
+        };
     }, []);
     
     const LogoutAction = () =>{
         dispatch(
-            Logout()
+            LogoutToReDucer()
         )
     }
 
     return (
         <Container 
-            yoffset={yoffset}>
+            yoffset={yoffsetState}>
             <HeaderContainer>
                 <a href='/' style={{textDecoration: 'none'}}>
                     <div style={{color:'#141414', fontSize:'1.5rem',fontWeight:'600'}}>
@@ -56,9 +66,11 @@ function Header(props) {
                     to="/login"
                     style={{marginRight:"2%",
                             textDecoration:'none',
-                            color:'#666',
-                            fontWeight:'300'}}
-                >
+                            color:'#2b2b2b',
+                            fontSize: "15px",
+                            lineHeight: "20px",
+                            fontWeight:'500'
+                            }}>
                     로그인
                 </Link>:
                     <>
@@ -71,16 +83,20 @@ function Header(props) {
                 }
                 
             </HeaderContainer>
+            
         </Container>
     );
 }
 
 const LogoutBt = styled.button`
     margin-left : 10px;
-    border: none;
+    background-color: transparent;
+    border: 1px solid gray;
+    border-radius: 20px;
+    padding: 5px 20px;
     cursor: pointer;
     &:hover{
-        background-color: gray;
+        background-color: rgba(0,0,0,0.2);
     }
 `;
 

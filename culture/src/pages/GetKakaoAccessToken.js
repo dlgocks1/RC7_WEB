@@ -3,7 +3,7 @@ import axios from 'axios';
 import React, { useEffect, useState, useTransition } from 'react';
 import { useDispatch } from 'react-redux';
 import {useLocation,useNavigate,useSearchParams} from 'react-router-dom';
-import { Login } from '../store/LoginReducer';
+import { LoginToReDucer } from '../store/LoginReducer';
 
 function GetKakaoAccessToken() {
 
@@ -15,7 +15,7 @@ function GetKakaoAccessToken() {
 
     const LoginAction = (data) => {
         dispatch(
-            Login(
+            LoginToReDucer(
                 {
                     nickname : data.nickname,
                     profileImg : data.profileImg,

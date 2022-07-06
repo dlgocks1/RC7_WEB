@@ -133,8 +133,6 @@ const KaKaoMap = ({itemData,type}) => {
 const KakaoMapContent = styled.div`
     min-height: 400px;
     max-height: 400px;
-    /* margin : 2% 4% 0 4%; */
-    /* border-radius: 25px; */
 `
 
 export default KaKaoMap;

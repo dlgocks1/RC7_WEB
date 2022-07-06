@@ -1,21 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import styled from 'styled-components';
 import Header from '../components/Header';
 import HomeArticleCamping from '../components/HomeArticleCamping';
 import HomeArticleTourism from '../components/HomeArticleTourism';
-
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import arrowIcon from "../assets/icon/navigation_right_icon_white.png";
+import HomeArticleExibition from '../components/HomeArticleExibition';
 function Home(props) {
 
     const [target, setTarget] = useState(null);
     const [popupStyle, setPopupStyle] = useState({});
     const [isLoaded, setIsLoaded] = useState(false);
 
-    const onIntersect = async ([entry], observer) => {
+    // 콜백함수로 IntersectionObserverEntry 및 IntersectionObserver 인자가
+    // IntersectionObserver함수에 의해 들어간다.
+    const onIntersect = ([entry], observer) => {
         if (entry.isIntersecting && !isLoaded) {
-        //   observer.unobserve(entry.target);
-        //   observer.observe(entry.target);
-            console.log(entry.target);
+            // 서버로부터 아이템을 받아오거나, 시간이 걸리는 작업 수행 시
+            // observing 잠시 해제하기.
+            //   observer.unobserve(entry.target);
+            //   observer.observe(entry.target);
             setPopupStyle({transform: "translate3d(0px, 0px, 0px)"})
         }
     };
@@ -24,23 +30,61 @@ function Home(props) {
         let observer;
         if (target) {
             observer = new IntersectionObserver(onIntersect, {
+                // 화면의 몇 %까지 올라왔는지 Threshhold 지정
                 threshold: 0.7,
             });
+            // state로 지정한 target을 observe하겠다.
             observer.observe(target);
         }
         return () => observer && observer.disconnect();
       }, [target]);
+    // target이 바뀔때 마다 새로운 observer을 달아준다.
 
-    useEffect(() => {
-        return()=>{
-            setIsLoaded(false);
-        }
-    },[]);
+    // 초기 렌더링될 때 target의 state가 지정되면서 observing이 실행되는 것 방지
+    // useEffect(() => {
+    //     return()=>{
+    //         setIsLoaded(false);
+    //     }
+    // },[]);
+
+    const settings = {
+        dots: false,  // 점은 안 보이게
+        infinite: true, // 무한으로
+        speed: 500,
+        slidesToShow: 1, //4장씩 보이게 해주세요
+        slidesToScroll: 1, //1장씩 넘어가게
+        nextArrow: <SampleNextArrow />,
+        prevArrow: <SamplePrevArrow />,
+        arrows : true, // arrow 안보이게
+        autoplay: true,
+        autoplaySpeed: 3000,
+      };
 
     return (
         <>
             <Header />
-            <Article>
+            <MainSliderContainer>
+                <ContentInfo style={{marginTop:'10%'}}>
+                    <h1>
+                        문화의 대한 모든 것 
+                        <br/>
+                        쉽고 간편하게
+                    </h1>
+                    <h2>
+                        CCFM에서 확인하세요.
+                    </h2>
+                </ContentInfo>
+                <Slider {...settings}>
+                    <BackgroundImg src="https://t1.daumcdn.net/cfile/tistory/995247335A2C914815"/>
+                    <BackgroundImg src="https://t1.daumcdn.net/cfile/tistory/9924E7335A2C914718"/>
+                    <BackgroundImg src="https://t1.daumcdn.net/cfile/tistory/994EBE335A2C914B02"/>
+                    <BackgroundImg src="https://t1.daumcdn.net/cfile/tistory/992986335A2C914D07"/>
+                </Slider>
+                <BackgorundCover />
+            </MainSliderContainer>
+            
+
+            {/* <Article>
                 <ContentInfo>
                     <h1>
                         문화의 대한 모든 것 
@@ -54,7 +98,7 @@ function Home(props) {
                 
                 <BackgroundImg src="https://t1.daumcdn.net/cfile/tistory/995247335A2C914815"/>
                 <BackgorundCover />
-            </Article>
+            </Article> */}
 
             <Article style={{height:'50vh'}}>
                 <ContentInfo
@@ -73,12 +117,54 @@ function Home(props) {
 
             <HomeArticleCamping/>
             <HomeArticleTourism/>
+            <HomeArticleExibition/>
             
         </>
     );
 }
 
+const MainSliderContainer= styled.div`
+    height: 80vh;
+    min-height: 500px;
+    /* min-width: 700px; */
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+`
 
+const SamplePrevArrow =styled.div`
+    position: absolute;
+    color: white;
+    top: 45%;
+    margin-left: 2%;
+    z-index: 1;
+    ::before{
+        content: "<";
+        font-size: 3rem;
+        opacity: 0.7;
+    }
+`;
+
+const SampleNextArrow =styled.div`
+ position: absolute;
+    color: white;
+    top: 45%;
+    right: 0;
+    margin-right: 2%;
+    z-index: 1;
+    ::before{
+        content: ">";
+        font-size: 3rem;
+        opacity: 0.7;
+    }`;
+
+const SliderContent= styled.div`
+    color: white;
+    display: block;
+    position: relative;
+    border: 1px solid white;
+    z-index: 4;
+`;
 
 const PopupText = styled.div`
     width: 100%;
@@ -96,13 +182,17 @@ const PopupText = styled.div`
 
 const ContentInfo = styled.div`
     z-index : 1;
-    margin-top: 170px;
+    margin-top: 15%;
     align-items: left;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    position: absolute;
+    left: 0;
+    right: 0;
     & h1 {
         margin-left: 10%;
+        margin-top: 150px;
         font-size: 4rem;
         font-weight: 700;
         line-height: 1.4;
@@ -124,17 +214,15 @@ const BackgorundCover=styled.div`
     left: 0;
     width: 100%;
     height: 500px;
+    background-color: rgba(0,0,0,0.5);
     background: linear-gradient(180deg, white 0%, white 59px, rgba(255, 255, 255, 0) 100%);
 `;
 
 const BackgroundImg=styled.img`
-    position: absolute;
-    left: 0;
-    right: 0;
     object-fit: cover;
-    opacity: 0.7;
-    height: 100%;
-    width: 100%;
+    position: relative;
+    height: 70vh;
+    opacity: 1;
 `;
 
 const Article= styled.div`

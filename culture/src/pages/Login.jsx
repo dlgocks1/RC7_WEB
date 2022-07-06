@@ -7,31 +7,56 @@ import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import LoginService from '../services/LoginService';
 import { useDispatch } from 'react-redux';
+import { LoginToReDucer } from '../store/LoginReducer';
 
 const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${"75ee7011dc4bcfd1c4d8eb5e1c033f4a"}&redirect_uri=${"http://localhost:3000/kakaoLogin"}&response_type=code`;
 
-function Login() {
-    const { register, handleSubmit, formState: { errors }, watch, getValues } = useForm({ mode: "onChange" });
-    const [idInputStyle, setIdinputStyle] = useState();
-    const [passwordInputStyle, setPasswordinputStyle] = useState();
+const useLogin = (initialValue)=>{
     const dispatch = useDispatch();
     const navigate = useNavigate();
-   
-
-    const handleLogin = () => {
-        window.location.href = KAKAO_AUTH_URL;
-    }
 
     const LoginAction = (data) => {
         dispatch(
-            Login(
+            LoginToReDucer(
                 {
                     nickname : data.nickname,
                     profileImg : data.profileImg,
-                    isLogin : true,
                 }
             )
+        );
+    }
+
+    const onSubmit = (event) =>{
+        // console.log(event);
+        // event.id, evnet.paswword로 로그인 확인 
+        LoginAction(
+            {
+                nickname : "진짜밀크",
+                profileImg : "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/b498d336-3e1f-4981-a448-a35a789f7d9a/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220705%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220705T063901Z&X-Amz-Expires=86400&X-Amz-Signature=ab214a9057c8c8238f0eb5c0964eef279261bb6cddc506a17a976aea401716c2&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject"
+            }
         )
+        navigate('/');
+    };
+
+    return {onSubmit};
+};
+
+function Login(props) {
+    const { register, handleSubmit, formState: { errors }, watch, getValues } = useForm({ mode: "onChange" });
+    const [idInputStyle, setIdinputStyle] = useState();
+    const [passwordInputStyle, setPasswordinputStyle] = useState();
+    
+    const useloginhook = useLogin(
+        {
+            data : {
+                nickname : "",
+                profileImg : ""
+            },
+    });
+
+    
+    const handleLogin = () => {
+        window.location.href = KAKAO_AUTH_URL;
     }
 
     function onInputContainerFocus(isIn, type) {
@@ -55,23 +80,9 @@ function Login() {
     }
 
     const onSubmit = (data) => {
-        // LoginService({
-        //     data : {
-        //         nickname : "밀크",
-        //         profileImg : "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/b498d336-3e1f-4981-a448-a35a789f7d9a/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220705%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220705T063901Z&X-Amz-Expires=86400&X-Amz-Signature=ab214a9057c8c8238f0eb5c0964eef279261bb6cddc506a17a976aea401716c2&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject"
-        //     },
-        //     type : "LOGIN" 
-        // });
-        // LoginAction(
-        //     {
-        //         nickname : "밀크",
-        //         profileImg : "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/b498d336-3e1f-4981-a448-a35a789f7d9a/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220705%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220705T063901Z&X-Amz-Expires=86400&X-Amz-Signature=ab214a9057c8c8238f0eb5c0964eef279261bb6cddc506a17a976aea401716c2&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject"
-        //     }
-        // )
-        navigate("/camping");
+        // navigate("/");
     }
     
-
     const onError = (error) => {
 
     }
@@ -81,12 +92,12 @@ function Login() {
             <Header />
             <LoginContainer>
                 <TitleWrapper>
-                    <div>
+                    <div >
                         로그인
                     </div>
                 </TitleWrapper>
 
-                <form onSubmit={handleSubmit(onSubmit, onError)}>
+                <form onSubmit={handleSubmit(useloginhook.onSubmit, onError)}>
                     <InputWrapper>
                         <InputText style={idInputStyle}>
                             아이디를 입력해주세요.
@@ -189,7 +200,7 @@ const InputWrapper = styled.div`
     display: flex;
     height: 3rem;
     flex-direction: column;
-`
+`;
 
 const LoginInput = styled.input`
     /* border: 1px solid gray; */

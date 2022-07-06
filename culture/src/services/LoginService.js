@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { Login, Logout } from '../store/LoginReducer';
+import { LoginToReDucer, LogoutToReDucer } from '../store/LoginReducer';
 
 const LOGIN = "LOGIN";
 const LOGOUT = "LOGOUT";
@@ -9,7 +9,7 @@ function LoginService({data,type}) {
     const dispatch = useDispatch();
     const LoginAction = (data) => {
         dispatch(
-            Login(
+            LoginToReDucer(
                 {
                     nickname : data.nickname,
                     profileImg : data.profileImg,
@@ -20,7 +20,7 @@ function LoginService({data,type}) {
     }
     const LogoutAction = () =>{
         dispatch(
-            Logout()
+            LogoutToReDucer()
         )
     }
 
@@ -30,7 +30,8 @@ function LoginService({data,type}) {
     if(type === LOGOUT){
         LogoutAction();
     }
-    
+    return <>
+    </>;
 }
 
 export default LoginService;

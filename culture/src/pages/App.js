@@ -20,7 +20,6 @@ function App() {
   }
 
   navigator.geolocation.getCurrentPosition((position) => {
-      // console.log(position.coords.latitude, position.coords.longitude);
       initialSetGeoLocation(
           {
             latitude : position.coords.latitude,

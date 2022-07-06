@@ -2,10 +2,14 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import KaKaoMap from './KakaoMap';
+import CampingItem from './CampingItem';
+import SkeletonKakaoMap from './SkeletonKakaoMap';
+import SkeletonCampingItem from './SkeletonCampingItem';
 
 function TourismContainer() {
-    const [hotelData, setHotelData] = useState([]);
+    const [tourismData, setTourismData] = useState([]);
     const [nowLoading, setNowLoading] = useState(false);
+    const tempArr = new Array(10).fill(0);
 
     useEffect(() => {
         let isCompleted = false;
@@ -20,7 +24,7 @@ function TourismContainer() {
                     });
                     console.log(res.data.response.body.items.item);
                     if (!isCompleted) {
-                        setHotelData(res.data.response.body.items.item);
+                        setTourismData(res.data.response.body.items.item);
                         setNowLoading(true);
                     }
                 } catch (error) {
@@ -42,28 +46,31 @@ function TourismContainer() {
 
     return (
         <>
-         {nowLoading &&
-            <KaKaoMap itemData={hotelData} type={"TOURISM"} />
+         {nowLoading ?
+            <KaKaoMap itemData={tourismData} type={"TOURISM"} />:
+            <SkeletonKakaoMap/>
         }
-        {/*
+        
         <ListContainer>
-            {nowLoading && 
-            campingData.map((value,index)=>{
+            {nowLoading ? 
+            tourismData.map((value,index)=>{
                 return(<CampingItem
                     key = {index}
-                    resveUrl = {value.resveUrl}
-                    firstImageUrl={value.firstImageUrl}
-                    facltNm={value.facltNm}
+                    resveUrl = {"/"}
+                    firstImageUrl={value.firstimage}
+                    facltNm={value.title}
                     addr1={value.addr1}
-                    lineIntro={value.lineIntro}
-                    intro={value.intro}
-                    themaEnvrnCl={value.themaEnvrnCl}
+                    lineIntro={""}
+                    intro={""}
+                    themaEnvrnCl={""}
                  />)
-            })}
-
-        </ListContainer> */}
+            }):
+            tempArr.map(()=>{
+                return(<SkeletonCampingItem/>)
+            })
+            }
+        </ListContainer>
         </>
-
     );
 }
 

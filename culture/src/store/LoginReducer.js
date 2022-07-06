@@ -7,13 +7,13 @@ const initialState ={
 const LOGIN = "LOGIN"
 const LOGOUT = "LOGOUT"
 
-export const Login = (data) =>{
+export const LoginToReDucer = (data) =>{
     return{
         type : LOGIN,
         data : data,
     }
 }
-export const Logout = () =>{
+export const LogoutToReDucer = () =>{
     return{
         type : LOGOUT,
     }

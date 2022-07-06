@@ -5,11 +5,13 @@ import useCampingData from '../services/useCampingData';
 import { campingMockdata } from '../utils/mockData';
 import axios from 'axios';
 import KaKaoMap from './KakaoMap';
+import SkeletonKakaoMap from './SkeletonKakaoMap';
+import SkeletonCampingItem from './SkeletonCampingItem';
 
 function CampingListContainer(props) {
     const [campingData, setCampingData] = useState([]);
     const [nowLoading, setNowLoading] = useState(false);
-
+    const tempArr = new Array(10).fill(0);
     useEffect(() => {
         let isCompleted = false;
         const getCampingData = async () => {
@@ -45,23 +47,29 @@ function CampingListContainer(props) {
 
     return (
         <>
-        {nowLoading &&
-            <KaKaoMap itemData={campingData} type={"CAMPING"} />
+        {nowLoading ?
+            <KaKaoMap itemData={campingData} type={"CAMPING"} />:
+            <SkeletonKakaoMap/>
         }
         <ListContainer>
-            {nowLoading && 
-            campingData.map((value,index)=>{
-                return(<CampingItem
-                    key = {index}
-                    resveUrl = {value.resveUrl}
-                    firstImageUrl={value.firstImageUrl}
-                    facltNm={value.facltNm}
-                    addr1={value.addr1}
-                    lineIntro={value.lineIntro}
-                    intro={value.intro}
-                    themaEnvrnCl={value.themaEnvrnCl}
-                 />)
-            })}
+            
+            {nowLoading ? 
+                campingData.map((value,index)=>{
+                    return(<CampingItem
+                        key = {index}
+                        resveUrl = {value.resveUrl}
+                        firstImageUrl={value.firstImageUrl}
+                        facltNm={value.facltNm}
+                        addr1={value.addr1}
+                        lineIntro={value.lineIntro}
+                        intro={value.intro}
+                        themaEnvrnCl={value.themaEnvrnCl}
+                    />)
+                }) :
+                tempArr.map(()=>{
+                    return(<SkeletonCampingItem/>)
+                })
+            }
 
         </ListContainer>
         </>
