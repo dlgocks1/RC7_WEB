@@ -18,7 +18,7 @@ function CampingListContainer(props) {
                 try {
                     const url =
                     `http://api.visitkorea.or.kr/openapi/service/rest/GoCamping/locationBasedList?serviceKey=uQEBqklQ8iRzL1OLrXwjYa6xIfWCRrOLfyo2HAr4hI8RvzDnTeWL5VqVJCYcIOYy%2BJqQBZSuD7hd86jJzep6%2FQ%3D%3D&pageNo=1&numOfRows=10&MobileOS=ETC&MobileApp=AppTest&mapX=127.1791616&mapY=37.5652352&radius=150000`;
-
+                    // https://cors-anywhere.herokuapp.com/
                     const res = await axios({
                         method: "get",
                         url: url,
@@ -66,8 +66,8 @@ function CampingListContainer(props) {
                         themaEnvrnCl={value.themaEnvrnCl}
                     />)
                 }) :
-                tempArr.map(()=>{
-                    return(<SkeletonCampingItem/>)
+                tempArr.map((value,index)=>{
+                    return(<SkeletonCampingItem key = {index}/>)
                 })
             }
 

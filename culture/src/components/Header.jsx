@@ -1,10 +1,10 @@
 
-import { hover } from '@testing-library/user-event/dist/hover';
 import React, { useDeferredValue, useEffect, useState, useTransition } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 import { LogoutToReDucer } from '../store/LoginReducer';
+import LogoutDropBox from './LogoutDropBox';
 
 function Header(props) {
 
@@ -18,7 +18,6 @@ function Header(props) {
     const yoffsetState = useDeferredValue(yoffset);
 
     const {isLogin,nickname,profileImg} = useSelector((state)=>state.LoginReducer);
-    const dispatch = useDispatch();
 
     const onScroll = () => {
         startTransition(()=>{
@@ -35,21 +34,18 @@ function Header(props) {
         };
     }, []);
     
-    const LogoutAction = () =>{
-        dispatch(
-            LogoutToReDucer()
-        )
-    }
+
 
     return (
         <Container 
             yoffset={yoffsetState}>
             <HeaderContainer>
-                <a href='/' style={{textDecoration: 'none'}}>
+
+                <Link to='/' style={{textDecoration: 'none'}}>
                     <div style={{color:'#141414', fontSize:'1.5rem',fontWeight:'600'}}>
                         CCFM
                     </div>
-                </a>
+                </Link>
                 
                 <HeaderTabContainer>
                     <Link to='/camping'>
@@ -73,14 +69,16 @@ function Header(props) {
                             }}>
                     로그인
                 </Link>:
-                    <>
+                    <div style={{display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'row'}}>
                         <ProfileContainer>
                             <img src={profileImg}/>
                         </ProfileContainer>
-                        <p>{nickname}님 안녕</p>
-                        <LogoutBt onClick={LogoutAction}>로그아웃</LogoutBt>
-                    </>
+                        <span style={{marginRight:"1rem"}}>{nickname}님 안녕</span>
+                        {/* <LogoutBt onClick={LogoutAction}>로그아웃</LogoutBt> */}
+                        <LogoutDropBox />
+                    </div>
                 }
+                
                 
             </HeaderContainer>
             

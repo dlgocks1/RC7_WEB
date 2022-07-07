@@ -14,6 +14,8 @@ export const LoginToReDucer = (data) =>{
     }
 }
 export const LogoutToReDucer = () =>{
+    // + 카카오 API로 엑세스 토큰 만료
+    localStorage.removeItem("kakaoAccessToken");
     return{
         type : LOGOUT,
     }

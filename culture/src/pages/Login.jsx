@@ -32,7 +32,7 @@ const useLogin = (initialValue)=>{
         LoginAction(
             {
                 nickname : "진짜밀크",
-                profileImg : "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/b498d336-3e1f-4981-a448-a35a789f7d9a/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220705%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220705T063901Z&X-Amz-Expires=86400&X-Amz-Signature=ab214a9057c8c8238f0eb5c0964eef279261bb6cddc506a17a976aea401716c2&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject"
+                profileImg : "https://previews.123rf.com/images/nete/nete1504/nete150400041/38541393-%EC%9A%B0%EC%9C%A0-%ED%8C%A8%ED%82%B7%EC%9D%80-%ED%9D%B0%EC%83%89-%EB%B0%B0%EA%B2%BD%EC%97%90-%EA%B3%A0%EB%A6%BD%EC%9E%85%EB%8B%88%EB%8B%A4-%EB%B2%A1%ED%84%B0-%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8-%EB%A0%88%EC%9D%B4-%EC%85%98-.jpg"
             }
         )
         navigate('/');

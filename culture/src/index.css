@@ -62,7 +62,14 @@ table {
 	}
 }
 
-/* .slick-list{ 
-	margin: 0 auto;
-	background-color: black;
+.ant-dropdown-menu-title-content{
+	font-size: 1rem;
+}
+
+.ant-dropdown-menu-item:hover{
+	background-color: rgba(0, 0, 0, 0.1)!important;
+}
+
+/* .ant-dropdown-menu-item-active{
+	background-color: rgba(0, 0, 0, 0.5);
 } */

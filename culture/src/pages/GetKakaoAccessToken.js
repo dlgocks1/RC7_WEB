@@ -4,6 +4,7 @@ import React, { useEffect, useState, useTransition } from 'react';
 import { useDispatch } from 'react-redux';
 import {useLocation,useNavigate,useSearchParams} from 'react-router-dom';
 import { LoginToReDucer } from '../store/LoginReducer';
+import LoginLoading from '../components/LoginLoading';
 
 function GetKakaoAccessToken() {
 
@@ -27,12 +28,13 @@ function GetKakaoAccessToken() {
     useEffect(() =>{
         startTransition(async () => {
             try {
-                let url = `https://kauth.kakao.com/oauth/token?client_id=75ee7011dc4bcfd1c4d8eb5e1c033f4a&grant_type=authorization_code&redirect_uri=http://localhost:3000/kakaoLogin&code=${KAKAO_AUTHORIZATION_CODE}`;
+                let url = `https://kauth.kakao.com/oauth/token?client_id=${process.env.KAKAO_RESTAPI_KEY}&grant_type=authorization_code&redirect_uri=http://localhost:3000/kakaoLogin&code=${KAKAO_AUTHORIZATION_CODE}`;
                 const res = await axios({
                     method: "POST",
                     url: url,
                 });
-                console.log(res);               
+                // console.log(res); 
+                localStorage.setItem("kakaoAccessToken",res.data.access_token);              
                 url = `https://cors-anywhere.herokuapp.com/https://kapi.kakao.com/v2/user/me`;
                 // url = `https://kapi.kakao.com/v2/user/me`;
                 // url = `https://secret-ocean-49799.herokuapp.com/https://kapi.kakao.com/v2/user/me`;
@@ -45,7 +47,6 @@ function GetKakaoAccessToken() {
                         Authorization : 'Bearer ' + res.data.access_token
                     }
                 });
-                console.log(userinfo);               
 
                 LoginAction(
                     {
@@ -65,7 +66,9 @@ function GetKakaoAccessToken() {
     },[])
     
     return (<>
+                <LoginLoading/>
             </>);
 }
+
 
 export default GetKakaoAccessToken;

@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useDeferredValue, useEffect, useState } from 'react';
 import styled from 'styled-components'
 import img_notReady from '../assets/img/imgnotReady.jpg';
 
 function CampingImage({resveUrl,firstImageUrl}) {
 
     const [hover,sethover] = useState(false);
+    const deferredhover = useDeferredValue(hover);
     const [imgUrl, setImage] = useState("");
 
     useEffect(() =>{
@@ -13,7 +14,8 @@ function CampingImage({resveUrl,firstImageUrl}) {
         }else{
             setImage(img_notReady);
         }
-    })
+    },[])
+
 
     return (
         <ImgContainer
@@ -23,10 +25,9 @@ function CampingImage({resveUrl,firstImageUrl}) {
             <FirstImgLoading />
             <FirstImg 
                  src={imgUrl} />
-            {hover ? <OnHover >
-                <a
-                target={'_blank'}
-                href={resveUrl} 
+            {deferredhover ? <OnHover >
+                <div
+                onClick={() => window.open(`${resveUrl}`, "_blank")}
                 style={{
                     margin:'auto auto',
                     backgroundColor:'transparent',
@@ -38,7 +39,7 @@ function CampingImage({resveUrl,firstImageUrl}) {
                     cursor: 'pointer',
                     letterSpacing:'0.2rem',
                     textDecoration: 'none',
-                    }}> 예약하기 </a>
+                    }}> 예약하기 </div>
             </OnHover> : ""}
             
         </ImgContainer>
