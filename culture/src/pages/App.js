@@ -13,46 +13,9 @@ import Home from "./Home";
 import Hotel from "./Hotel";
 import Login from "./Login";
 import axios from 'axios';
+import useAutoLogin from "../hoc/useAutoLogin";
 
 const KAKAO_ACCESS_TOKEN = localStorage.getItem("kakaoAccessToken");
-console.log(process.env);
-console.log(process.env.REACT_APP_KAKAO_RESTAPI_KEY);
-
-const useAutoLogin = () => {
-  const dispatch = useDispatch();
-  const LoginAction = (data) => {
-    dispatch(
-      LoginToReDucer(
-        {
-          nickname: data.nickname,
-          profileImg: data.profileImg,
-          isLogin: true,
-        }
-      )
-    )
-  }
-  const KAKAO_LOGIN = async () => {
-    try {
-      const url = `https://cors-anywhere.herokuapp.com/https://kapi.kakao.com/v2/user/me`;
-      const userinfo = await axios({
-        method: "POST",
-        url: url,
-        headers: {
-          Authorization: 'Bearer ' + KAKAO_ACCESS_TOKEN
-        }
-      });
-      LoginAction(
-        {
-          nickname: userinfo.data.properties.nickname,
-          profileImg: userinfo.data.properties.thumbnail_image,
-        }
-      );
-    } catch (error) {
-        console.log(error);
-    }
-  }
-  return { KAKAO_LOGIN };
-}
 
 function App() {
 

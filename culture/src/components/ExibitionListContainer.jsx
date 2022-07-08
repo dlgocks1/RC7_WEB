@@ -7,13 +7,15 @@ import SkeletonKakaoMap from './SkeletonKakaoMap';
 import styled from 'styled-components';
 import SkeletonCampingItem from './SkeletonCampingItem';
 import CampingItem from './CampingItem';
+import useGetData from '../hoc/useGetData';
 
 function ExibitionListContainer(props) {
 
     const [exibitionData, setExibitionData] = useState([]);
-    const [nowLoading, setNowLoading] = useState(false);
     const { longitude, latitude } = useSelector((state) => state.GeoLocationReducer);
     const tempArr = new Array(10).fill(0);
+    const {data, error, isLoading} = useGetData(`https://cors-anywhere.herokuapp.com/http://www.culture.go.kr/openapi/rest/publicperformancedisplays/area?serviceKey=uQEBqklQ8iRzL1OLrXwjYa6xIfWCRrOLfyo2HAr4hI8RvzDnTeWL5VqVJCYcIOYy%2BJqQBZSuD7hd86jJzep6%2FQ%3D%3D&from=20220601&to=20220701&gpsxfrom=${longitude - 5}&gpsyfrom=${latitude - 5}&gpsxto=${longitude + 5}&gpsyto=${latitude + 5}&cPage=1&rows=30&sortStdr=1`);
+    const [nowLoading, setNowLoading] = useState(false);
 
     function parseStr(dataSet) {
         const dataArr = new XMLParser().parseFromString(dataSet).children;
@@ -35,32 +37,39 @@ function ExibitionListContainer(props) {
     }
 
     useEffect(() => {
-        let isCompleted = false;
-        const getCampingData = async () => {
-            try {
-                const url =
-                    `https://cors-anywhere.herokuapp.com/http://www.culture.go.kr/openapi/rest/publicperformancedisplays/area?serviceKey=uQEBqklQ8iRzL1OLrXwjYa6xIfWCRrOLfyo2HAr4hI8RvzDnTeWL5VqVJCYcIOYy%2BJqQBZSuD7hd86jJzep6%2FQ%3D%3D&from=20220601&to=20220701&gpsxfrom=${longitude - 5}&gpsyfrom=${latitude - 5}&gpsxto=${longitude + 5}&gpsyto=${latitude + 5}&cPage=1&rows=30&sortStdr=1`;
+        if(isLoading){
+            setExibitionData(parseStr(data));
+            setNowLoading(true);
+        }
+    }, [isLoading]);
 
-                const res = await axios({
-                    method: "get",
-                    url: url,
-                });
-                if (!isCompleted) {
-                    setExibitionData(parseStr(res.data));
-                    setNowLoading(true);
-                }
-            } catch (error) {
-                throw new Error("Error");
-                console.log(error);
-            }
-        };
-        getCampingData();
+    // useEffect(() => {
+    //     let isCompleted = false;
+    //     const getCampingData = async () => {
+    //         try {
+    //             const url =
+    //                 `https://cors-anywhere.herokuapp.com/http://www.culture.go.kr/openapi/rest/publicperformancedisplays/area?serviceKey=uQEBqklQ8iRzL1OLrXwjYa6xIfWCRrOLfyo2HAr4hI8RvzDnTeWL5VqVJCYcIOYy%2BJqQBZSuD7hd86jJzep6%2FQ%3D%3D&from=20220601&to=20220701&gpsxfrom=${longitude - 5}&gpsyfrom=${latitude - 5}&gpsxto=${longitude + 5}&gpsyto=${latitude + 5}&cPage=1&rows=30&sortStdr=1`;
 
-        return () => {
-            isCompleted = true;
-        };
+    //             const res = await axios({
+    //                 method: "get",
+    //                 url: url,
+    //             });
+    //             if (!isCompleted) {
+    //                 setExibitionData(parseStr(res.data));
+    //                 setNowLoading(true);
+    //             }
+    //         } catch (error) {
+    //             throw new Error(error);
+    //             // console.log(error);
+    //         }
+    //     };
+    //     getCampingData();
 
-    }, []);
+    //     return () => {
+    //         isCompleted = true;
+    //     };
+
+    // }, []);
 
     return (
         <>

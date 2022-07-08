@@ -35,7 +35,6 @@ function Header(props) {
     }, []);
     
 
-
     return (
         <Container 
             yoffset={yoffsetState}>

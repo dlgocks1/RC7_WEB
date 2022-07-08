@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import CampingListContainer from '../components/CampingListContainer';
+import ErrorBoundary from '../components/ErrorBoundary';
 import Header from '../components/Header';
 
 function Camping() {
@@ -9,7 +10,9 @@ function Camping() {
     return (
         <>
             <Header />
-            <CampingListContainer/>
+            <ErrorBoundary>
+                <CampingListContainer/>
+            </ErrorBoundary>
         </>
     );
 }

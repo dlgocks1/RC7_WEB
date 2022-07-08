@@ -5,7 +5,6 @@ import Header from '../components/Header';
 import kakaoLogin from '../assets/img/kakao_login_large_wide.png'
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
-import LoginService from '../services/LoginService';
 import { useDispatch } from 'react-redux';
 import { LoginToReDucer } from '../store/LoginReducer';
 

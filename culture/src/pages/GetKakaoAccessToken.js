@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import {useLocation,useNavigate,useSearchParams} from 'react-router-dom';
 import { LoginToReDucer } from '../store/LoginReducer';
 import LoginLoading from '../components/LoginLoading';
+import ErrorBoundary from '../components/ErrorBoundary';
 
 function GetKakaoAccessToken() {
 
@@ -25,10 +26,11 @@ function GetKakaoAccessToken() {
             )
         )
     }
+
     useEffect(() =>{
         startTransition(async () => {
             try {
-                let url = `https://kauth.kakao.com/oauth/token?client_id=${process.env.KAKAO_RESTAPI_KEY}&grant_type=authorization_code&redirect_uri=http://localhost:3000/kakaoLogin&code=${KAKAO_AUTHORIZATION_CODE}`;
+                let url = `https://kauth.kakao.com/oauth/token?client_id=${process.env.REACT_APP_KAKAO_RESTAPI_KEY}&grant_type=authorization_code&redirect_uri=http://localhost:3000/kakaoLogin&code=${KAKAO_AUTHORIZATION_CODE}`;
                 const res = await axios({
                     method: "POST",
                     url: url,
@@ -60,13 +62,16 @@ function GetKakaoAccessToken() {
                 });
 
             } catch (error) {
-                console.log(error);
+                throw new Error(error);
+                // console.log(error);
             }
         });
     },[])
     
     return (<>
-                <LoginLoading/>
+                <ErrorBoundary>
+                    <LoginLoading/>
+                </ErrorBoundary>
             </>);
 }
 

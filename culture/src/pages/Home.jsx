@@ -156,7 +156,8 @@ const SampleNextArrow =styled.div`
         content: ">";
         font-size: 3rem;
         opacity: 0.7;
-    }`;
+    }
+`;
 
 const SliderContent= styled.div`
     color: white;

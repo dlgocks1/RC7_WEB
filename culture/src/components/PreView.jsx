@@ -49,7 +49,7 @@ const ImageContainer = styled.div`
     width: 100%;
     position: relative;
     height: 70%;
-`
+`;
 
 const SetPosition = styled.div`
     position : absolute;
@@ -68,6 +68,6 @@ const Container = styled.div`
     left: 0;
     top: 0;
     z-index: 1;
-`
+`;
 
 export default PreView;

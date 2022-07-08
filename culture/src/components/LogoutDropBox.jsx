@@ -10,11 +10,7 @@ import { useNavigate } from 'react-router-dom';
 function LogoutDropBox(props) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    // const handleButtonClick = (e) => {
-    //     message.info('Click on left button.');
-    //     console.log('click left button', e);
-    //   };
-      
+
     const handleMenuClick = (e) => {
         // console.log('click', e);
         if(e.key==='1'){
