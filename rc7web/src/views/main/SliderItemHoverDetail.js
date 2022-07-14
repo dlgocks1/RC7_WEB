@@ -1,12 +1,14 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable no-use-before-define */
 import styled from "styled-components";
 import mainvedio from "assets/dummyVedio.mp4";
 import iconPlay from "assets/icon/icon_play.svg";
 import iconCheck from "assets/icon/icon_check_white.svg";
 import iconThumb from "assets/icon/icon_thumb_white.svg";
 import iconArrow from "assets/icon/icon_arrow_white.svg";
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useDispatch } from "react-redux";
-import { setEpisdoeModalOn } from "reducers/episodemodalReducer";
+import { setEpisdoeModalOn } from "store/action/episodemodal";
 
 function SliderItemHoverDetail({hoverStyle}){
     
@@ -44,7 +46,7 @@ function SliderItemHoverDetail({hoverStyle}){
                 style={Object.assign(hoverStyle,{opacity:`${opacity}`,transform:`scale(${itemscale})`, transition:"all 0.5s"})}
             >
             <div>
-                <ShortVedio src={mainvedio} autoPlay muted={true}></ShortVedio>
+                <ShortVedio src={mainvedio} autoPlay muted />
                 <div style={{display:"flex",alignItems:"center",flexDirection:"row", marginLeft:"20px"}}>
                     <div style={{flexGrow:"1"}}>
                         <PlayIcon width="20px" src={iconPlay}/>
@@ -73,7 +75,7 @@ function SliderItemHoverDetail({hoverStyle}){
                     <MorinfoIcon onClick={setModalOn} width="20px" src={iconArrow}/>
                     
                 </div>
-                <p style={{fontSize:"13px", fontWeight:"600", margin:"10px 15px" }}>"1화"</p>
+                <p style={{fontSize:"13px", fontWeight:"600", margin:"10px 15px" }}>1화</p>
                 <div style={{display:"grid",gridGap:"5px", alignItems:"center",paddingBottom:"20px",gridTemplateColumns:"4fr 3fr"}}>
                     <ProgressContainer >
                         <Progress width="100%"/>

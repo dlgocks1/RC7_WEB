@@ -1,12 +1,13 @@
+/* eslint-disable no-use-before-define */
 
-import { useState } from "react"
-import { useEffect } from "react"
-import FavoriteViewContainer from "./FavoriteViewContainer"
+import React, { useEffect,useState } from "react"
+// eslint-disable-next-line import/no-extraneous-dependencies
 import _ from 'lodash';
 import { useSelector } from "react-redux";
 import styled from "styled-components"
+import FavoriteViewContainer from "./FavoriteViewContainer"
 
-const FavoritsContent = () =>{
+function FavoritsContent() {
 
     const [width, setWidth] = useState(window.innerWidth);
     const [contentList, setContentList] = useState([]);
@@ -44,18 +45,18 @@ const FavoritsContent = () =>{
         let prev = 0;
         // 안에서 Setcontent 하면 적용 X
         if (ratioMode === 0) {
-            for (let i = 5; i < itemList.length + 5; i = i + 5) {
+            for (let i = 5; i < itemList.length + 5; i += 5) {
                 tempdata = [...tempdata, itemList.slice(prev, i)];
                 setContentList([...contentList, itemList.slice(prev, i)]);
                 prev = i;
             }
         } else if (ratioMode === 1) {
-            for (let i = 4; i < itemList.length + 4; i = i + 4) {
+            for (let i = 4; i < itemList.length + 4; i += 4) {
                 tempdata = [...tempdata, itemList.slice(prev, i)];
                 prev = i;
             }
         } else if (ratioMode === 2) {
-            for (let i = 3; i < itemList.length + 3; i = i + 3) {
+            for (let i = 3; i < itemList.length + 3; i += 3) {
                 tempdata = [...tempdata, itemList.slice(prev, i)];
                 prev = i;
             }
@@ -66,13 +67,13 @@ const FavoritsContent = () =>{
     // 500~799 사이면 3개
     // 1100이상 5개
     useEffect(()=>{
-        if(width >= 1100 && ratioMode != 0){
+        if(width >= 1100 && ratioMode !== 0){
             setRatioMode(0);
 
-        }else if(width <= 1099  && width >= 800  && ratioMode != 1){
+        }else if(width <= 1099  && width >= 800  && ratioMode !== 1){
             setRatioMode(1);
 
-        }else if(width <= 799 && width >= 100 && ratioMode != 2){
+        }else if(width <= 799 && width >= 100 && ratioMode !== 2){
             setRatioMode(2);
         }
     },[width]);
@@ -80,9 +81,7 @@ const FavoritsContent = () =>{
     
     return(
         <Container>
-            {contentList.map((value,index) => {
-                return (<FavoriteViewContainer key={index} id={value.id} contentList={value} />);
-            }) }
+            {contentList.map((value,index) => (<FavoriteViewContainer key={value.id} id={value.id} contentList={value} />)) }
         </Container>
     );
 }

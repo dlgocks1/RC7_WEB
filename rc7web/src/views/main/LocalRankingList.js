@@ -1,5 +1,8 @@
-import LocalRankingItem from "./LocalRankingItem";
+/* eslint-disable react/self-closing-comp */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React from "react";
 import styled from "styled-components"
+import LocalRankingItem from "./LocalRankingItem";
 
 function LocalRankingList({ imgURLList }) {
     return (

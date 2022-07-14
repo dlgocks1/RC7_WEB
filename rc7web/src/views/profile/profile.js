@@ -1,13 +1,12 @@
-import styles from "./profile.module.css"
-import React, { Component } from "react"
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/alt-text */
+import React from "react"
 // css 충돌 클래스 이름 같음
 import classNames from 'classnames/bind'
+import styles from "./profile.module.css"
 import ProfileBox from "./ProfileBox";
 
 const cx = classNames.bind(styles);
-console.log(styles);
-console.log(cx);
-console.log(cx("flex","logo"));
 
 const UserList = [
     { id:1, name: "아부지", img: "https://occ-0-3076-988.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABb_DHMVDo8hDAK3yCzp_kViqNAzRqtn4oFSvy8FppaaBvPEgXCYaVMOX7QyrOZvuznXMuC7CCX4H0-NmnBa5bxs4CCEluvvauk87.png" },
@@ -35,10 +34,10 @@ function Profile() {
                                 넷플릭스를 시청할 프로필을 선택하세요.
                             </h1>
                             <ul className={cx("choose-profiles", "flex")}>
-                                {UserList.map( (value) => {
+                                {UserList.map( (value) => 
                                     // Each child in a list should have a unique "key" prop.
-                                    return (<ProfileBox key={value.id} id={value.id} img={value.img} name={value.name} />);
-                                })}
+                                     (<ProfileBox key={value.id} id={value.id} img={value.img} name={value.name} />)
+                                )}
 
                             </ul>
 

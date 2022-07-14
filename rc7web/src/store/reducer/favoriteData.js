@@ -53,51 +53,30 @@ const ADD_FAVERITE_DATA = "ADD_FAVERITE_DATA"
 const SUB_FAVERITE_DATA = "SUB_FAVERITE_DATA"
 const SET_FAVERITE_DATA = "SET_FAVERITE_DATA"
 
-export const addFaveriteDataAction = (data) =>{
-    return{
-        type : ADD_FAVERITE_DATA,
-        data : data,
-    }
-}
-
-export const setFaveriteDataAction = (data) =>{
-    return{
-        type : SET_FAVERITE_DATA,
-        data : data,
-    }
-}
-
-
-export const subFaveriteDataAction = (data) =>{
-    return{
-        type : SUB_FAVERITE_DATA,
-        data : data,
-    }
-}
-
-const favoriteDataReducer = (state=initialState, action) => {
-    switch(action.type){
-        case ADD_FAVERITE_DATA :{
+// eslint-disable-next-line default-param-last
+function favoriteDataReducer(state = initialState, action) {
+    switch (action.type) {
+        case ADD_FAVERITE_DATA: {
             return {
                 ...state,
-                itemList : [...state.itemList, action.data],
+                itemList: [...state.itemList, action.data]
             }
         }
-        case SUB_FAVERITE_DATA :{
+        case SUB_FAVERITE_DATA: {
             return {
                 ...state,
-                itemList : state.itemList.filter((element) => element.id !== action.data.id),
+                itemList: state.itemList.filter((element) => element.id !== action.data.id)
             }
         }
-        case SET_FAVERITE_DATA:{
+        case SET_FAVERITE_DATA: {
             return {
                 ...state,
-                itemList : action.data,
+                itemList: action.data
+            }
         }
-        }
-        default : {
-            return{
-                ...state,
+        default: {
+            return {
+                ...state
             }
         }
     }

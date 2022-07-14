@@ -1,11 +1,13 @@
-import { useDebugValue, useEffect, useState } from "react";
+/* eslint-disable no-shadow */
+import React,{ useDebugValue, useEffect, useState } from "react";
+import styled, { css } from 'styled-components';
+import {useInView} from "react-intersection-observer";
+import { useSelector } from "react-redux";
+import Viewcontainer2 from "components/common/viewcontainer2";
 import ViewContainer from "../ViewContainer";
 import LocalRankingList from "../LocalRankingList";
 import HomeSpectialContent from "./HomeSpectialContent";
-import styled, { css } from 'styled-components';
 import Loading from '../Loading';
-import {useInView} from "react-intersection-observer";
-import { useSelector } from "react-redux";
 
 function makeError(){
     throw new Error("임의 에러 발생");
@@ -294,7 +296,7 @@ function MainHomeContent() {
 
     // 스크롤리스트에 아이템 추가
     useEffect(() => {
-        if(inView && page<=4){
+        if(inView && page<=6){
             const scrollItem = {
                 id: 4,
                 name: "테스트용",
@@ -357,10 +359,13 @@ function MainHomeContent() {
              {!nowLoading ? 
             <>
                 <HomeSpectialContent />
-                {ContainerList.map((value) => {
+                
+                <Viewcontainer2/>
+
+                {ContainerList.map((value) => 
                     // Virtual DOM 에서 자식 노드 체크할때 키값으로 할때 그거가 이 키값
-                    return (<ViewContainer key={value.id} name={value.name} contentList={value.contentList} />);
-                }) }
+                     (<ViewContainer name={value.name} contentList={value.contentList} />)
+                ) }
                 
                 <LocalRankingList imgURLList={
                     ["https://occ-0-3076-988.1.nflxso.net/dnm/api/v6/evlCitJPPCVCry0BZlEFb5-QjKc/AAAABSLDza8YZJDtaNG2BJZsLD1HffFaFg2Vv2HSQtjwNlOrpiVQMCnjeEqs3Jzm0mla47cuip1MhRBAzlp5nMmeTqFVw5Knh_CnDSk_bO5YwbWAQMgjbx1WvFXb-GM_GZP1G31EeGOtHT2dsZLYLqu0dQ.webp?r=40a",                
@@ -370,13 +375,10 @@ function MainHomeContent() {
                 } />
 
                 {scrollList.map((value, idx) => (
-                    <>
-                        <ViewContainer key={value.id} name={value.name} contentList={value.contentList} />
-                    </>
+                    <ViewContainer name={value.name} contentList={value.contentList} />
                 ))}
                 {/* 좀더 나이스한 방법이 있을 듯 */}
-                <div ref={ref}>
-                </div>
+                <div ref={ref} />
             </>
             : (
                 <Loading />

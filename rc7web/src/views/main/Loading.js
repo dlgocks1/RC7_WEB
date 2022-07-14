@@ -1,8 +1,10 @@
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable react/no-unstable-nested-components */
 import styled from "styled-components"
 import LoadingItem from "./LoadingItem";
 
 function Loading(){
-    const LodingContent = (time) =>{
+    function LodingContent(time) {
         return(
         <SliderItemStyle>
             <BoxartSize16x9 >
@@ -13,8 +15,8 @@ function Loading(){
     }
 
     const repeateLoadingContent = () =>{
-        var rows = [];
-        for (var i = 0; i < 4; i++) {
+        const rows = [];
+        for (let i = 0; i < 4; i+=1) {
             rows.push(LodingContent(i*30));
         }
         return rows;

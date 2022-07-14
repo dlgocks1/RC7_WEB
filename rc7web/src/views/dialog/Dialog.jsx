@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+/* eslint-disable react/jsx-no-bind */
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setEpisdoeModalOff } from "reducers/episodemodalReducer";
+import { setEpisdoeModalOff } from "store/action/episodemodal";
 import styled from "styled-components"
 import PreViewModelClose from "./PreViewModelClose";
 import PreViewModelInfo from "./PreViewModelInfo";
@@ -10,7 +11,7 @@ function Dialog(){
 
     const dispatch = useDispatch();
     const {name,imgUrl} = useSelector((state) => state.episodeModalReducer);
-    function CloseModalAction(){
+    function handleClickModalAction(){
         dispatch(
             setEpisdoeModalOff()
         )
@@ -30,7 +31,7 @@ function Dialog(){
                 <PreViewModelInfo name={name} />
             </DialogContainer>
         </PreViewModel>
-        <PreviewModelBackDrop onClick={CloseModalAction}/>
+        <PreviewModelBackDrop onClick={handleClickModalAction}/>
         </>
     );
 }

@@ -1,10 +1,10 @@
+import React,{ useState } from 'react';
 import styled from "styled-components"
 import dummyvedio from "assets/dummyVedio.mp4"
-import { useState } from "react";
 import iconCheck from "assets/icon/icon_check_white.svg";
 import iconThumb from "assets/icon/icon_thumb_white.svg";
-import ReactTooltip from "react-tooltip";
 
+// eslint-disable-next-line react/prop-types
 function VedioPlayerContainer({imgUrl}){
 
     const [dtbookmarktooltip,setDtbookmarktooltip] = useState(false);
@@ -17,19 +17,25 @@ function VedioPlayerContainer({imgUrl}){
                 <video onEnded={()=>
                         setPlaying(false)} 
                         style={isPlaying===false ? {visibility : "hidden"} : {visibility : "visible"}}
-                        src={dummyvedio} autoPlay></video>
+                        src={dummyvedio} autoPlay  >
+                            <track kind='captions'/>
+                        </video>
             </VedioContainer>
 
             <ImgContainer>
                 <img    
                     style={{width: "100%", height: "100%"}} 
-                    src={imgUrl} />
+                    src={imgUrl}
+                    alt ="backgroundImg" />
                 {/* <img src="https://occ-0-3076-988.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABZbVJV4TTlebZXyVIz1uynnmoRh_7Cp0L1vSHyJ_4yQtglDKpKcdhFL7LIq5DO9i7apdvdUBHWeuKHpJw1hcS31L_0UoF6QJ80i6.webp?r=450" alt="SPYxFAMILY 스파이 패밀리" class="playerModel--player__storyArt detail-modal has-smaller-buttons" /> */}
             </ImgContainer>
 
             <PreViewModelInfo>
                 <TitleContainer>
-                    <img src={"https://occ-0-3076-988.1.nflxso.net/dnm/api/v6/tx1O544a9T7n8Z_G12qaboulQQE/AAAABfckc9vjUDZDDb51BIkxA4HvHTnlLBfgluBzpzNdE5bEGKWmpnVi0tt7i1emKTiSBEs9GnzbYQ6lHxhkhCefhR62xBj-GCQiF8FS36aS4PM.webp?r=50e"} style={{width: "100%", opacity: 1,marginBottom:"2.5em"}}/>
+                    <img 
+                        src="https://occ-0-3076-988.1.nflxso.net/dnm/api/v6/tx1O544a9T7n8Z_G12qaboulQQE/AAAABfckc9vjUDZDDb51BIkxA4HvHTnlLBfgluBzpzNdE5bEGKWmpnVi0tt7i1emKTiSBEs9GnzbYQ6lHxhkhCefhR62xBj-GCQiF8FS36aS4PM.webp?r=50e" 
+                        style={{width: "100%", opacity: 1,marginBottom:"2.5em"}}
+                        alt ="ButtonImg"/>
                     <ButtonContainer>
 
                         <PlayButtonWrapper type="button">
@@ -40,11 +46,11 @@ function VedioPlayerContainer({imgUrl}){
                                             >
                                             <path
                                                 d="M4 2.69127C4 1.93067 4.81547 1.44851 5.48192 1.81506L22.4069 11.1238C23.0977 11.5037 23.0977 12.4963 22.4069 12.8762L5.48192 22.1849C4.81546 22.5515 4 22.0693 4 21.3087V2.69127Z"
-                                                fill="currentColor"></path>
+                                                fill="currentColor" />
                                         </svg>
                                     </div>
                                 </div>
-                                <div style={{ width: "1rem" }}></div>
+                                <div style={{ width: "1rem" }}/>
                                 <PlayText>재생</PlayText>
                         </PlayButtonWrapper>
 
@@ -80,7 +86,7 @@ function VedioPlayerContainer({imgUrl}){
                 <MuteIconConatiner>
                     <button type="button">
                         <div style={{width:"1.6em",height:"1.6em",display:"flex",alignItems:"center",justifyContent:"center",}}>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="Hawkins-Icon Hawkins-Icon-Standard"><path fill-rule="evenodd" clip-rule="evenodd" d="M11 4.00003C11 3.59557 10.7564 3.23093 10.3827 3.07615C10.009 2.92137 9.57889 3.00692 9.29289 3.29292L4.58579 8.00003H1C0.447715 8.00003 0 8.44774 0 9.00003V15C0 15.5523 0.447715 16 1 16H4.58579L9.29289 20.7071C9.57889 20.9931 10.009 21.0787 10.3827 20.9239C10.7564 20.7691 11 20.4045 11 20V4.00003ZM5.70711 9.70714L9 6.41424V17.5858L5.70711 14.2929L5.41421 14H5H2V10H5H5.41421L5.70711 9.70714ZM15.2929 9.70714L17.5858 12L15.2929 14.2929L16.7071 15.7071L19 13.4142L21.2929 15.7071L22.7071 14.2929L20.4142 12L22.7071 9.70714L21.2929 8.29292L19 10.5858L16.7071 8.29292L15.2929 9.70714Z" fill="currentColor"></path></svg>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" ><path fillRule="evenodd" clipRule="evenodd" d="M11 4.00003C11 3.59557 10.7564 3.23093 10.3827 3.07615C10.009 2.92137 9.57889 3.00692 9.29289 3.29292L4.58579 8.00003H1C0.447715 8.00003 0 8.44774 0 9.00003V15C0 15.5523 0.447715 16 1 16H4.58579L9.29289 20.7071C9.57889 20.9931 10.009 21.0787 10.3827 20.9239C10.7564 20.7691 11 20.4045 11 20V4.00003ZM5.70711 9.70714L9 6.41424V17.5858L5.70711 14.2929L5.41421 14H5H2V10H5H5.41421L5.70711 9.70714ZM15.2929 9.70714L17.5858 12L15.2929 14.2929L16.7071 15.7071L19 13.4142L21.2929 15.7071L22.7071 14.2929L20.4142 12L22.7071 9.70714L21.2929 8.29292L19 10.5858L16.7071 8.29292L15.2929 9.70714Z" fill="currentColor" /></svg>
                         </div>
                     </button>
                 </MuteIconConatiner>
@@ -152,13 +158,6 @@ const IsLikeTooltop = styled.div`
         width: 0;
         z-index: 1;
     }
-`
-const TootipText = styled.span`
-    position: absolute;
-    border: 1px solid;
-    border-radius: 5px;
-    font-size: 0.8em;
-    color: white;
 `
 
 const DtBookmarktooltip = styled.div`

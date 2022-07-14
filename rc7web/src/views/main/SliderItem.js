@@ -1,15 +1,30 @@
-import { useEffect, useRef, useState } from "react";
+/* eslint-disable jsx-a11y/no-redundant-roles */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPreviewModalOff, setPreviewModalOn } from "reducers/previewModalReducer";
+import { setPreviewModalOff, setPreviewModalOn } from "store/action/previewModal";
 import styled from "styled-components"
 import SliderItemHoverDetail from "./SliderItemHoverDetail";
 
 function SliderItem({id ,name, imgURL }) {
 
     const [isItemHover, setIsItemHover] = useState(false);
-    // const [hoverStyle, sethoverStyle] = useState(``);
     const hoverRef = useRef();
+    const dispatch = useDispatch();
+
     const {previewVisible} = useSelector((state)=> state.previewModalReducer)
+   
+    const previewModalOn = (data) =>{
+        dispatch(
+            setPreviewModalOn(data)
+        )
+    }
+
+    const previewModalOff = () =>{
+        dispatch(
+            setPreviewModalOff()
+        )
+    }
 
     function setHoverPosition(event){
         let hoverStyle = {};
@@ -18,7 +33,7 @@ function SliderItem({id ,name, imgURL }) {
         const itemPositionX = hoverRef.current.getBoundingClientRect().x;
         const x = ((hoverRef.current.getBoundingClientRect().left));
         const y = ((window.scrollY+hoverRef.current.getBoundingClientRect().top));
-        const width = (hoverRef.current.getBoundingClientRect().width);
+        const {width} = hoverRef.current.getBoundingClientRect();
         
         // 비율 계산
         if(browserwidth*0.6 < itemPositionX){
@@ -35,36 +50,20 @@ function SliderItem({id ,name, imgURL }) {
         // 이미 모달창이 켜저있다면 작동 X
         if(!previewVisible){
             previewModalOn({
-                id:id,
-                name:name,
+                id,
+                name,
                 imgUrl:imgURL, 
-                x:x,
-                width:width,
-                y:y,
-                transfromorigin:transfromorigin,
+                x,
+                width,
+                y,
+                transfromorigin,
                 hoverstyle:hoverStyle});
         }
     }
 
-    const dispatch = useDispatch();
-    const previewModalOn = (data) =>{
-        dispatch(
-            setPreviewModalOn(data)
-        )
-    }
-
-
     useEffect(()=>{
         // console.log(hoverStyle);
     },[isItemHover]);
-
-    
-    const previewModalOff = () =>{
-        dispatch(
-            setPreviewModalOff()
-        )
-    }
-
 
     return (
         <SliderItemStyle 

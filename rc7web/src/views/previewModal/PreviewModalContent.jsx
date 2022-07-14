@@ -1,37 +1,38 @@
+import React,{ useEffect, useState } from 'react';
 import styled from "styled-components";
+import { setEpisdoeModalOn } from "store/action/episodemodal";
+import { setPreviewModalOff } from "store/action/previewModal";
+import { useDispatch, useSelector } from "react-redux";
 import mainvedio from "assets/dummyVedio.mp4";
 import iconPlay from "assets/icon/icon_play.svg";
 import iconCheck from "assets/icon/icon_check_white.svg";
 import iconThumb from "assets/icon/icon_thumb_white.svg";
 import iconAdd from "assets/icon/icon_add_white.svg";
 import iconArrow from "assets/icon/icon_arrow_white.svg";
-import { useEffect, useState } from "react"
-import { setEpisdoeModalOn } from "reducers/episodemodalReducer";
-import { setPreviewModalKeep, setPreviewModalOff, setPreviewModalOn } from "reducers/previewModalReducer";
-import { useDispatch, useSelector } from "react-redux";
+import { addFaveriteDataAction, subFaveriteDataAction } from 'store/action/favoriteData';
 
 function PreViewModalContent({id, name,imgUrl}) {
 
     const [liketooltop,setLikeTooltip] = useState(false);
     const [dtbookmarktooltip,setDtbookmarktooltip] = useState(false);
-    const {itemList} = useSelector((state) => (state.favoriteDataReducer)) 
+    const {itemList} = useSelector((state) => (state.favoriteDataReducer));
     
     const [isFavorite,setFavorite] = useState(false);
 
     useEffect(() =>{
-        itemList.map((value)=>{
-            if(value.id === id){
+        itemList.forEach((value) => {
+            if (value.id === id) {
                 setFavorite(true);
             }
         })
-    });
-
+    },[]);
+    
     const dispatch = useDispatch();
     const setModalOn = () =>{
         dispatch(
             setEpisdoeModalOn({
-                name : name,
-                imgUrl : imgUrl,
+                name,
+                imgUrl,
             })
         );
     }
@@ -42,9 +43,22 @@ function PreViewModalContent({id, name,imgUrl}) {
         )
     }
 
+    const subFabdata = (data) =>{
+        dispatch(
+            subFaveriteDataAction(data)
+        )
+    }
+
+    const addFabdata = (data) =>{
+        // {id : id, imgURL : imgURL}
+        dispatch(
+            addFaveriteDataAction(data)
+        )
+    }
+
     return (
         <>
-            <ShortVedio src={mainvedio} autoPlay muted={true}></ShortVedio>
+            <ShortVedio src={mainvedio} autoPlay muted />
           
             <div style={{ display: "flex", alignItems: "center", flexDirection: "row", marginLeft: "20px" }}>
                 <div style={{ flexGrow: "1" }}>
@@ -55,6 +69,10 @@ function PreViewModalContent({id, name,imgUrl}) {
                             <SubIcon
                             onMouseOver={() => { setDtbookmarktooltip(true) }}
                             onMouseOut={() => { setDtbookmarktooltip(false) }}
+                            onClick={() => {
+                                subFabdata({ id })
+                                setFavorite(false)
+                            }}
                             width="20px"
                             src={iconCheck} />
                             {dtbookmarktooltip ? (<DtBookmarktooltip>
@@ -67,6 +85,10 @@ function PreViewModalContent({id, name,imgUrl}) {
                             <SubIcon
                             onMouseOver={() => { setDtbookmarktooltip(true) }}
                             onMouseOut={() => { setDtbookmarktooltip(false) }}
+                            onClick={() => {
+                                addFabdata({ id, imgURL : imgUrl })
+                                setFavorite(true)
+                            }}
                             width="20px"
                             src={iconAdd} />
                             {dtbookmarktooltip ? (<DtBookmarktooltip>
@@ -112,11 +134,6 @@ function PreViewModalContent({id, name,imgUrl}) {
 }
 
 
-
-const PreviewContainer = styled.div`
-    width: 100%;
-    height : 100%;
-`
 
 const DtBookmarktooltip = styled.div`
     background-color: rgba(211,211,211,1);
@@ -235,13 +252,13 @@ const ShortVedio = styled.video`
     width: 100%;
 `
 
-const BoxartImageInPaddedContainer = styled.img`
-    top: 0;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-`;
+// const BoxartImageInPaddedContainer = styled.img`
+//     top: 0;
+//     position: absolute;
+//     left: 0;
+//     bottom: 0;
+//     right: 0;
+//     width: 100%;
+// `;
 
 export default PreViewModalContent;

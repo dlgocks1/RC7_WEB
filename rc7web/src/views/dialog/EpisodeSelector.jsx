@@ -1,3 +1,5 @@
+import React from "react";
+import PropTypes from 'prop-types';
 import styled from "styled-components"
 import Episode from "./Episode";
 
@@ -89,6 +91,7 @@ const SPYxFAMILY = [
 ]
 
 function EpisodeSelector({name}){
+    
     return(
         <Container>
             <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'baseline'}}>
@@ -102,13 +105,14 @@ function EpisodeSelector({name}){
             </div>
 
             <EpisodeContainer>
-                {SPYxFAMILY.map((value)=>{
-                    return(<Episode key={value.index} index={value.index} img={value.img} title={value.title} synopsis={value.synopsis} duration={value.duration}/>);
-                })}
+                {SPYxFAMILY.map((value)=>(<Episode key={value.index} index={value.index} img={value.img} title={value.title} synopsis={value.synopsis} duration={value.duration}/>))}
             </EpisodeContainer>
         </Container>
     );
 }
+EpisodeSelector.propTypes = {
+    name: PropTypes.string.isRequired,
+};
 
 const EpisodeContainer = styled.div`
     display: flex;
@@ -122,5 +126,6 @@ const Container = styled.div`
     padding: 1em 0;
     padding-bottom: 0;
 `;
+
 
 export default EpisodeSelector;

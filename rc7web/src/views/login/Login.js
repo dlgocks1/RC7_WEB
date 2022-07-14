@@ -1,12 +1,13 @@
+import React from "react";
+import styled from "styled-components"
 import Body from "./Body";
 import Footer from "../home/Footer";
-import styled from "styled-components"
 
 function Login(){
     return(
         <DarkBackground>
             <LoginBackGround>
-                <img style={{ minHeight: "100%", width: "100%"}} src="https://assets.nflxext.com/ffe/siteui/vlv3/8ee18735-ada3-45be-b383-a94701054bb9/afb43404-fad1-4652-b371-7cb7456e539a/KR-ko-20220613-popsignuptwoweeks-perspective_alpha_website_small.jpg"/>
+                <img alt="" style={{ minHeight: "100%", width: "100%"}} src="https://assets.nflxext.com/ffe/siteui/vlv3/8ee18735-ada3-45be-b383-a94701054bb9/afb43404-fad1-4652-b371-7cb7456e539a/KR-ko-20220613-popsignuptwoweeks-perspective_alpha_website_small.jpg"/>
                 <ImgBackground/>
             </LoginBackGround>
             <Body />

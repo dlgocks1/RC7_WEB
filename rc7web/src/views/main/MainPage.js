@@ -1,13 +1,12 @@
-import Header from "./Header";
-import HomeContent from "./home/HomeContent";
-import Footer from "./Footer";
 import styled from "styled-components"
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
-import FavoritsContent from "./favorites/FavoritsContent";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import {userFavorites} from "utils/userFavorites.js"
-import { setFaveriteDataAction } from "reducers/favoriteDataReducer";
+import React, { useEffect, useState } from "react";
+import { setFaveriteDataAction } from "store/action/favoriteData";
+import FavoritsContent from "./favorites/FavoritsContent";
+import Footer from "./Footer";
+import HomeContent from "./home/HomeContent";
+import Header from "./Header";
 
 function MainPage(){
     const location = useLocation();

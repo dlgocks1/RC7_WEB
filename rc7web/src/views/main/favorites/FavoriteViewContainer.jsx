@@ -1,6 +1,6 @@
-import FavoriteSliderItem from "./FavoriteSliderItem";
 import styled from "styled-components"
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import FavoriteSliderItem from "./FavoriteSliderItem";
 
 
 function FavoriteViewContainer({ contentList }) {
@@ -8,9 +8,7 @@ function FavoriteViewContainer({ contentList }) {
     return (
         <LolomoRow>
             <div style={{ display: "flex",paddingBottom: "1px" }}>
-                {contentList.map((value) => {
-                    return (<FavoriteSliderItem id={value.id} imgURL={value.imgURL} />);
-                })} 
+                {contentList.map((value) => (<FavoriteSliderItem id={value.id} imgURL={value.imgURL} />))} 
             </div>
         </LolomoRow>
     );

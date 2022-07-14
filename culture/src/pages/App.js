@@ -6,41 +6,37 @@ import PreView from "../components/PreView";
 import { setGeoLocation } from "../store/GeoLocationReducer";
 import { LoginToReDucer } from "../store/LoginReducer";
 import Bookmark from "./Bookmark";
-import Camping from "./Camping"
+import Camping from "./Camping";
 import Exibition from "./Exibition";
 import GetKakaoAccessKey from "./GetKakaoAccessToken";
 import Home from "./Home";
 import Hotel from "./Hotel";
 import Login from "./Login";
-import axios from 'axios';
+import axios from "axios";
 import useAutoLogin from "../hoc/useAutoLogin";
+import PagingTest from "./pagingTest";
 
 const KAKAO_ACCESS_TOKEN = localStorage.getItem("kakaoAccessToken");
 
 function App() {
-
   const AutoLogin = useAutoLogin();
-  useEffect(() => {
-    if (KAKAO_ACCESS_TOKEN !== null) {
-      AutoLogin.KAKAO_LOGIN();
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (KAKAO_ACCESS_TOKEN !== null) {
+  //     AutoLogin.KAKAO_LOGIN();
+  //   }
+  // }, []);
 
   const { previewisvisible } = useSelector((state) => state.PreViewReducer);
   const dispatch = useDispatch();
   const initialSetGeoLocation = (data) => {
-    dispatch(
-      setGeoLocation(data)
-    )
-  }
+    dispatch(setGeoLocation(data));
+  };
 
   navigator.geolocation.getCurrentPosition((position) => {
-    initialSetGeoLocation(
-      {
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-      }
-    );
+    initialSetGeoLocation({
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude,
+    });
   });
 
   return (
@@ -48,6 +44,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/test" element={<PagingTest />} />
           <Route path="/login" element={<Login />} />
           <Route path="/camping" element={<Camping />} />
           <Route path="/tourism" element={<Hotel />} />

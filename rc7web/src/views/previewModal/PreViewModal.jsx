@@ -1,8 +1,9 @@
+/* eslint-disable no-use-before-define */
 import styled from "styled-components";
-import { useEffect, useState } from "react"
+import React,{ useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
+import { setPreviewModalOff } from "store/action/previewModal";
 import PreViewModalContent from "./PreviewModalContent";
-import { setPreviewModalOff } from "reducers/previewModalReducer";
 
 function PreViewModal(){
     
@@ -33,9 +34,10 @@ function PreViewModal(){
     }
 
     return(
-        <ItemHover style={hoverstyle}>
+        <ItemHover style={hoverstyle}
+        >
             <SetPosition width={width} x={x} y={y} transfromorigin = {transfromorigin}
-                style={Object.assign({opacity:`${opacity}`,transform:`scale(${itemscale})`, transition:"all 0.5s"})}
+                style={({opacity:`${opacity}`,transform:`scale(${itemscale})`, transition:"all 0.5s"})}
                 // onMouseOut={()=>{console.log("나가짐")}}
                 onMouseLeave={()=>{previewModalOff()}}
                 >

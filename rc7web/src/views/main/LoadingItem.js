@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
 import styled from "styled-components"
 
 function LoadingItem({delaytime}){
@@ -23,13 +23,12 @@ function LoadingItem({delaytime}){
         }
 
         return() =>{ clearTimeout(Loadingdelay);}
-        //clearTimeout 써야되나?
+        // clearTimeout 써야되나?
     },
     [nowLoading]);
 
     return(
-        <LoadingItemStyle style={backgound}>
-        </LoadingItemStyle>
+        <LoadingItemStyle style={backgound} />
     );
 }
 

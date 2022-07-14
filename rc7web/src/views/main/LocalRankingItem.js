@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/no-redundant-roles */
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import styled from "styled-components"
 
 function LocalRankingItem({ svg,img }) {

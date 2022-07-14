@@ -1,5 +1,7 @@
+import React from 'react';
 import styled from "styled-components"
 
+// eslint-disable-next-line react/prop-types
 function Episode({index, title, img, duration, synopsis}){
     return(
         <Container>
@@ -7,7 +9,7 @@ function Episode({index, title, img, duration, synopsis}){
                 {index}
             </EpsodeIndex>
             <ImageContainer>
-                <img src={img}
+                <img src={img} alt="EpisodeImg"
                 />
             </ImageContainer>
             <MetaDataContainer>

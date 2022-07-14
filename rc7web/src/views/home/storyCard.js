@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import styles from  "./HomeStyles.module.css"
-import classNames from 'classnames/bind'
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import classNames from 'classnames/bind';
+import styles from  "./HomeStyles.module.css";
+
 const cx = classNames.bind(styles);
 
-function StoryCard({maintitle,subtitle,content}){
-
-   
+// eslint-disable-next-line react/prop-types
+function StoryCard({content}){
     return(
         <div className={cx("our-story-card")}>
             {content}

@@ -1,5 +1,7 @@
-import styles from "./HomeStyles.module.css"
-import classNames from 'classnames/bind'
+import React from 'react';
+import classNames from 'classnames/bind';
+import styles from "./HomeStyles.module.css";
+
 const cx = classNames.bind(styles);
 
 function FooterCopyright() {

@@ -3,13 +3,7 @@ const initialState ={
     email : "cksgodl@naver.com"
 }
 
-export const loginAction = (data) =>{
-    return{
-        type : "LOGIN",
-        data : data
-    }
-}
-
+// eslint-disable-next-line default-param-last
 const loginReducer = (state=initialState, action) => {
     switch(action.type){
         case 'LOGIN' :{

@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+/* eslint-disable react/jsx-no-useless-fragment */
+/* eslint-disable no-shadow */
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styeld from "styled-components";
@@ -27,7 +29,7 @@ const useInput = (initialValue, validator)=>{
 const emailRegex =
 /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
 
-const LoginContent = () => {
+function LoginContent() {
 
     const { name, email } = useSelector((state) => state.loginReducer);
 
@@ -63,14 +65,14 @@ const LoginContent = () => {
         event.preventDefault();
         if(useEmailInput.valid && usePasswdInput.valid){
             let pw = -1;
-            for(let i=0 ; i<user.length; i++){
-                if(user[i].email == useEmailInput.value){
+            for(let i=0 ; i<user.length; i+=1){
+                if(user[i].email === useEmailInput.value){
                     // id = user[i].id;
                     pw = user[i].password;
                 }
             }
-            if(pw!=-1){
-                if(pw == usePasswdInput.value){
+            if(pw!==-1){
+                if(pw === usePasswdInput.value){
                     // navigator
                     goprofile();
                     setEmailresult(true);    
@@ -177,8 +179,8 @@ const LoginContent = () => {
                         </p>
                         <div style={isDetail===false?{visibility : "hidden"} : {visibility : "visible"}}>
                             <span>Google reCAPTCHA가 수집하는 정보에는 Google의
-                                <a style={{textDecoration: "none",color: "#0080ff"}} href="https://policies.google.com/privacy" target="_blank">개인정보처리방침</a>과
-                                 <a style={{textDecoration: "none",color: "#0080ff"}}  href="https://policies.google.com/terms" target="_blank">서비스 약관</a>이 적용되며, 해당 정보는 reCAPTCHA 서비스 제공, 관리 및 개선과 일반적인 보안 유지에 사용됩니다(Google의 개인 맞춤 광고에 사용 안 함).
+                                <a style={{textDecoration: "none",color: "#0080ff"}} href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">개인정보처리방침</a>과
+                                 <a style={{textDecoration: "none",color: "#0080ff"}}  href="https://policies.google.com/terms" target="_blank" rel="noreferrer">서비스 약관</a>이 적용되며, 해당 정보는 reCAPTCHA 서비스 제공, 관리 및 개선과 일반적인 보안 유지에 사용됩니다(Google의 개인 맞춤 광고에 사용 안 함).
                             </span>
                         </div>
                     </div>

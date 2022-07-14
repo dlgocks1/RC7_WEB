@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components"
 import FavoriteSliderItemHoverDetail from "./FavoriteSliderItemHoverDetail";
 
@@ -27,10 +27,7 @@ function FavoriteSliderItem({ id, imgURL }) {
             sethoverStyle(``);
             return ;
         }
-
-
         sethoverStyle({transformOrigin:"center left",left : "0%", marginLeft:"4%" });
-        return ;
     }
 
 

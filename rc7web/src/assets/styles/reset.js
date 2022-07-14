@@ -17,7 +17,6 @@ body, html{
     cursor: default;
     max-width:100%;
     width: 100vw;
-    overflow-x: hidden;
 }
 h1 {
     font-size: 2em;

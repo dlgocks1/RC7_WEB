@@ -1,7 +1,5 @@
 const initialState = {
     previewVisible : false,
-    // position:absolute로 들어가기때문에 
-    // 콘텐츠의 X, Y값 필요함 
     x : 9999,
     y : 9999,
     width : 0,
@@ -15,20 +13,7 @@ const initialState = {
 const VISIBILTITY_ON = "VISIBILTITY_ON"
 const VISIBILTITY_OFF = "VISIBILTITY_OFF"
 
-export const setPreviewModalOn = (data) =>{
-    return{
-        type : VISIBILTITY_ON,
-        data : data,
-    }
-}
-
-export const setPreviewModalOff = () =>{
-    return{
-        type : VISIBILTITY_OFF,
-    }
-}
-
-
+// eslint-disable-next-line default-param-last
 const previewModalReducer = (state=initialState, action) => {
     switch (action.type) {
         case VISIBILTITY_ON:{

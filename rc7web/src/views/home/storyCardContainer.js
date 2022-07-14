@@ -1,7 +1,11 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable jsx-a11y/media-has-caption */
+import React from 'react';
+import classNames from 'classnames/bind';
 import Question from './Question';
 import StoryCard from './StoryCard';
-import styles from "./HomeStyles.module.css"
-import classNames from 'classnames/bind'
+import styles from "./HomeStyles.module.css";
+
 const cx = classNames.bind(styles);
 
 function StoryCardContainer() {
@@ -12,9 +16,9 @@ function StoryCardContainer() {
                     <div className={cx("concord-img-wrapper")}>
                         <img className={cx("concord-img", "vlv-creative")}
                             src="https://assets.nflxext.com/ffe/siteui/vlv3/5ea364b1-8e59-4693-8ad8-f0eaee32d1bf/fdbda4bf-7038-4889-9e5e-01ef45114e55/KR-ko-20220530-popsignuptwoweeks-perspective_alpha_website_small.jpg"
-                            srcset="https://assets.nflxext.com/ffe/siteui/vlv3/5ea364b1-8e59-4693-8ad8-f0eaee32d1bf/fdbda4bf-7038-4889-9e5e-01ef45114e55/KR-ko-20220530-popsignuptwoweeks-perspective_alpha_website_small.jpg 1000w, https://assets.nflxext.com/ffe/siteui/vlv3/5ea364b1-8e59-4693-8ad8-f0eaee32d1bf/fdbda4bf-7038-4889-9e5e-01ef45114e55/KR-ko-20220530-popsignuptwoweeks-perspective_alpha_website_medium.jpg 1500w, https://assets.nflxext.com/ffe/siteui/vlv3/5ea364b1-8e59-4693-8ad8-f0eaee32d1bf/fdbda4bf-7038-4889-9e5e-01ef45114e55/KR-ko-20220530-popsignuptwoweeks-perspective_alpha_website_large.jpg 1800w"
+                            srcSet="https://assets.nflxext.com/ffe/siteui/vlv3/5ea364b1-8e59-4693-8ad8-f0eaee32d1bf/fdbda4bf-7038-4889-9e5e-01ef45114e55/KR-ko-20220530-popsignuptwoweeks-perspective_alpha_website_small.jpg 1000w, https://assets.nflxext.com/ffe/siteui/vlv3/5ea364b1-8e59-4693-8ad8-f0eaee32d1bf/fdbda4bf-7038-4889-9e5e-01ef45114e55/KR-ko-20220530-popsignuptwoweeks-perspective_alpha_website_medium.jpg 1500w, https://assets.nflxext.com/ffe/siteui/vlv3/5ea364b1-8e59-4693-8ad8-f0eaee32d1bf/fdbda4bf-7038-4889-9e5e-01ef45114e55/KR-ko-20220530-popsignuptwoweeks-perspective_alpha_website_large.jpg 1800w"
                             alt="" />
-                        <div className={cx("concord-img-gradient")}></div>
+                        <div className={cx("concord-img-gradient")} />
                     </div>
 
                     <div className={cx("our-story-card-text")}>
@@ -28,17 +32,16 @@ function StoryCardContainer() {
                             <div className={cx("email-form-lockup", "flex")}>
                                 <div data-uia="field-email+container" className={cx("nfInput")}>
                                     <input type="email" data-uia="field-email" name="email" className={cx("nfTextField")}
-                                        id="id_email_hero_fuji" value="" tabindex="0" autocomplete="email"
-                                        maxlength="50" minlength="5" dir="" placeholder="이메일 주소" />
+                                        id="id_email_hero_fuji" value="" dir="" placeholder="이메일 주소" />
                                 </div>
                                 <div className={cx("our-story-cta-container", "cta-link-wrapper")}>
                                     <button className={cx("btn", "btn-red", "startbt", "flex")}
-                                        type="submit" autocomplete="off" tabindex="0" role="link"
+                                        type="submit" role="link"
                                         data-uia="our-story-cta-hero_fuji"><span>시작하기</span>
                                         <span id="" className={cx("chevron-right-arrow")}
                                             data-uia=""> <svg viewBox="0 0 6 12" >
                                                 <path d="M.61 1.312l.78-.624L5.64 6l-4.25 5.312-.78-.624L4.36 6z"
-                                                    fill="evenodd" fill-rule="evenodd"></path>
+                                                    fill="evenodd" fillRule="evenodd" />
                                             </svg></span></button>
                                 </div>
                             </div>
@@ -48,8 +51,7 @@ function StoryCardContainer() {
                 </>
             } />
             <StoryCard content={
-                <>
-                    <div className={cx("animation-card-container", "flex")}>
+                <div className={cx("animation-card-container", "flex")}>
                         <div className={cx("our-card-text")}>
                             <h1 id="" className={cx("our-story-card-title")} data-uia="animation-card-title">TV로 즐기세요.</h1>
                             <h2 id={styles.ourstorycardsubtitle} className={cx("our-story-card-subtitle")}
@@ -63,22 +65,20 @@ function StoryCardContainer() {
                                     data-uia="our-story-card-img" />
 
                                 <div className={cx("our-story-card-animation")}>
-                                    <video className={cx("our-story-card-video")} autoplay="" playsinline="" muted="" loop="true">
+                                    <video className={cx("our-story-card-video")} autoPlay="" playsinline="" muted="" loop="true">
                                         <source
                                             src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-tv-0819.m4v"
                                             type="video/mp4" />
                                     </video>
-                                    <div className={cx("our-story-card-animation-text")}></div>
+                                    <div className={cx("our-story-card-animation-text")} />
                                 </div>
                             </div>
                         </div>
 
                     </div>
-                </>
             } />
             <StoryCard content={
-                <>
-                    <div className={cx("animation-card-container", "flex")}>
+                <div className={cx("animation-card-container", "flex")}>
                         <div className={cx("our-story-card-text", "flex")}>
                             <h1 id="" className={cx("our-story-card-title2")} data-uia="animation-card-title">즐겨 보는 콘텐츠를 저장해 오프라인으로
                                 시청하세요.</h1>
@@ -103,7 +103,6 @@ function StoryCardContainer() {
                         </div>
 
                     </div>
-                </>
             }
             />
             <StoryCard content={
@@ -150,12 +149,12 @@ function StoryCardContainer() {
                         <div className={cx("email-form-lockup", "flex")}>
                             <div data-uia="field-email+container" className={cx("nfInput")}>
                                 <label className={cx("input_id")} placeholder="email">
-                                    <input type="email" data-uia="field-email" name="email" className={cx("nfTextField")} id="id_email_hero_fuji" value="" tabindex="0" autocomplete="email" maxlength="50" minlength="5" dir="" placeholder="이메일 주소" />
+                                    <input type="email" data-uia="field-email" name="email" className={cx("nfTextField")} id="id_email_hero_fuji" value="" tabIndex="0" autoComplete="email" maxLength="50" minLength="5" dir="" placeholder="이메일 주소" />
                                 </label></div>
                             <div className={cx("our-story-cta-container", "cta-link-wrapper")}>
-                                <button className={cx("btn", "btn-red", "startbt", "flex")} type="submit" autocomplete="off" tabindex="0" role="link" data-uia="our-story-cta-hero_fuji"><span>시작하기</span>
+                                <button className={cx("btn", "btn-red", "startbt", "flex")} type="submit" autoComplete="off" tabIndex="0" role="link" data-uia="our-story-cta-hero_fuji"><span>시작하기</span>
                                     <span id="" className={cx("chevron-right-arrow")} data-uia=""> <svg viewBox="0 0 6 12">
-                                        <path d="M.61 1.312l.78-.624L5.64 6l-4.25 5.312-.78-.624L4.36 6z" fill="evenodd" fill-rule="evenodd"></path>
+                                        <path d="M.61 1.312l.78-.624L5.64 6l-4.25 5.312-.78-.624L4.36 6z" fill="evenodd" fillRule="evenodd" />
                                     </svg></span></button>
                             </div>
                         </div>

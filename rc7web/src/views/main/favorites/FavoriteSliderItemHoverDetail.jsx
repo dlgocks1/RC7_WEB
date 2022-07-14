@@ -4,11 +4,10 @@ import iconPlay from "assets/icon/icon_play.svg";
 import iconCheck from "assets/icon/icon_check_white.svg";
 import iconThumb from "assets/icon/icon_thumb_white.svg";
 import iconArrow from "assets/icon/icon_arrow_white.svg";
-import { useEffect, useState } from "react"
+import React, {useRef, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { addFaveriteDataAction,subFaveriteDataAction } from "reducers/favoriteDataReducer";
-import { useRef } from "react";
-import { setEpisdoeModalOn } from "reducers/episodemodalReducer";
+import { addFaveriteDataAction,subFaveriteDataAction } from "store/action/favoriteData";
+import { setEpisdoeModalOn } from "store/action/episodemodal";
 
 function FavoriteSliderItemHoverDetail({id, imgUrl, hoverStyle}){
     
@@ -34,10 +33,17 @@ function FavoriteSliderItemHoverDetail({id, imgUrl, hoverStyle}){
     const subFaveriteData = () =>{
         dispatch(
             subFaveriteDataAction(
-                {id : id}
+                {id}
             )
         );
         setOpacity(0);
+    }
+
+    const testfun = ()=>{
+        setTimeout(() => {
+             setOpacity(1)
+             setItemscale(1.2);
+        }, 100);
     }
 
     useEffect(()=>{
@@ -48,17 +54,11 @@ function FavoriteSliderItemHoverDetail({id, imgUrl, hoverStyle}){
         );        
     },[]);
 
-    const testfun = ()=>{
-        setTimeout(() => {
-             setOpacity(1)
-             setItemscale(1.2);
-        }, 100);
-    }
 
     const setModalOn = () =>{
         dispatch(
             setEpisdoeModalOn(
-                {imgUrl : imgUrl,}
+                {imgUrl,}
             )
         );
     }
@@ -69,7 +69,7 @@ function FavoriteSliderItemHoverDetail({id, imgUrl, hoverStyle}){
                 style={Object.assign(hoverStyle,{opacity:`${opacity}`,transform:`scale(${itemscale})`, transition:"all 0.5s"})}
             >
             <div>
-                <ShortVedio src={mainvedio} autoPlay muted={true}></ShortVedio>
+                <ShortVedio src={mainvedio} autoPlay muted />
                 <div style={{display:"flex",alignItems:"center",flexDirection:"row", marginLeft:"20px"}}>
                     <div style={{flexGrow:"1"}}>
                         <PlayIcon width="20px" src={iconPlay}/>
@@ -100,7 +100,7 @@ function FavoriteSliderItemHoverDetail({id, imgUrl, hoverStyle}){
                     <MorinfoIcon onClick={setModalOn} width="20px" src={iconArrow}/>
                     
                 </div>
-                <p style={{fontSize:"13px", fontWeight:"600", margin:"10px 15px" }}>"1화"</p>
+                <p style={{fontSize:"13px", fontWeight:"600", margin:"10px 15px" }}>1화</p>
                 <div style={{display:"grid",gridGap:"5px", alignItems:"center",paddingBottom:"20px",gridTemplateColumns:"4fr 3fr"}}>
                     <ProgressContainer >
                         <Progress width="100%"/>
@@ -124,9 +124,7 @@ const DtBookmarktooltip = styled.div`
     height: auto;
     line-height: 80%;
     padding: 5px 11px;
-    /* top: ${(props) => {
-        return `${props.height-200}px`;
-    }}; */
+    /* top: ${(props) => `${props.height-200}px`}; */
     top: 44%;
     left : -15px;
     position: absolute;

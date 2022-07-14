@@ -1,40 +1,21 @@
-import Header from "../Header";
-import HomeContent from "../home/HomeContent";
-import Footer from "../Footer";
 import styled from "styled-components"
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
-import FavoritsContent from "../favorites/FavoritsContent";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import {userFavorites} from "utils/userFavorites.js"
-import { setFaveriteDataAction } from "reducers/favoriteDataReducer";
+import React, { useEffect, useState } from "react";
+import { setFaveriteDataAction } from "store/action/favoriteData";
+import FavoritsContent from "./FavoritsContent";
+import Header from "../Header";
+import Footer from "../Footer";
 
 function FavoritePage(){
     const location = useLocation();
-    // console.log(location.pathname);
-    // const [searchParams, setSearchParams] = useSearchParams();
-    // const age = searchParams.get('age');
-    // const mode = searchParams.get('mode');
-    // console.log(typeof(age),typeof(age));
-    // const {username} = useParams();
-    // console.log(username);
+
 
     const [yoffset, setOffset] = useState(0);
     const [yposition, setYposition] = useState(0);
     const {isModal} = useSelector((state)=>(state.episodeModalReducer));
     const dispatch = useDispatch();
-
     useEffect(() => {
-        // userFavorites.map((value)=>{
-        //     if(value.id === localStorage.getItem("userKey")){
-        //         dispatch(
-        //             setFaveriteDataAction(
-        //                 value.itemList
-        //             )
-        //         )
-        //     }
-        // })
-        
         const onScroll = () => setOffset(window.pageYOffset);
         window.removeEventListener('scroll', onScroll);
         window.addEventListener('scroll', onScroll, { passive: true });
