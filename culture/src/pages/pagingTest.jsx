@@ -47,7 +47,7 @@ function PagingTest() {
       console.log(result);
       setAttachment(result);
     };
-    // reader.readAsDataURL(theFile);
+    reader.readAsDataURL(theFile);
     console.log(theFile);
   };
 

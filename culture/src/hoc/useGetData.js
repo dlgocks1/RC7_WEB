@@ -21,11 +21,9 @@ const useGetData = (url) => {
             throw new Error(error);
         }
       };
-
       if (!isLoading) {
         fetchData();
       }
-
     }, [url]);
   
     return { data, error, isLoading };

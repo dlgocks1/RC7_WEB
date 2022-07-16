@@ -9,7 +9,6 @@ import HandleNextArrow from "./handleNextArrow";
 import HandlePrevArrow from "./handlePrevArrow";
 
 function Viewcontainer2() {
-
   const [contentList, setContentList] = useState([
     {
       id: 21,
@@ -60,10 +59,10 @@ function Viewcontainer2() {
     infinite: true, // 무한으로 즐겨요
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1, 
+    slidesToScroll: 1,
     nextArrow: <HandleNextArrow />,
     prevArrow: <HandlePrevArrow />,
-    arrows: true, 
+    arrows: true,
   };
 
   const contentRender = () => {
@@ -79,7 +78,7 @@ function Viewcontainer2() {
       <RowHeader>
         <RowHeaderTitle>React Slick 라이브러리</RowHeaderTitle>
       </RowHeader>
-      
+
       <Container>
         <CustomSlider {...settings}>
           {contentRender().map((value) => (

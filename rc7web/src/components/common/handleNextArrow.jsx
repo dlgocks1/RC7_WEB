@@ -3,13 +3,8 @@ import styled from "styled-components";
 
 function HandleNextArrow({ className, style, onClick }) {
   return (
-    <HandleNextArrowContainer
-        onClick={onClick}>
-      <svg
-        version="1.0"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+    <HandleNextArrowContainer onClick={onClick}>
+      <svg version="1.0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path
           fill="none"
           stroke="#ffffff"
@@ -34,11 +29,11 @@ const HandleNextArrowContainer = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 5;
-  svg{
+  svg {
     transform: rotate(270deg);
     transition: all 0.5s;
-    :hover{
-        transform: rotate(270deg) scale(1.3);
+    :hover {
+      transform: rotate(270deg) scale(1.3);
     }
   }
 `;
