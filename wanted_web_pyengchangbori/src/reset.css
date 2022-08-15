@@ -1,0 +1,195 @@
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+    font-family: 'Pretendard', 'PretendardStd-ExtraLight','PretendardStd-Thin','PretendardStd-Light','PretendardStd';
+	vertical-align: baseline;
+    box-sizing: border-box;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333333;
+    background-color: #f8f8fa;
+    background-color: #fff;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+}
+a, a:active, a:hover, a:visited {
+    color: inherit;
+}
+
+a {
+    text-decoration: inherit;
+    cursor: pointer;
+    color: #444444;
+}
+
+.react-horizontal-scrolling-menu--scroll-container, .react-horizontal-scrolling-menu--inner-wrapper{
+    overflow-x: hidden;
+}
+
+.icon-svg {
+    user-select: none;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    fill: currentColor;
+    flex-shrink: 0;
+    font-size: inherit;
+}
+
+.icon-svg-wrapper {
+    width: 100%;
+    align-items: inherit;
+    justify-content: inherit;
+}
+
+input[type=email]::-webkit-input-placeholder, input[type=password]::-webkit-input-placeholder, input[type=text]::-webkit-input-placeholder {
+    color: #aaa;
+    text-overflow: inherit;
+    white-space: pre;
+    overflow-wrap: normal;
+    line-height: initial !important;
+    -webkit-user-modify: read-only !important;
+    overflow: hidden;
+    font-size: 15px;
+    letter-spacing: -1px;
+}
+
+::-webkit-input-placeholder {
+    -webkit-text-security: none;
+    color: rgb(117, 117, 117);
+    direction: inherit !important;
+    pointer-events: none !important;
+    text-orientation: inherit !important;
+    writing-mode: inherit !important;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    margin: 4px 0 0;
+    margin-top: 1px \9;
+    line-height: normal;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.style_label {
+    font-size: 14px;
+    font-weight: 400;
+}
+option {
+    font-weight: normal;
+    display: block;
+    white-space: nowrap;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}
+
+.box-skeleton-ui {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-animation: skeleton-gradient 1.8s infinite ease-in-out;
+    animation: skeleton-gradient 1.8s infinite ease-in-out;
+}
+
+@-webkit-keyframes skeleton-gradient {
+    0% {
+        background-color: rgba(165, 165, 165, 0.1);
+    }
+
+    50% {
+        background-color: rgba(165, 165, 165, 0.3);
+    }
+
+    100% {
+        background-color: rgba(165, 165, 165, 0.1);
+    }
+}
+
+@keyframes skeleton-gradient {
+    0% {
+        background-color: rgba(165, 165, 165, 0.1);
+    }
+
+    50% {
+        background-color: rgba(165, 165, 165, 0.3);
+    }
+
+    100% {
+        background-color: rgba(165, 165, 165, 0.1);
+    }
+}
+
+
+/* 
+.react-horizontal-scrolling-menu--arrow-right{
+    background-color: transparent;
+    z-index: 5;
+    width: 0;
+    position: relative;
+    right : 40px;
+}
+
+.react-horizontal-scrolling-menu--arrow-left{
+    background-color: transparent;
+    width: 0;
+    z-index: 5;
+}
+.react-horizontal-scrolling-menu--inner-wrapper {
+    overflow-x: hidden;
+} */
+
+/* .react-horizontal-scrolling-menu--inner-wrapper:after {
+    right: 0;
+    background-image: linear-gradient(90deg,hsla(0,0%,100%,0),#fff 50%);
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: 80px;
+    height: 54px;
+} */
